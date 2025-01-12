@@ -35,7 +35,7 @@ runs:
     # Step 4: Install dependencies using Poetry if the cache is not found
     - name: Install dependencies using Poetry
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --with ${{ inputs.dependencies }}
+      run: poetry install --no-root --with ${{ inputs.dependencies }}
       shell: bash
 
     # Step 5: Verify the installation of Poetry and display environment info
