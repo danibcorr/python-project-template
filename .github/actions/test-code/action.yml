@@ -1,0 +1,22 @@
+name: Test Code
+
+# Define inputs for the action, such as the project folder and the tests folder
+inputs:
+  src-project-folder:
+    description: "Directory where the project is located"
+    required: true
+    default: "src"
+  src-tests-folder:
+    description: "Directory where the project tests are located"
+    required: true
+    default: "tests"
+
+runs:
+  using: composite # This action runs as a composite, with multiple steps executed in sequence
+  steps:
+    # Step 1: Run tests using Pytest
+    - name: Pytest
+      run: |
+        echo "Running tests with Pytest..."
+        poetry run pytest ${{ inputs.src-project-folder }}/${{ inputs.src-tests-folder }}/
+      shell: bash
