@@ -57,7 +57,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Build the MkDocs site
+      # Step 2: Set up the Python environment and install dependencies for 
+      # documentation
+      - name: Setup Python environment and dependencies
+        uses: ./.github/actions/setup-python-env
+        with:
+          src-python-version: ${{ env.SRC_PYTHON_VERSION }}
+          dependencies: "docs"
+
+      # Step 3: Build the MkDocs site
       - name: Build MkDocs
         uses: ./.github/actions/build-mkdocs
 
