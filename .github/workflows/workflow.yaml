@@ -1,11 +1,13 @@
 name: Workflow Name
 
-# This workflow is triggered when there is a push to the 'main' branch or when
-# it is called from another workflow
+# This workflow runs on push, pull request, or manual trigger
+# (workflow_dispatch)
 on:
   push:
-    branches: ["main"]
-  workflow_call:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 # Set up environment variables
 env:
@@ -19,34 +21,46 @@ env:
 # Define jobs in this workflow
 jobs:
   setup-lint-test:
-    name: Setup, Lint and Test Code
+    name: Setup, Lint, Test, Security the Code
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
     steps:
       # Step 1: Checkout the repository code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up the Python environment and install dependencies for 
+      # Step 2: Set up the Python environment and install dependencies for
       # testing and linting
       - name: Setup Python environment and dependencies
         uses: ./.github/actions/setup-python-env
         with:
-          src-python-version: ${{ env.SRC_PYTHON_VERSION }}
+          src-python-version: ${{ matrix.python-version }}
           dependencies: "test,lint"
-      
+
       # Step 3: Run code linting to check code style, syntax, and quality
       # using Black, MyPy and Flake8
       - name: Check code format, syntax and quality
         uses: ./.github/actions/lint-code
         with:
           src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
-      
+
       # Step 4: Run tests using PyTest in the project
       - name: Test code
         uses: ./.github/actions/test-code
         with:
           src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
           src-tests-folder: ${{ env.SRC_PROJECT_TESTS }}
+
+      # Step 5: Check security
+      - name: Check security
+        uses: ./.github/actions/security
+        with:
+          src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
+          src-exclude: ${{ env.SRC_PROJECT_TESTS }}
 
   build-mkdocs:
     name: Build MkDocs Wiki
@@ -61,7 +75,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up the Python environment and install dependencies for 
+      # Step 2: Set up the Python environment and install dependencies for
       # documentation
       - name: Setup Python environment and dependencies
         uses: ./.github/actions/setup-python-env
@@ -107,22 +121,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  release:
-    name: Create a release
-    runs-on: ubuntu-latest
-    needs: deploy-mkdocs
-
-    steps:
-      # Step 1: Checkout the repository code, specifically the 'gh-pages' branch
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-
-      # Step 2: Use the release action to create the release
-      - name: Create a release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "release.tar.gz,foo/*.txt"
-          bodyFile: "body.md"

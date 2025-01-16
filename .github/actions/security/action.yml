@@ -1,0 +1,22 @@
+name: Check Security Code # Name of the custom GitHub Action
+
+inputs:
+  src-project-folder:
+    description: "Directory where the project is located"
+    required: true
+    default: "src"
+
+  src-exclude:
+    description: "Location of the directory to exclude"
+    required: true
+    default: "tests"
+
+runs:
+  using: composite
+  steps:
+    # Step 1: Check for security vulnerabilities using Bandit
+    - name: Check security issues with Bandit
+      run: |
+        echo "Checking security issues with Bandit..." 
+        poetry run bandit -r ${{ inputs.src-project-folder }}/ --exclude ${{ inputs.src-exclude }}
+      shell: bash

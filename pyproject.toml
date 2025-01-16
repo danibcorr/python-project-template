@@ -9,7 +9,8 @@ license = "LICENSE"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "complexipy (>=1.2.0,<2.0.0)"
+    "complexipy (>=1.2.0,<2.0.0)",
+    "bandit[toml] (>=1.8.2,<2.0.0)",
 ]
 package-mode = false
 
@@ -39,3 +40,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.black]
 line-length = 89
 skip-string-normalization = false
+
+[tool.bandit]
+exclude = ["src/tests/"]
+skips = ["B101"]
