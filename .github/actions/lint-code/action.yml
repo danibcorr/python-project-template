@@ -30,3 +30,10 @@ runs:
         echo "Running Flake8 linter..."
         poetry run flake8 ${{ inputs.src-project-folder }}/
       shell: bash
+
+    # Step 4: Check the Cognitive Complexity with complexipy
+    - name: Cognitive Complexity with complexipy
+      run: |
+        echo "Running complexipy..."
+        poetry run complexipy ${{ inputs.src-project-folder }}/
+      shell: bash
