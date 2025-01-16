@@ -41,6 +41,28 @@ toml = ["tomli (>=1.1.0)"]
 yaml = ["PyYAML"]
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.12.3"
+description = "Screen-scraping library"
+optional = false
+python-versions = ">=3.6.0"
+groups = ["docs"]
+files = [
+    {file = "beautifulsoup4-4.12.3-py3-none-any.whl", hash = "sha256:b80878c9f40111313e55da8ba20bdba06d8fa3969fc68304167741bbf9e082ed"},
+    {file = "beautifulsoup4-4.12.3.tar.gz", hash = "sha256:74e3d1928edc070d21748185c46e3fb33490f22f52a3addee9aee0f4f7781051"},
+]
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+cchardet = ["cchardet"]
+chardet = ["chardet"]
+charset-normalizer = ["charset-normalizer"]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 name = "black"
 version = "24.10.0"
 description = "The uncompromising code formatter."
@@ -637,6 +659,22 @@ files = [
 Markdown = ">=3.3"
 markupsafe = ">=2.0.1"
 mkdocs = ">=1.1"
+
+[[package]]
+name = "mkdocs-enumerate-headings-plugin"
+version = "0.6.2"
+description = "MkDocs Plugin to enumerate the headings (h1-h6) across site pages"
+optional = false
+python-versions = ">=3.7"
+groups = ["docs"]
+files = [
+    {file = "mkdocs_enumerate_headings_plugin-0.6.2-py3-none-any.whl", hash = "sha256:6bec6674091509290e1f24a0c9272b887c5242e8af6fbddb8eb2b089f52d5bfe"},
+    {file = "mkdocs_enumerate_headings_plugin-0.6.2.tar.gz", hash = "sha256:392782dbbbb9f7f62af852b6f2724ae515043dbb7397cd68dd62f134dd1b3ab5"},
+]
+
+[package.dependencies]
+beautifulsoup4 = ">=4.9.0"
+mkdocs = ">=1.0.4"
 
 [[package]]
 name = "mkdocs-get-deps"
@@ -1316,6 +1354,18 @@ files = [
 ]
 
 [[package]]
+name = "soupsieve"
+version = "2.6"
+description = "A modern CSS selector implementation for Beautiful Soup."
+optional = false
+python-versions = ">=3.8"
+groups = ["docs"]
+files = [
+    {file = "soupsieve-2.6-py3-none-any.whl", hash = "sha256:e72c4ff06e4fb6e4b5a9f0f55fe6e81514581fca1515028625d0f299c602ccc9"},
+    {file = "soupsieve-2.6.tar.gz", hash = "sha256:e2e68417777af359ec65daac1057404a3c8a5455bb8abc36f1a9866ab1a51abb"},
+]
+
+[[package]]
 name = "stevedore"
 version = "5.4.0"
 description = "Manage dynamic plugins for Python applications"
@@ -1439,4 +1489,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "469a7b64f3d6f2f819e0bba4569b0c15d451f87544879b2fd2fdce6d1557d4e1"
+content-hash = "774a7f7fe634f39c76b5cb0e8623a79cc7d7e5b7d6aef51f077f7f44da3f9d03"

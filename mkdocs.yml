@@ -89,6 +89,12 @@ plugins:
             ignore_init_summary: true
             show_submodules: false
             filters: ["!get_config", "!build", "!^_[^_]"]
+  - git-revision-date-localized
+  - git-authors
+  - enumerate-headings:
+      toc_depth: 0
+      exclude:
+        - index.md
 
 extra:
   status:

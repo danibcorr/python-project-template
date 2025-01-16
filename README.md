@@ -17,7 +17,7 @@ For more details about the tools and configurations used in this project, see th
 
 Setting up your development environment with this project template is quick and easy. Just follow these steps:
 
-### **1. Clone the Repository**
+### Clone the Repository
 
 First, clone the repository to your local machine:
 
@@ -26,11 +26,11 @@ git clone https://github.com/yourusername/python-project-template.git
 cd python-project-template
 ```
 
-### **2. Activate Your Python Environment**  
+### Activate Your Python Environment
 
 Next, activate your Python virtual environment. This will depend on your operating system and the environment created.
 
-### **3. Install Dependencies and Set Up the Project**  
+### Install Dependencies and Set Up the Project
 
 This template includes a `Makefile` that automates the setup process, including installing dependencies and preparing the environment. To run the setup, simply execute:
 
