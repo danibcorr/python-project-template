@@ -29,8 +29,8 @@ runs:
       uses: actions/cache@v4
       id: cached-poetry-dependencies
       with:
-        path: .venv
-        key: "venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}"
+        path: ./.venv
+        key: venv-${{ hashFiles('poetry.lock') }}
 
     # Step 4: Install dependencies using Poetry if the cache is not found
     - name: Install dependencies using Poetry
@@ -42,5 +42,5 @@ runs:
     - name: Verify installation
       shell: bash
       run: |
-        poetry --version  # Check the installed version of Poetry
-        poetry env info   # Display information about the Poetry virtual environment (useful for debugging)
+        poetry --version  
+        poetry env info
