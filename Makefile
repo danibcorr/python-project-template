@@ -30,10 +30,14 @@ test:
 	@echo "Runing PyTest Tests..."
 	poetry run pytest $(SRC_PROJECT_NAME)/$(SRC_TESTS)/
 	
+security:
+	@echo "Runing Bandit Tests..."
+	poetry run bandit -r $(SRC_PROJECT_NAME) --exclude $(SRC_TESTS)
+	
 wiki-up:
 	@echo "Runing MkDocs..."
 	mkdocs serve
 
-pre-commit: clean lint test
+pre-commit: clean lint test security
 
-all: clean lint test wiki-up
+all: clean lint test security wiki-up
