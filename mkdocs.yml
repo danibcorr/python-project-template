@@ -90,7 +90,8 @@ plugins:
             show_submodules: false
             filters: ["!get_config", "!build", "!^_[^_]"]
   - git-revision-date-localized
-  - git-authors
+  - git-authors:
+      show_email_address: false
   - enumerate-headings:
       toc_depth: 0
       exclude:
