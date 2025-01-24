@@ -1,5 +1,5 @@
-name: Setup Python Environment
-description: Sets up Python, Poetry, and dependencies for the project
+name: Setup Python Environment and Poetry
+description: Setup Python, Poetry, and dependencies for the project
 
 # Define inputs for the action, such as the Python version and the dependencies
 # to install
@@ -14,32 +14,31 @@ inputs:
 runs:
   using: composite
   steps:
-    # Step 1: Install the specified version of Python using actions/setup-python
+    # Step 1: Install Poetry, a tool for managing Python dependencies
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+
+    # Step 2: Install the specified version of Python using actions/setup-python
     - name: Install Python
       uses: actions/setup-python@v5
       with:
         python-version: ${{ inputs.src-python-version }}
+        cache: poetry
+        cache-dependency-path: poetry.lock
 
-    # Step 2: Install Poetry, a tool for managing Python dependencies
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
-
-    # Step 3: Cache the virtual environment (venv) to speed up future installations
-    - name: Load cached venv
-      uses: actions/cache@v4
-      id: cached-poetry-dependencies
-      with:
-        path: ./.venv
-        key: venv-${{ hashFiles('poetry.lock') }}
-
-    # Step 4: Install dependencies using Poetry if the cache is not found
-    - name: Install dependencies using Poetry
-      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-root --with ${{ inputs.dependencies }}
+    # Step 3: Set the version of Python for the Poetry environment
+    - name: Set Poetry environment
       shell: bash
+      run: |
+        poetry env use ${{ inputs.src-python-version }}
+
+    # Step 4: Install dependencies using Poetry
+    - name: Install dependencies using Poetry
+      shell: bash
+      run: poetry install --no-root --with ${{ inputs.dependencies }}
 
     # Step 5: Verify the installation of Poetry and display environment info
-    - name: Verify installation
+    - name: Verify Poetry installation
       shell: bash
       run: |
         poetry --version  

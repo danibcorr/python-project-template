@@ -1,7 +1,6 @@
 name: Workflow Name
 
-# This workflow runs on push, pull request, or manual trigger
-# (workflow_dispatch)
+# This workflow runs on push, pull request, or manual trigger (workflow_dispatch)
 on:
   push:
     branches: [main]
@@ -16,7 +15,7 @@ env:
   # Folder where test files are located
   SRC_PROJECT_TESTS: "tests"
   # Python version to use
-  SRC_PYTHON_VERSION: "3.12"
+  SRC_PYTHON_VERSION: "3.11"
 
 # Define jobs in this workflow
 jobs:
@@ -33,16 +32,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up the Python environment and install dependencies for
-      # testing and linting
+      # Step 2: Set up the Python environment and install dependencies for testing and
+      # linting
       - name: Setup Python environment and dependencies
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{ matrix.python-version }}
           dependencies: "test,lint"
 
-      # Step 3: Run code linting to check code style, syntax, and quality
-      # using Black, MyPy and Flake8
+      # Step 3: Run code linting to check code style, syntax, and quality using Black,
+      # MyPy and Flake8
       - name: Check code format, syntax and quality
         uses: ./.github/actions/lint-code
         with:
@@ -75,8 +74,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up the Python environment and install dependencies for
-      # documentation
+      # Step 2: Set up the Python environment and install dependencies for documentation
       - name: Setup Python environment and dependencies
         uses: ./.github/actions/setup-python-env
         with:

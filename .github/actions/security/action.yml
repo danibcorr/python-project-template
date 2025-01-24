@@ -1,4 +1,4 @@
-name: Check Security Code # Name of the custom GitHub Action
+name: Check Security Code
 
 inputs:
   src-project-folder:

@@ -16,7 +16,7 @@ runs:
   steps:
     # Step 1: Run tests using Pytest
     - name: Pytest
+      shell: bash
       run: |
         echo "Running tests with Pytest..."
         poetry run pytest ${{ inputs.src-project-folder }}/${{ inputs.src-tests-folder }}/
-      shell: bash
