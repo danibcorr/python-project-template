@@ -14,18 +14,16 @@ The `Makefile` automates common tasks:
 - **pre-commit**: Ensures code is clean and formatted before committing.
 - **all**: Runs `clean`, `lint`, `test`, and `wiki-up` to prepare the project.
 
-## `setup.cfg`
-
-This file configures code quality tools:
-
-- **Flake8**: Configures line length, warnings to ignore, and which errors to check for.
-- **Mypy**: Configures type checking options, including ignoring missing imports and treating optional types strictly.
-- **Pylint**: Sets line length and disables specific warnings (e.g., duplicated code).
-
 ## `pyproject.toml`
 
 This file configures Poetry and other tools like Black, Flake8, Mypy, and MkDocs:
 
 - **Project Info**: Defines the project name, version, and description.
-- **Dependencies**: Lists test, linting, and documentation dependencies like `pytest`, `black`, `flake8`, and `mkdocs`.
-- **Black Configuration**: Sets line length to 89 characters and prevents string normalization (quote changes).
+- **Dependencies**: Lists test, linting, and documentation dependencies like `pytest`,
+  `black`, `flake8`, and `mkdocs`.
+- **Black Configuration**: Sets line length to 89 characters and prevents string
+  normalization (quote changes).
+- **Flake8**: Configures line length, warnings to ignore, and which errors to check for.
+- **Mypy**: Configures type checking options, including ignoring missing imports and
+  treating optional types strictly.
+- **Pylint**: Sets line length and disables specific warnings (e.g., duplicated code).
