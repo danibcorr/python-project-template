@@ -33,7 +33,7 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{ matrix.python-version }}
-          dependencies: "test,lint"
+          dependencies: "pipeline"
 
       - name: Lint Code (Black, Mypy, Flake8, Pylint, Complexipy)
         uses: ./.github/actions/lint-code
@@ -68,7 +68,7 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{ env.SRC_PYTHON_VERSION }}
-          dependencies: "docs"
+          dependencies: "documentation"
 
       - name: Build MkDocs Site
         uses: ./.github/actions/build-mkdocs
