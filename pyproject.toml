@@ -21,7 +21,8 @@ documentation = [
 ]
 pipeline = [
     "bandit>=1.8.3",
-    "black[jupyter]>=25.1.0",
+    "black>=25.1.0",
+    "black[jupyter]",
     "complexipy>=2.1.1",
     "flake8>=7.2.0",
     "flake8-pyproject>=1.2.3",
