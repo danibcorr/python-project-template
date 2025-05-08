@@ -1,45 +1,51 @@
-name: Setup Python Environment and Poetry
-description: Setup Python, Poetry, and dependencies for the project
+name: Setup Python Environment and uv
+description: Setup Python, uv, and dependencies for the project
 
-# Define inputs for the action, such as the Python version and the dependencies
-# to install
 inputs:
   src-python-version:
     description: "Python version to set up for the project"
     required: true
+
   dependencies:
-    description: "Dependencies to install (e.g., test, lint)"
+    description:
+      "Dependency group(s) to install (comma-separated, for use with pyproject.toml)"
     required: true
 
 runs:
   using: composite
   steps:
-    # Step 1: Install Poetry, a tool for managing Python dependencies
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
+    - name: Install uv (Python package manager)
+      id: setup-uv
+      uses: astral-sh/setup-uv@v5
 
-    # Step 2: Install the specified version of Python using actions/setup-python
-    - name: Install Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ inputs.src-python-version }}
-        cache: poetry
-        cache-dependency-path: poetry.lock
-
-    # Step 3: Set the version of Python for the Poetry environment
-    - name: Set Poetry environment
+    - name: Install Python via uv
+      id: install-python
       shell: bash
       run: |
-        poetry env use ${{ inputs.src-python-version }}
+        echo "Installing Python ${{ inputs.src-python-version }}..."
+        uv python install ${{ inputs.src-python-version }}
 
-    # Step 4: Install dependencies using Poetry
-    - name: Install dependencies using Poetry
-      shell: bash
-      run: poetry install --no-root --with ${{ inputs.dependencies }}
-
-    # Step 5: Verify the installation of Poetry and display environment info
-    - name: Verify Poetry installation
+    - name: Create virtual environment
+      id: create-venv
       shell: bash
       run: |
-        poetry --version  
-        poetry env info
+        echo "Creating virtual environment in .venv/ using Python ${{ inputs.src-python-version }}..."
+        uv venv .venv --python ${{ inputs.src-python-version }}
+
+    - name: Install dependencies with uv
+      id: install-deps
+      shell: bash
+      run: |
+        echo "Activating virtual environment and installing dependencies for group(s): ${{ inputs.dependencies }}"
+        source .venv/bin/activate
+        uv pip install --group ${{ inputs.dependencies }}
+
+    - name: Verify uv and environment
+      id: verify
+      shell: bash
+      run: |
+        source .venv/bin/activate
+        echo "uv version:"
+        uv --version
+        echo "Virtual environments:"
+        uv venv list

@@ -4,26 +4,21 @@ repo_name: python-project-template
 repo_url: https://github.com/danibcorr/python-project-template
 site_url: https://https://danibcorr.github.io/python-project-template
 
-nav:
-  - Home:
-      - User guide: index.md
-  - Content: content/content.md
-
 theme:
   name: "material"
-  locale: en
+  language: en
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: yellow
-      accent: yellow
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/lightbulb-outline
         name: "Switch to dark mode"
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: yellow
-      accent: yellow
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/lightbulb
         name: "Switch to light mode"
@@ -63,15 +58,20 @@ markdown_extensions:
   - md_in_html
   - abbr
   - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
 
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
 
 plugins:
   - search:
       lang: en
   - mkdocstrings:
+      enabled: !ENV [ENABLE_MKDOCSTRINGS, true]
+      default_handler: python
       handlers:
         python:
           options:
@@ -83,12 +83,13 @@ plugins:
             show_bases: false
             show_root_full_path: false
             show_symbol_type_heading: true
-            show_special_methods: false
             show_symbol_type_toc: true
             modernize_annotations: true
-            ignore_init_summary: true
             show_submodules: false
             filters: ["!get_config", "!build", "!^_[^_]"]
+            extra:
+              ignore_init_summary: true
+              show_special_methods: false
   - git-revision-date-localized
   - git-authors:
       show_email_address: false
@@ -96,6 +97,7 @@ plugins:
       toc_depth: 0
       exclude:
         - index.md
+  - mkdocs-jupyter
 
 extra:
   status:

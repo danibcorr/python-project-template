@@ -1,64 +1,101 @@
 # 🐍 Python Project Template
 
-Welcome to the **Python Project Template** repository! This template is designed to help
-you quickly set up a Python project with essential tools and best practices for **code
-quality, security, complexity analysis, testing, and deployment**. Whether you’re
-starting a new project or looking to standardize your development workflow, this template
-provides a solid foundation.
-
-For more details about the tools and configurations used in this project, see the
-[Content](./content/content.md) page.
+Welcome to the **Python Project Template**! This template is designed to kickstart your
+Python projects with essential tools for **code quality, security, complexity analysis,
+testing, and deployment**. Whether you're starting fresh or looking to streamline your
+development workflow, this template provides a solid foundation.
 
 ## 📰 Features
 
-- **Code Quality Tools**: Integrated with [Black](https://github.com/psf/black) for
-  automatic code formatting, [Flake8](https://flake8.pycqa.org/en/latest/) for linting,
-  and [Mypy](http://mypy-lang.org/) for static type checking.
-- **Security Analysis**: Uses [Bandit](https://bandit.readthedocs.io/en/latest/) to
-  identify common security issues in your Python code.
-- **Code Complexity Analysis**: Integrated with
-  [Complexipy](https://rohaquinlop.github.io/complexipy/) to measure and analyze the
-  complexity of the codebase.
-- **Testing**: Built-in support for [Pytest](https://docs.pytest.org/en/stable/) for
-  running tests and ensuring code correctness.
-- **Documentation**: Uses [MkDocs](https://www.mkdocs.org/) for generating beautiful
-  documentation websites, with the
-  [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
-- **Deployment**: Easily deploys documentation to
+- **Code Quality**: Integrated tools like [Black](https://github.com/psf/black),
+  [Flake8](https://flake8.pycqa.org/en/latest/), [Mypy](http://mypy-lang.org/), and
+  [Pylint](https://pylint.pycqa.org/) ensure clean, readable code.
+- **Security**: Scan for vulnerabilities with
+  [Bandit](https://bandit.readthedocs.io/en/latest/).
+- **Code Complexity**: Analyze code complexity with
+  [Complexipy](https://rohaquinlop.github.io/complexipy/).
+- **Testing**: Built-in support for [Pytest](https://docs.pytest.org/en/stable/) to
+  ensure your code works as expected.
+- **Documentation**: Automatically generates documentation with
+  [MkDocs](https://www.mkdocs.org/) and deploys it to
   [GitHub Pages](https://pages.github.com/).
+- **CI/CD Pipeline**: Fully automated GitHub Actions for linting, testing, security
+  checks, documentation build, and deployment.
 
 ## 🏗️ Installation and Setup
 
-Setting up your development environment with this project template is quick and easy.
-Just follow these steps:
+Setting up the environment is quick and easy. Just follow these steps:
 
 ### Clone the Repository
 
-First, clone the repository to your local machine:
+Clone the repo and navigate to the project folder:
 
 ```bash
 git clone https://github.com/yourusername/python-project-template.git
 cd python-project-template
 ```
 
-### Activate Your Python Environment
+### Activate Python Environment
 
-Next, activate your Python virtual environment. This will depend on your operating system
-and the environment created.
+Activate your Python virtual environment (depending on your OS and environment setup).
 
-### Install Dependencies and Set Up the Project
+### Install Dependencies
 
-This template includes a `Makefile` that automates the setup process, including
-installing dependencies and preparing the environment. To run the setup, simply execute:
+Use the `Makefile` to automate the setup:
 
 ```bash
 make
 ```
 
-This will automatically install all the required dependencies and set up the environment
-for linting, testing, security analysis, and documentation.
+Alternatively, install dependencies manually:
+
+```bash
+pip install -r pyproject.toml
+```
+
+### Running the Full CI/CD Pipeline
+
+To run the full pipeline (linting, testing, static analysis, security checks), execute:
+
+```bash
+make pipeline
+```
+
+To trigger a complete workflow (setup, cleanup, tests, documentation):
+
+```bash
+make all
+```
+
+### Documentation
+
+Serve your project documentation locally with MkDocs:
+
+```bash
+make doc
+```
+
+This will start a local server to preview the docs.
+
+## ⚙️ GitHub Actions CI/CD Workflow
+
+Automated CI/CD workflow with GitHub Actions runs on `push` and `pull_request` events for
+`main` and `dev` branches. It includes:
+
+1. **Setup**: Installs dependencies and sets up the environment.
+2. **Linting & Analysis**: Runs tools like `black`, `flake8`, `pylint`, `complexipy`,
+   `mypy`, and `bandit`.
+3. **Testing**: Runs tests with `pytest`.
+4. **Build Docs**: Generates and serves the MkDocs site.
+5. **Deploy Docs**: Deploys documentation to GitHub Pages.
+
+The workflow configuration is found in `.github/workflows/ci-cd-pipeline.yml`.
+
+### Deployment Conditions
+
+Docs are deployed to GitHub Pages only for pull requests to the `main` or `dev` branches.
 
 ## 💛 Contributing
 
-Feel free to fork this template and adapt it to your needs! Contributions are always
-welcome. If you’d like to contribute, please submit a pull request or open an issue.
+Feel free to fork and adapt this template! Contributions are always welcome. If you'd
+like to contribute, open a pull request or issue.
