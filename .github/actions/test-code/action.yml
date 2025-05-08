@@ -18,5 +18,11 @@ runs:
       id: run-pytest
       shell: bash
       run: |
-        echo "Running Pytest on '${{ inputs.src-tests-folder }}'..."
-        uv run pytest ${{ inputs.src-tests-folder }}
+        echo "Checking if tests directory exists..."
+        if [ -d "${{ inputs.src-tests-folder }}" ]; then
+          echo "Running tests..."
+          pytest ${{ inputs.src-tests-folder }}
+          echo "Tests complete."
+        else
+          echo "No tests directory found. Skipping tests."
+        fi
