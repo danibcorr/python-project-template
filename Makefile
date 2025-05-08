@@ -45,7 +45,7 @@ code_check:
 # Test the code, only if the tests directory exists
 tests:
 	@echo "Checking if tests directory exists..."
-	if [ -d "${{ inputs.src-tests-folder }}" ] && [ "$(ls -A ${{ inputs.src-tests-folder }})" ]; then \
+	if [ -d "${{ inputs.src-tests-folder }}" ] && if [ $(ls ${{ inputs.src-tests-folder }} | grep -E '^test_.*\.py$' | wc -l) -gt 0 ]; then \
 		echo "Running tests..."; \
 		uv run pytest $(SRC_TESTS); \
 		echo "✅ Tests complete."; \
