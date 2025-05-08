@@ -19,7 +19,7 @@ runs:
       shell: bash
       run: |
         echo "Checking if tests directory exists..."
-        if [ -d "${{ inputs.src-tests-folder }}" ]; then
+        if [ -d "${{ inputs.src-tests-folder }}" ] && [ "$(ls -A ${{ inputs.src-tests-folder }})" ]; then
           echo "Running tests..."
           uv run pytest ${{ inputs.src-tests-folder }}
           echo "Tests complete."
