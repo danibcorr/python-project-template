@@ -7,16 +7,16 @@ inputs:
     default: "src"
 
   src-exclude:
-    description: "Location of the directory to exclude"
+    description: "Directory to exclude from security checks"
     required: true
     default: "tests"
 
 runs:
   using: composite
   steps:
-    # Step 1: Check for security vulnerabilities using Bandit
-    - name: Check security issues with Bandit
+    - name: Security scan with Bandit
+      id: bandit
       run: |
-        echo "Checking security issues with Bandit..." 
-        poetry run bandit -r ${{ inputs.src-project-folder }}/ --exclude ${{ inputs.src-exclude }}
+        echo "Running Bandit security scan on '${{ inputs.src-project-folder }}', excluding '${{ inputs.src-exclude }}'..." 
+        uv run bandit -r ${{ inputs.src-project-folder }}/ --exclude ${{ inputs.src-exclude }}
       shell: bash

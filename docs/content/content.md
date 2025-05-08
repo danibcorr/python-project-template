@@ -1,29 +1,26 @@
-# Project Files and Their Functions
+# Python Project Template Documentation
 
-This section explains the main files and their roles in the **Python Project Template**.
+## Overview
 
-## `Makefile`
+The **Python Project Template** provides an easy setup for Python projects with built-in tools for code quality, security, testing, and documentation. It automates tasks and creates a consistent project structure.
 
-The `Makefile` automates common tasks:
+## Project Files and Functions
 
-- **install**: Installs or upgrades Poetry and project dependencies.
-- **clean**: Removes `__pycache__` and `.pytest_cache` to clean up.
-- **lint**: Runs code quality checks with Black, Mypy, and Flake8.
-- **test**: Runs tests using [Pytest](https://docs.pytest.org/en/stable/).
-- **wiki-up**: Serves documentation locally with MkDocs.
-- **pre-commit**: Ensures code is clean and formatted before committing.
-- **all**: Runs `clean`, `lint`, `test`, and `wiki-up` to prepare the project.
+### `Makefile`
 
-## `pyproject.toml`
+* **`install`**: Installs and upgrades dependencies using `uv` and `pyproject.toml`.
+* **`clean`**: Removes cache files (`__pycache__`, `.pytest_cache`, etc.).
+* **`lint`**: Runs code checks (Black, Mypy, Flake8, Pylint).
+* **`test`**: Runs tests with [Pytest](https://docs.pytest.org/en/stable/).
+* **`wiki-up`**: Serves documentation locally using [MkDocs](https://www.mkdocs.org/).
+* **`pre-commit`**: Runs quality checks before committing.
+* **`all`**: Runs `clean`, `lint`, `test`, and `wiki-up`.
 
-This file configures Poetry and other tools like Black, Flake8, Mypy, and MkDocs:
+### `pyproject.toml`
 
-- **Project Info**: Defines the project name, version, and description.
-- **Dependencies**: Lists test, linting, and documentation dependencies like `pytest`,
-  `black`, `flake8`, and `mkdocs`.
-- **Black Configuration**: Sets line length to 89 characters and prevents string
-  normalization (quote changes).
-- **Flake8**: Configures line length, warnings to ignore, and which errors to check for.
-- **Mypy**: Configures type checking options, including ignoring missing imports and
-  treating optional types strictly.
-- **Pylint**: Sets line length and disables specific warnings (e.g., duplicated code).
+Defines project settings and dependencies:
+
+* **`[project]`**: Project metadata.
+* **`[tool.uv]`**: Defines default dependency groups.
+* **`[dependency-groups]`**: Groups dependencies for tasks (e.g., `pipeline`, `documentation`).
+* Tool configurations for Black, Flake8, Mypy, and Pylint.

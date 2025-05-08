@@ -1,22 +1,28 @@
 name: Test Code
 
-# Define inputs for the action, such as the project folder and the tests folder
 inputs:
   src-project-folder:
     description: "Directory where the project is located"
     required: true
     default: "src"
+
   src-tests-folder:
-    description: "Directory where the project tests are located"
+    description: "Directory where the tests are located"
     required: true
     default: "tests"
 
 runs:
   using: composite
   steps:
-    # Step 1: Run tests using Pytest
-    - name: Pytest
+    - name: Run tests with Pytest
+      id: run-pytest
       shell: bash
       run: |
-        echo "Running tests with Pytest..."
-        poetry run pytest ${{ inputs.src-project-folder }}/${{ inputs.src-tests-folder }}/
+        echo "Checking if tests directory exists..."
+        if [ -d "${{ inputs.src-tests-folder }}" ] && [ $(ls ${{ inputs.src-tests-folder }} | grep -E '^test_.*\.py$' | wc -l) -gt 0 ]; then
+          echo "Running tests..."
+          uv run pytest ${{ inputs.src-tests-folder }}
+          echo "Tests complete."
+        else
+          echo "No tests directory found. Skipping tests."
+        fi

@@ -1,6 +1,5 @@
 name: Lint Code
 
-# Define inputs for the action, such as the project folder to lint
 inputs:
   src-project-folder:
     description: "Directory where the project is located"
@@ -10,30 +9,37 @@ inputs:
 runs:
   using: composite
   steps:
-    # Step 1: Check format with Black (code formatter)
     - name: Check format with Black
+      id: black
       run: |
         echo "Running Black formatter check..."  
-        poetry run black --check ${{ inputs.src-project-folder }}/
+        uv run black --check ${{ inputs.src-project-folder }}/
       shell: bash
 
-    # Step 2: Check type annotations with Mypy (type checker)
-    - name: Check Mypy
+    - name: Type check with Mypy
+      id: mypy
       run: |
         echo "Running Mypy type checker..." 
-        poetry run mypy ${{ inputs.src-project-folder }}/
+        uv run mypy ${{ inputs.src-project-folder }}/
       shell: bash
 
-    # Step 3: Lint code with Flake8 (style checker)
-    - name: Lint with flake8
+    - name: Lint with Flake8
+      id: flake8
       run: |
         echo "Running Flake8 linter..."
-        poetry run flake8 ${{ inputs.src-project-folder }}/
+        uv run flake8 ${{ inputs.src-project-folder }}/
       shell: bash
 
-    # Step 4: Check the Cognitive Complexity with complexipy
-    - name: Cognitive Complexity with complexipy
+    - name: Code quality check with Pylint
+      id: pylint
       run: |
-        echo "Running complexipy..."
-        poetry run complexipy ${{ inputs.src-project-folder }}/
+        echo "Running Pylint (fail under 8.0)..."
+        uv run pylint --fail-under=8 ${{ inputs.src-project-folder }}/
+      shell: bash
+
+    - name: Cognitive complexity analysis with Complexipy
+      id: complexipy
+      run: |
+        echo "Running Complexipy for cognitive complexity analysis..."
+        uv run complexipy ${{ inputs.src-project-folder }}/
       shell: bash

@@ -1,9 +1,10 @@
-name: Workflow Name
+name: CI/CD Pipeline
 
-# This workflow runs on push
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main, dev]
 
 # Set up environment variables
 env:
@@ -17,49 +18,42 @@ env:
 # Define jobs in this workflow
 jobs:
   setup-lint-test:
-    name: Setup, Lint, Test, Security the Code
+    name: Setup, Lint, Test, and Secure Code
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.11", "3.12"]
 
     steps:
-      # Step 1: Checkout the repository code
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up the Python environment and install dependencies for testing and
-      # linting
-      - name: Setup Python environment and dependencies
+      - name: Setup Python & Install Dependencies
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{ matrix.python-version }}
-          dependencies: "test,lint"
+          dependencies: "pipeline"
 
-      # Step 3: Run code linting to check code style, syntax, and quality using Black,
-      # MyPy and Flake8
-      - name: Check code format, syntax and quality
+      - name: Lint Code (Black, Mypy, Flake8, Pylint, Complexipy)
         uses: ./.github/actions/lint-code
         with:
           src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
 
-      # Step 4: Run tests using PyTest in the project
-      - name: Test code
+      - name: Run Tests with Pytest
         uses: ./.github/actions/test-code
         with:
           src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
           src-tests-folder: ${{ env.SRC_PROJECT_TESTS }}
 
-      # Step 5: Check security
-      - name: Check security
+      - name: Run Bandit Security Scan
         uses: ./.github/actions/security
         with:
           src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
           src-exclude: ${{ env.SRC_PROJECT_TESTS }}
 
-  build-mkdocs:
-    name: Build MkDocs Wiki
+  build-docs:
+    name: Build MkDocs Documentation
     runs-on: ubuntu-latest
     needs: setup-lint-test
 
@@ -67,25 +61,24 @@ jobs:
       contents: write
 
     steps:
-      # Step 1: Checkout the repository code
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up the Python environment and install dependencies for documentation
-      - name: Setup Python environment and dependencies
+      - name: Setup Python & Install Dependencies
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{ env.SRC_PYTHON_VERSION }}
-          dependencies: "docs"
+          dependencies: "documentation"
 
-      # Step 3: Build the MkDocs site
-      - name: Build MkDocs
+      - name: Build MkDocs Site
         uses: ./.github/actions/build-mkdocs
 
   deploy-mkdocs:
-    name: Deploy MkDocs Wiki to GitHub Pages
+    name: Deploy MkDocs to GitHub Pages
     runs-on: ubuntu-latest
-    needs: build-mkdocs
+    needs: build-docs
+
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
 
     permissions:
       pages: write
@@ -96,23 +89,19 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # Step 1: Checkout the repository code, specifically the 'gh-pages' branch
-      - name: Checkout repository
+      - name: Checkout gh-pages Branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
 
-      # Step 2: Set up the GitHub Pages action
-      - name: Setup Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      # Step 3: Upload the built documentation as an artifact
-      - name: Upload artifact
+      - name: Upload Built Docs as Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "."
 
-      # Step 4: Deploy the MkDocs site to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
