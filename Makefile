@@ -44,12 +44,12 @@ code_check:
 # Test the code, only if the tests directory exists
 tests:
 	@echo "Checking if tests directory exists..."
-	@if [ -d "${{ inputs.src-tests-folder }}" ] && [ $(ls ${{ inputs.src-tests-folder }} | grep -E '^test_.*\.py$' | wc -l) -gt 0 ]; then \
+	@if [ -d "$(SRC_TESTS)" ] && [ $$(find $(SRC_TESTS) -name "test_*.py" | wc -l) -gt 0 ]; then \
 		echo "Running tests..."; \
 		uv run pytest $(SRC_TESTS); \
 		echo "✅ Tests complete."; \
 	else \
-		echo "No tests directory found. Skipping tests."; \
+		echo "No tests directory found or no test files. Skipping tests."; \
 	fi
 
 # Serve documentation locally
