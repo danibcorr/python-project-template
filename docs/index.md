@@ -7,9 +7,8 @@ development workflow, this template provides a solid foundation.
 
 ## 📰 Features
 
-- **Code Quality**: Integrated tools like [Black](https://github.com/psf/black),
-  [Flake8](https://flake8.pycqa.org/en/latest/), [Mypy](http://mypy-lang.org/), and
-  [Pylint](https://pylint.pycqa.org/) ensure clean, readable code.
+- **Code Quality**: Integrated tools like [ruff](https://docs.astral.sh/ruff/) and
+  [Mypy](http://mypy-lang.org/) ensure clean, readable code.
 - **Security**: Scan for vulnerabilities with
   [Bandit](https://bandit.readthedocs.io/en/latest/).
 - **Code Complexity**: Analyze code complexity with
@@ -83,8 +82,7 @@ Automated CI/CD workflow with GitHub Actions runs on `push` and `pull_request` e
 `main` and `dev` branches. It includes:
 
 1. **Setup**: Installs dependencies and sets up the environment.
-2. **Linting & Analysis**: Runs tools like `black`, `flake8`, `pylint`, `complexipy`,
-   `mypy`, and `bandit`.
+2. **Linting & Analysis**: Runs tools like `ruff`, `complexipy`, `mypy`, and `bandit`.
 3. **Testing**: Runs tests with `pytest`.
 4. **Build Docs**: Generates and serves the MkDocs site.
 5. **Deploy Docs**: Deploys documentation to GitHub Pages.
