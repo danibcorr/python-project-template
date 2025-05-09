@@ -14,23 +14,10 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Install uv (Python package manager)
-      id: setup-uv
+    - name: Install uv and set the Python version
       uses: astral-sh/setup-uv@v5
-
-    - name: Install Python via uv
-      id: install-python
-      shell: bash
-      run: |
-        echo "Installing Python ${{ inputs.src-python-version }}..."
-        uv python install ${{ inputs.src-python-version }}
-
-    - name: Create virtual environment
-      id: create-venv
-      shell: bash
-      run: |
-        echo "Creating virtual environment in .venv/ using Python ${{ inputs.src-python-version }}..."
-        uv venv .venv --python ${{ inputs.src-python-version }}
+      with:
+        python-version: ${{ inputs.src-python-version }}
 
     - name: Install dependencies with uv
       id: install-deps
@@ -38,13 +25,12 @@ runs:
       run: |
         echo "Activating virtual environment and installing dependencies for group(s): ${{ inputs.dependencies }}"
         source .venv/bin/activate
-        uv pip install --group ${{ inputs.dependencies }}
+        uv pip install -r pyproject.toml --group ${{ inputs.dependencies }}
 
     - name: Verify uv and environment
       id: verify
       shell: bash
       run: |
-        source .venv/bin/activate
         echo "uv version:"
         uv --version
         echo "Virtual environments:"
