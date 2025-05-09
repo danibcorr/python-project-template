@@ -19,10 +19,10 @@ runs:
       shell: bash
       run: |
         echo "Checking if tests directory exists..."
-        if [ -d "${{ inputs.src-tests-folder }}" ] && [ $(ls ${{ inputs.src-tests-folder }} | grep -E '^test_.*\.py$' | wc -l) -gt 0 ]; then
+        if [ -d "${{ inputs.src-tests-folder }}" ] && [ $(find ${{ inputs.src-tests-folder }} -name "test_*.py" | wc -l) -gt 0 ]; then
           echo "Running tests..."
           uv run pytest ${{ inputs.src-tests-folder }}
           echo "Tests complete."
         else
-          echo "No tests directory found. Skipping tests."
+          echo "No tests directory found or no test files. Skipping tests."
         fi
