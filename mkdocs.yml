@@ -1,4 +1,4 @@
-site_name: python-project-template
+site_name: Python project template
 site_description: Python project template
 repo_name: python-project-template
 repo_url: https://github.com/danibcorr/python-project-template
@@ -64,7 +64,6 @@ markdown_extensions:
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-
 
 plugins:
   - search:

@@ -13,7 +13,7 @@ install:
 	@echo "Installing dependencies..."
 	@pip install --upgrade pip
 	@pip install uv
-	@uv pip install -r pyproject.toml
+	@uv pip install -r pyproject.toml --group pipeline --group documentation
 	@echo "✅ Dependencies installed."
 
 # Clean cache and temporary files
@@ -28,16 +28,15 @@ clean:
 # Check code formatting and linting
 lint:
 	@echo "Running lint checks..."
-	@uv run black --check $(SRC_PROJECT_NAME)/ $(SRC_TESTS)/
-	@uv run flake8 $(SRC_PROJECT_NAME)/
-	@uv run pylint --fail-under=8 $(SRC_PROJECT_NAME)/
+	@uv run ruff format $(SRC_PROJECT_NAME)/ $(SRC_TESTS)/
+	@uv run ruff check $(SRC_PROJECT_NAME)/ $(SRC_TESTS)/
 	@echo "✅ Linting complete."
 
 # Static analysis and security checks
 code_check:
 	@echo "Running static code checks..."
-	@uv run complexipy -d low $(SRC_PROJECT_NAME)/
 	@uv run mypy $(SRC_PROJECT_NAME)/ $(SRC_TESTS)/
+	@uv run complexipy -d low $(SRC_PROJECT_NAME)/
 	@echo "Running security scan with Bandit..."
 	@uv run bandit -r $(SRC_PROJECT_NAME)/ --exclude $(SRC_TESTS)
 	@echo "✅ Code and security checks complete."
