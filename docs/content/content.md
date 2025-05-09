@@ -10,7 +10,7 @@ The **Python Project Template** provides an easy setup for Python projects with 
 
 * **`install`**: Installs and upgrades dependencies using `uv` and `pyproject.toml`.
 * **`clean`**: Removes cache files (`__pycache__`, `.pytest_cache`, etc.).
-* **`lint`**: Runs code checks (Black, Mypy, Flake8, Pylint).
+* **`lint`**: Runs code checks (ruff, Mypy).
 * **`test`**: Runs tests with [Pytest](https://docs.pytest.org/en/stable/).
 * **`wiki-up`**: Serves documentation locally using [MkDocs](https://www.mkdocs.org/).
 * **`pre-commit`**: Runs quality checks before committing.
@@ -23,4 +23,4 @@ Defines project settings and dependencies:
 * **`[project]`**: Project metadata.
 * **`[tool.uv]`**: Defines default dependency groups.
 * **`[dependency-groups]`**: Groups dependencies for tasks (e.g., `pipeline`, `documentation`).
-* Tool configurations for Black, Flake8, Mypy, and Pylint.
+* Tool configurations for ruff and Mypy.
