@@ -35,6 +35,23 @@ jobs:
           src-python-version: ${{ matrix.python-version }}
           dependencies: "pipeline"
 
+      - name: Lint Code (ruff, Mypy, Complexipy)
+        uses: ./.github/actions/lint-code
+        with:
+          src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
+
+      - name: Run Tests with Pytest
+        uses: ./.github/actions/test-code
+        with:
+          src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
+          src-tests-folder: ${{ env.SRC_PROJECT_TESTS }}
+
+      - name: Run Bandit Security Scan
+        uses: ./.github/actions/security
+        with:
+          src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
+          src-exclude: ${{ env.SRC_PROJECT_TESTS }}
+
   build-docs:
     name: Build MkDocs Documentation
     runs-on: ubuntu-latest
