@@ -22,8 +22,8 @@
 ├── notebooks/           <- Jupyter notebooks. Naming convention: number + initials +
 │                           short description, e.g. `1.0-jqp-initial-data-exploration`
 │
-├── pyproject.toml       <- Project configuration and metadata for {{ cookiecutter.module_name }},
-│                           includes settings for tools like Black, isort, etc.
+├── pyproject.toml       <- Project configuration and metadata for src, includes settings
+│                           for tools like Black, isort, etc.
 │
 ├── reports/             <- Generated analysis in HTML, PDF, LaTeX, etc.
 │   ├── figures/         <- Generated graphics and figures for reporting
