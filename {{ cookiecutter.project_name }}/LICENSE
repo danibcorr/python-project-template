@@ -1,4 +1,4 @@
-{% if cookiecutter.open_source_license == 'MIT' %} MIT License
+{% if cookiecutter.project_license == 'MIT' %} MIT License
 
 Copyright (c) {% now 'utc', '%Y' %}, {{ cookiecutter.author_name }}
 
