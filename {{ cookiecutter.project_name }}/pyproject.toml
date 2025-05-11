@@ -3,7 +3,7 @@ name = {{ cookiecutter.project_name|tojson }}
 version = {{ cookiecutter.project_version|tojson }}
 description = {{ cookiecutter.project_short_description|tojson }}
 readme = "README.md"
-requires-python = {{ cookiecutter.project_version_python|tojson }}
+requires-python = ">={{ cookiecutter.project_version_python }}"
 dependencies = []
 
 [tool.uv]

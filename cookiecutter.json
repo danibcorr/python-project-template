@@ -3,7 +3,7 @@
   "project_name": "project-name",
   "project_module_name": "src",
   "project_test_folder_name": "tests",
-  "project_short_description": "",
+  "project_short_description": "Project description.",
   "project_version": "0.0.1",
   "project_version_python": "3.11",
   "project_license": ["MIT license"],
