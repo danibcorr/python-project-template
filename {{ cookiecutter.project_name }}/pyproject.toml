@@ -78,7 +78,7 @@ docstring-code-line-length = 79
 [tool.ruff.lint.isort]
 case-sensitive = true
 combine-as-imports = true
-force-to-top = ["src"]
+force-to-top = [{{ cookiecutter.project_module_name|tojson }}]
 
 [tool.mypy]
 check_untyped_defs = true

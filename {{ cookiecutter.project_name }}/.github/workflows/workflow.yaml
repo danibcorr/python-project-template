@@ -28,25 +28,25 @@ jobs:
       - name: Setup Python & Install Dependencies
         uses: ./.github/actions/setup-python-env
         with:
-          src-python-version: ${{ env.SRC_PYTHON_VERSION }}
+          src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}
           dependencies: "pipeline"
 
       - name: Lint Code (ruff, Mypy, Complexipy)
         uses: ./.github/actions/lint-code
         with:
-          src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
+          src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
 
       - name: Run Tests with Pytest
         uses: ./.github/actions/test-code
         with:
-          src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
-          src-tests-folder: ${{ env.SRC_PROJECT_TESTS }}
+          src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
+          src-tests-folder: ${{'{{'}} env.SRC_PROJECT_TESTS {{'}}'}}
 
       - name: Run Bandit Security Scan
         uses: ./.github/actions/security
         with:
-          src-project-folder: ${{ env.SRC_PROJECT_FOLDER }}
-          src-exclude: ${{ env.SRC_PROJECT_TESTS }}
+          src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
+          src-exclude: ${{'{{'}} env.SRC_PROJECT_TESTS {{'}}'}}
 
   build-docs:
     name: Build MkDocs Documentation
@@ -63,7 +63,7 @@ jobs:
       - name: Setup Python & Install Dependencies
         uses: ./.github/actions/setup-python-env
         with:
-          src-python-version: ${{ env.SRC_PYTHON_VERSION }}
+          src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}
           dependencies: "documentation"
 
       - name: Build MkDocs Site
@@ -84,7 +84,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{'{{'}} steps.deployment.outputs.page_url {{'}}'}}
 
     steps:
       - name: Checkout gh-pages Branch
