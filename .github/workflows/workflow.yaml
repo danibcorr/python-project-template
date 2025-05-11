@@ -8,10 +8,6 @@ on:
 
 # Set up environment variables
 env:
-  # Folder where the project code is located
-  SRC_PROJECT_FOLDER: "src"
-  # Folder where test files are located
-  SRC_PROJECT_TESTS: "tests"
   # Python version to use
   SRC_PYTHON_VERSION: "3.11"
 
@@ -21,10 +17,6 @@ jobs:
     name: Setup, Lint, Test, and Secure Code
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: ["3.11", "3.12"]
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -32,7 +24,7 @@ jobs:
       - name: Setup Python & Install Dependencies
         uses: ./.github/actions/setup-python-env
         with:
-          src-python-version: ${{ matrix.python-version }}
+          src-python-version: ${{ env.SRC_PYTHON_VERSION }}
           dependencies: "pipeline"
 
   build-docs:

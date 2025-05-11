@@ -1,14 +1,14 @@
 {
-  "project_authors": "Daniel Bazo",
-  "project_name": "python-project-template",
-  "project_short_description": "Python Project Template.",
+  "project_authors": "Author",
+  "project_name": "project-name",
+  "project_module_name": "src",
+  "project_test_folder_name": "tests",
+  "project_short_description": "",
   "project_version": "0.0.1",
-  "project_version_python": ">=3.11",
+  "project_version_python": "3.11",
   "project_license": ["MIT license"],
-  "mkdocs_site_name": "Python Project Template",
-  "mkdocs_repo_url": "https://github.com/danibcorr/python-project-template",
-  "mkdocs_site_url": "https://danibcorr.github.io/python-project-template",
-  "_copy_without_render": [
-    "*.github"
-  ]
+  "mkdocs_site_name": "Project Title MkDocs",
+  "mkdocs_repo_url": "https://github.com/user-name/repo-name",
+  "mkdocs_site_url": "https://repo-name-web-site",
+  "_copy_without_render": ["*action.yml", "*.js"]
 }

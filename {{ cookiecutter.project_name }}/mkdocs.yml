@@ -1,8 +1,8 @@
-site_name: { { cookiecutter.mkdocs_site_name } }
-site_description: { { cookiecutter.project_short_description } }
-repo_name: { { cookiecutter.project_name } }
-repo_url: { { cookiecutter.mkdocs_repo_url } }
-site_url: { { cookiecutter.mkdocs_site_url } }
+site_name: "{{ cookiecutter.mkdocs_site_name }}"
+site_description: "{{ cookiecutter.project_short_description }}"
+repo_name: "{{ cookiecutter.project_name }}"
+repo_url: "{{ cookiecutter.mkdocs_repo_url }}"
+site_url: "{{ cookiecutter.mkdocs_site_url }}"
 
 theme:
   name: "material"

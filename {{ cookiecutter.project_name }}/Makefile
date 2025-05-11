@@ -5,8 +5,8 @@
 .DEFAULT_GOAL := all
 
 # Variables
-SRC_PROJECT_NAME ?= src
-SRC_TESTS ?= tests
+SRC_PROJECT_NAME ?= {{ cookiecutter.project_module_name }}
+SRC_TESTS ?= {{ cookiecutter.project_test_folder_name }}
 
 # Install project dependencies
 install:

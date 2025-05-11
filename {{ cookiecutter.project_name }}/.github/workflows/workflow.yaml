@@ -9,21 +9,17 @@ on:
 # Set up environment variables
 env:
   # Folder where the project code is located
-  SRC_PROJECT_FOLDER: "src"
+  SRC_PROJECT_FOLDER: "{{ cookiecutter.project_module_name }}"
   # Folder where test files are located
-  SRC_PROJECT_TESTS: "tests"
+  SRC_PROJECT_TESTS: "{{ cookiecutter.project_test_folder_name }}"
   # Python version to use
-  SRC_PYTHON_VERSION: "3.11"
+  SRC_PYTHON_VERSION: "{{ cookiecutter.project_version_python }}"
 
 # Define jobs in this workflow
 jobs:
   setup-lint-test:
     name: Setup, Lint, Test, and Secure Code
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version: ["3.11", "3.12"]
 
     steps:
       - name: Checkout Repository
@@ -32,7 +28,7 @@ jobs:
       - name: Setup Python & Install Dependencies
         uses: ./.github/actions/setup-python-env
         with:
-          src-python-version: ${{ matrix.python-version }}
+          src-python-version: ${{ env.SRC_PYTHON_VERSION }}
           dependencies: "pipeline"
 
       - name: Lint Code (ruff, Mypy, Complexipy)
