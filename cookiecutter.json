@@ -9,6 +9,6 @@
   "mkdocs_repo_url": "https://github.com/danibcorr/python-project-template",
   "mkdocs_site_url": "https://danibcorr.github.io/python-project-template",
   "_copy_without_render": [
-    "{{cookiecutter.project_name}}/.github"
+    "*.github"
   ]
 }
