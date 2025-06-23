@@ -1,4 +1,4 @@
-# Python Project Template — Technical Documentation
+# Python Project Template Documentation
 
 ## Overview
 
@@ -16,7 +16,7 @@ projects, and encourage best practices.
 
 ## Project Structure and Core Components
 
-### `Makefile` – Automation of Common Development Tasks
+### `Makefile`
 
 The `Makefile` defines reusable commands to facilitate routine operations such as
 installation, cleaning, linting, testing, and documentation. These tasks can be executed
@@ -88,7 +88,7 @@ Performs a complete workflow:
 
 Recommended for initial setup and full-cycle verifications.
 
-## `pyproject.toml` – Centralized Project Configuration
+## `pyproject.toml`
 
 The `pyproject.toml` file defines the project's metadata, dependency groups, and tool
 configurations in accordance with modern Python standards.

@@ -1,0 +1,7 @@
+nav:
+  - Home: index.md
+  - Documentation: project/
+
+sort:
+  ignore_case: true
+  type: alphabetical

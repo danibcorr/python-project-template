@@ -16,16 +16,20 @@ runs:
         uv run ruff check ${{ inputs.src-project-folder }}/
       shell: bash
 
-    - name: Type check with Mypy
-      id: mypy
+    - name: Check imports with isort
       run: |
-        echo "Running Mypy type checker..." 
-        uv run mypy ${{ inputs.src-project-folder }}/
+        echo "Running isort..."  
+        uv run isort --check ${{ inputs.src-project-folder }}/
       shell: bash
 
-    - name: Cognitive complexity analysis with Complexipy
-      id: complexipy
+    - name: Cognitive Complexity with complexipy
       run: |
-        echo "Running Complexipy for cognitive complexity analysis..."
+        echo "Running complexipy..."
         uv run complexipy ${{ inputs.src-project-folder }}/
+      shell: bash
+
+    - name: Check Mypy
+      run: |
+        echo "Running Mypy type checker..."
+        uv run mypy ${{ inputs.src-project-folder }}/
       shell: bash

@@ -6,16 +6,11 @@ on:
   pull_request:
     branches: [main, dev]
 
-# Set up environment variables
 env:
-  # Folder where the project code is located
   SRC_PROJECT_FOLDER: "{{ cookiecutter.project_module_name }}"
-  # Folder where test files are located
   SRC_PROJECT_TESTS: "{{ cookiecutter.project_test_folder_name }}"
-  # Python version to use
   SRC_PYTHON_VERSION: "{{ cookiecutter.project_version_python }}"
 
-# Define jobs in this workflow
 jobs:
   setup-lint-test:
     name: Setup, Lint, Test, and Secure Code
@@ -48,7 +43,7 @@ jobs:
           src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
           src-exclude: ${{'{{'}} env.SRC_PROJECT_TESTS {{'}}'}}
 
-  build-docs:
+  build-mkdocs:
     name: Build MkDocs Documentation
     runs-on: ubuntu-latest
     needs: setup-lint-test
@@ -70,13 +65,10 @@ jobs:
         uses: ./.github/actions/build-mkdocs
 
   deploy-mkdocs:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     name: Deploy MkDocs to GitHub Pages
     runs-on: ubuntu-latest
-    needs: build-docs
-
-    if:
-      github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref ==
-      'refs/heads/dev')
+    needs: build-mkdocs
 
     permissions:
       pages: write

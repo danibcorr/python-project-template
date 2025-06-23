@@ -1,15 +1,22 @@
-# Ignore Python-related files and directories
+# Folders
+/data/
+/saved_objects/
+/runs/
+__pycache__/
+.vscode/
+.mypy_cache/
+/results/
+*build/
+*dist/
+*venv/
+*env/
+*site/
+*.egg-info/
+.pytest_cache/
+*.ruff_cache/
+
+# Files
 *.pyc
 *.pyo
 *.pyd
 *.egg-info
-build/
-dist/
-**/__pycache__/
-.pytest_cache
-.venv/
-.mypy_cache
-.pytest_cache
-
-# Ignore IDE-specific files and directories
-.vscode/

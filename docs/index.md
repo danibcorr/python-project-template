@@ -5,7 +5,7 @@ Python projects with clean code, strong testing, built-in security, and automate
 deployment. Whether you're launching a new idea or refining your workflow, this template
 sets you up for success.
 
-## 🚀 What's Inside
+## What's Inside
 
 - **Linting & Type Checking**: Keep your code clean with
   [Ruff](https://docs.astral.sh/ruff/) and [Mypy](http://mypy-lang.org/).
@@ -19,7 +19,9 @@ sets you up for success.
 - **CI/CD**: Automate your workflow using GitHub Actions — from linting and testing to
   doc deployment.
 
-## 🛠️ Getting Started
+And more...
+
+## Getting Started
 
 ### 1. Generate Your Project
 
@@ -51,7 +53,25 @@ Or run the full suite including docs:
 make all
 ```
 
-## 🤝 Contributing
+## Contributing
 
-We’d love your input! Fork this repo, open an issue, or submit a pull request to improve
-the template.
+We welcome contributions from the community! To get started quickly, follow these steps
+using our streamlined `Makefile`:
+
+1. **Clone the repository** Ensure your system is updated and `make` is installed. On
+   most Linux systems:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install build-essential
+   ```
+
+2. **Set up your environment** Navigate to the cloned directory, create a Python
+   environment, activate it, and run:
+
+   ```bash
+   make
+   ```
+
+   This command updates `pip`, installs `uv`, and sets up all project dependencies
+   automatically.

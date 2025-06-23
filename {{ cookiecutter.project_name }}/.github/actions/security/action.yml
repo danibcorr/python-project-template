@@ -17,6 +17,6 @@ runs:
     - name: Security scan with Bandit
       id: bandit
       run: |
-        echo "Running Bandit security scan on '${{ inputs.src-project-folder }}', excluding '${{ inputs.src-exclude }}'..." 
+        echo "Running Bandit..."
         uv run bandit -r ${{ inputs.src-project-folder }}/ --exclude ${{ inputs.src-exclude }}
       shell: bash
