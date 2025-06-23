@@ -1,6 +1,6 @@
 [project]
 name = "python-project-template"
-version = "2.1.0"
+version = "2.3.0"
 description = "Python project template"
 authors = [
     {name = "Daniel Bazo Correa", email = "none@none.com"},
