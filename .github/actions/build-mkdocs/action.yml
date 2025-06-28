@@ -27,7 +27,7 @@ runs:
           git reset --hard
           git commit --allow-empty -m "Initial gh-pages commit"
           git push origin gh-pages
-          git checkout -
+          git checkout $CURRENT_BRANCH
         fi
       shell: bash
 
