@@ -96,6 +96,7 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{ env.SRC_PYTHON_VERSION }}
+          dependencies: "pipeline"
 
       - name: Create Release
         id: release
