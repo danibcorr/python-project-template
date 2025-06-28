@@ -20,7 +20,7 @@ runs:
         # Check if gh-pages branch exists remotely
         if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
           echo "gh-pages branch exists, fetching..."
-          git fetch origin gh-pages:gh-pages
+          git fetch origin gh-pages:gh-pages --depth=1
         else
           echo "gh-pages branch doesn't exist, creating..."
           git checkout --orphan gh-pages
@@ -38,7 +38,6 @@ runs:
       shell: bash
 
     - name: Set default version
-      if: inputs.docs-version == 'latest'
       run: |
         echo "Setting latest as default version"
         uv run mike set-default --push latest

@@ -109,4 +109,4 @@ extra:
       link: https://www.linkedin.com/in/danibcorr/
   version:
     provider: mike
-    default: stable
+    default: latest
