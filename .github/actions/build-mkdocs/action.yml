@@ -34,12 +34,12 @@ runs:
     - name: Build and deploy docs with Mike
       run: |
         echo "Deploying docs version: ${{ inputs.docs-version }}"
-        uv run mike deploy ${{ inputs.docs-version }} --push --update-aliases
+        uv run mike deploy --push --update-aliases ${{ inputs.docs-version }} latest
       shell: bash
 
     - name: Set default version
       if: inputs.docs-version == 'latest'
       run: |
         echo "Setting latest as default version"
-        uv run mike set-default latest --push
+        uv run mike set-default --push latest
       shell: bash
