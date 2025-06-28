@@ -60,7 +60,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     name: Create Release
     runs-on: ubuntu-latest
-    needs: [setup, build-deploy-mkdocs]
+    needs: build-deploy-mkdocs
 
     permissions:
       contents: write
