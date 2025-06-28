@@ -1,6 +1,10 @@
+[build-system]
+requires = ["setuptools >=80.9"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "python-project-template"
-version = "2.3.0"
+dynamic = ["version"]
 description = "Python project template"
 authors = [
     {name = "Daniel Bazo Correa", email = "none@none.com"},
@@ -44,6 +48,13 @@ pipeline = [
     "ruff>=0.11.8",
     "isort>=6.0.1",
 ]
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+exclude = ["docs*", "*.egg-info*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "src.__version__"}
 
 [tool.ruff]
 line-length = 88
@@ -107,8 +118,8 @@ exclude = [
 cache_dir = "/dev/null"
 
 [tool.isort]
-profile = "black"
-known_first_party = ["explanare"]
+profile = "ruff"
+known_first_party = ["src"]
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 import_heading_stdlib = "Standard libraries"
 import_heading_thirdparty = "3pps"

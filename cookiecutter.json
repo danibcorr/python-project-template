@@ -1,5 +1,6 @@
 {
   "project_authors": "Author",
+  "project_authors_email": "none@none.com",
   "project_name": "project-name",
   "project_module_name": "src",
   "project_test_folder_name": "tests",

@@ -1357,8 +1357,7 @@ wheels = [
 
 [[package]]
 name = "python-project-template"
-version = "2.0.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "cookiecutter" },
 ]

@@ -1,7 +1,14 @@
+[build-system]
+requires = ["setuptools >=80.9"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = {{ cookiecutter.project_name|tojson }}
-version = {{ cookiecutter.project_version|tojson }}
-description = {{ cookiecutter.project_short_description|tojson }}
+name = "{{ cookiecutter.project_name }}"
+dynamic = ["version"]
+description = "{{ cookiecutter.project_short_description }}"
+authors = [
+    {name = "{{ cookiecutter.project_authors }}", email = "{{ cookiecutter.project_authors_email }}"},
+]
 license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">={{ cookiecutter.project_version_python }}"
@@ -39,6 +46,13 @@ pipeline = [
     "ruff>=0.11.8",
     "isort>=6.0.1",
 ]
+
+[tool.setuptools.packages.find]
+include = ["{{ cookiecutter.project_module_name }}*"]
+exclude = ["docs*", "*.egg-info*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "{{ cookiecutter.project_module_name }}.__version__"}
 
 [tool.ruff]
 line-length = 88
@@ -90,7 +104,7 @@ docstring-code-line-length = 79
 [tool.ruff.lint.isort]
 case-sensitive = true
 combine-as-imports = true
-force-to-top = [{{ cookiecutter.project_module_name|tojson }}]
+force-to-top = ["{{ cookiecutter.project_module_name }}"]
 
 [tool.mypy]
 check_untyped_defs = true
@@ -102,8 +116,8 @@ exclude = [
 cache_dir = "/dev/null"
 
 [tool.isort]
-profile = "black"
-known_first_party = ["explanare"]
+profile = "ruff"
+known_first_party = ["{{ cookiecutter.project_module_name }}"]
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 import_heading_stdlib = "Standard libraries"
 import_heading_thirdparty = "3pps"

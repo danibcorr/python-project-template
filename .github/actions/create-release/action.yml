@@ -1,0 +1,59 @@
+name: Create Release
+description: Creates a GitHub release from version.py file
+
+outputs:
+  version:
+    description: "The version that was released"
+    value: ${{ steps.get_version.outputs.version }}
+  created:
+    description: "Whether a new release was created"
+    value: ${{ steps.check_release.outputs.exists == 'false' }}
+
+runs:
+  using: composite
+  steps:
+    - name: Get Package Version
+      id: get_version
+      run: |
+        VERSION=$(uv run python -c "from src import version; print(version.__version__)")
+        echo "version=v$VERSION" >> $GITHUB_OUTPUT
+        echo "Version: v$VERSION"
+      shell: bash
+
+    - name: Check if release exists
+      id: check_release
+      run: |
+        if gh release view ${{ steps.get_version.outputs.version }} >/dev/null 2>&1; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+          echo "Release ${{ steps.get_version.outputs.version }} already exists"
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Release ${{ steps.get_version.outputs.version }} does not exist"
+        fi
+      env:
+        GH_TOKEN: ${{ github.token }}
+      shell: bash
+
+    - name: Generate release notes
+      if: steps.check_release.outputs.exists == 'false'
+      run: |
+        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        if [ -z "$LAST_TAG" ]; then
+          COMMITS=$(git log --pretty=format:"- %s" --no-merges -10)
+        else
+          COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" --no-merges)
+        fi
+        cat > release-notes.md << EOF
+        $COMMITS
+        EOF
+      shell: bash
+
+    - name: Create GitHub Release
+      if: steps.check_release.outputs.exists == 'false'
+      run: |
+        gh release create ${{ steps.get_version.outputs.version }} \
+          --title "Release ${{ steps.get_version.outputs.version }}" \
+          --notes-file release-notes.md
+      env:
+        GH_TOKEN: ${{ github.token }}
+      shell: bash
