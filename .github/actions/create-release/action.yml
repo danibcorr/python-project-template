@@ -52,7 +52,7 @@ runs:
       if: steps.check_release.outputs.exists == 'false'
       run: |
         gh release create ${{ steps.get_version.outputs.version }} \
-          --title "Release ${{ steps.get_version.outputs.version }}" \
+          --title "${{ steps.get_version.outputs.version }}" \
           --notes-file release-notes.md
       env:
         GH_TOKEN: ${{ github.token }}
