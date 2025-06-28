@@ -20,7 +20,7 @@ runs:
         # Check if gh-pages branch exists remotely
         if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
           echo "gh-pages branch exists, fetching..."
-          git fetch origin gh-pages:gh-pages --depth=1
+          git fetch origin gh-pages:gh-pages
         else
           echo "gh-pages branch doesn't exist, creating..."
           git checkout --orphan gh-pages
