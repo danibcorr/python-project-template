@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: "*"
+    branches: ["*"]
   pull_request:
     branches: [main, dev]
 
@@ -24,17 +24,22 @@ jobs:
           src-python-version: ${{ env.SRC_PYTHON_VERSION }}
           dependencies: "pipeline"
 
-  build-mkdocs:
+  build-deploy-mkdocs:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     name: Build MkDocs Documentation
     runs-on: ubuntu-latest
     needs: setup
 
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python & Install Dependencies
         uses: ./.github/actions/setup-python-env
@@ -42,46 +47,20 @@ jobs:
           src-python-version: ${{ env.SRC_PYTHON_VERSION }}
           dependencies: "documentation"
 
-      - name: Build MkDocs Site
+      - name: Get Version
+        id: version
+        uses: ./.github/actions/obtain-version
+
+      - name: Build MkDocs Site with Mike
         uses: ./.github/actions/build-mkdocs
-
-  deploy-mkdocs:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    name: Deploy MkDocs to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: build-mkdocs
-
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Checkout gh-pages Branch
-        uses: actions/checkout@v4
         with:
-          ref: gh-pages
-
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Built Docs as Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "."
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          docs-version: ${{ steps.version.outputs.version }}
 
   create-release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     name: Create Release
     runs-on: ubuntu-latest
-    needs: deploy-mkdocs
+    needs: [setup, build-deploy-mkdocs]
 
     permissions:
       contents: write
@@ -98,14 +77,19 @@ jobs:
           src-python-version: ${{ env.SRC_PYTHON_VERSION }}
           dependencies: "pipeline"
 
+      - name: Get Version
+        id: version
+        uses: ./.github/actions/obtain-version
+
       - name: Create Release
         id: release
         uses: ./.github/actions/create-release
         with:
+          version: ${{ steps.version.outputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release Summary
         run: |
-          echo "Release Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- Version: ${{ steps.release.outputs.version }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Created: ${{ steps.release.outputs.created }}" >> $GITHUB_STEP_SUMMARY
+          echo "# Release Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Created:** ${{ steps.release.outputs.created }}" >> $GITHUB_STEP_SUMMARY

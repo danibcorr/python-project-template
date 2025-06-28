@@ -1,10 +1,18 @@
 name: Create Release
-description: Creates a GitHub release from version.py file
+description: Creates a GitHub release from provided version
+
+inputs:
+  version:
+    description: "The version of the package"
+    required: true
+  token:
+    description: "GitHub token for authentication"
+    required: true
 
 outputs:
   version:
     description: "The version that was released"
-    value: ${{ steps.get_version.outputs.version }}
+    value: ${{ inputs.version }}
   created:
     description: "Whether a new release was created"
     value: ${{ steps.check_release.outputs.exists == 'false' }}
@@ -12,48 +20,58 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Get Package Version
-      id: get_version
-      run: |
-        VERSION=$(uv run python -c "from src import version; print(version.__version__)")
-        echo "version=v$VERSION" >> $GITHUB_OUTPUT
-        echo "Version: v$VERSION"
-      shell: bash
-
     - name: Check if release exists
       id: check_release
       run: |
-        if gh release view ${{ steps.get_version.outputs.version }} >/dev/null 2>&1; then
+        if gh release view ${{ inputs.version }} >/dev/null 2>&1; then
           echo "exists=true" >> $GITHUB_OUTPUT
-          echo "Release ${{ steps.get_version.outputs.version }} already exists"
+          echo "Release ${{ inputs.version }} already exists"
         else
           echo "exists=false" >> $GITHUB_OUTPUT
-          echo "Release ${{ steps.get_version.outputs.version }} does not exist"
+          echo "Release ${{ inputs.version }} does not exist"
         fi
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ inputs.token }}
       shell: bash
 
     - name: Generate release notes
       if: steps.check_release.outputs.exists == 'false'
       run: |
+        echo "Generating release notes..."
         LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
         if [ -z "$LAST_TAG" ]; then
+          echo "No previous tags found, using last 10 commits"
           COMMITS=$(git log --pretty=format:"- %s" --no-merges -10)
         else
+          echo "Previous tag found: $LAST_TAG"
           COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" --no-merges)
         fi
+
         cat > release-notes.md << EOF
+        ## Changes
+
         $COMMITS
         EOF
+
+        echo "Release notes generated:"
+        cat release-notes.md
       shell: bash
 
     - name: Create GitHub Release
       if: steps.check_release.outputs.exists == 'false'
       run: |
-        gh release create ${{ steps.get_version.outputs.version }} \
-          --title "${{ steps.get_version.outputs.version }}" \
+        echo "Creating release ${{ inputs.version }}..."
+        gh release create ${{ inputs.version }} \
+          --title "${{ inputs.version }}" \
           --notes-file release-notes.md
+        echo "Release ${{ inputs.version }} created successfully"
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ inputs.token }}
+      shell: bash
+
+    - name: Skip release creation
+      if: steps.check_release.outputs.exists == 'true'
+      run: |
+        echo "Skipping release creation - ${{ inputs.version }} already exists"
       shell: bash

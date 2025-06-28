@@ -40,6 +40,8 @@ theme:
     - search.suggest
     - toc.follow
     - toc.integrate
+  logo: assets/images/logo.png
+  favicon: assets/images/logo.png
   icon:
     repo: fontawesome/brands/github
 
@@ -105,3 +107,6 @@ extra:
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/danibcorr/
+  version:
+    provider: mike
+    default: stable
