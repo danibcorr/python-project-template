@@ -20,3 +20,6 @@ __pycache__/
 *.pyo
 *.pyd
 *.egg-info
+
+# Exceptions
+!/.devcontainer/*

@@ -24,7 +24,8 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}
-          dependencies: "pipeline"
+          uv-group: "pipeline"
+          uv-extra: "--all-extras"
 
       - name: Lint Code (ruff, Mypy, Complexipy)
         uses: ./.github/actions/lint-code
@@ -64,7 +65,7 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}
-          dependencies: "documentation"
+          uv-group: "documentation"
 
       - name: Get Version
         id: version
@@ -94,7 +95,7 @@ jobs:
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}
-          dependencies: "pipeline"
+          uv-group: "pipeline"
 
       - name: Get Version
         id: version
