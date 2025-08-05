@@ -65,26 +65,3 @@ Or run the full suite including docs:
 ```bash
 make all
 ```
-
-## Contributing
-
-We welcome contributions from the community! To get started quickly, follow these steps
-using our streamlined `Makefile`:
-
-1. **Clone the repository** Ensure your system is updated and `make` is installed. On
-   most Linux systems:
-
-   ```bash
-   sudo apt-get update
-   sudo apt-get install build-essential
-   ```
-
-2. **Set up your environment** Navigate to the cloned directory, create a Python
-   environment, activate it, and run:
-
-   ```bash
-   make
-   ```
-
-   This command updates `pip`, installs `uv`, and sets up all project dependencies
-   automatically.

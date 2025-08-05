@@ -1,8 +1,9 @@
 name: Lint Code
+description: Lint and Format Check Python Code
 
 inputs:
   src-project-folder:
-    description: "Directory where the project is located"
+    description: "Project Directory"
     required: true
     default: "src"
 
