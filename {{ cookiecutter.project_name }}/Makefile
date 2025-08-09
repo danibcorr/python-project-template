@@ -28,10 +28,9 @@ clean:
 lint:
 	@echo "Running lint checks..."
 	@uv run ruff format $(SRC_ALL)/
-	@uv run nbqa ruff format $(SRC_ALL)/
 	@uv run ruff check $(SRC_ALL)/
-	@uv run nbqa ruff check $(SRC_ALL)/
 	@uv run isort $(SRC_ALL)/
+	@uv run nbqa ruff $(SRC_ALL)/
 	@uv run nbqa isort $(SRC_ALL)/
 	@echo "✅ Linting complete."
 
@@ -61,3 +60,4 @@ pipeline: clean lint code_check tests
 # Run full workflow including install and docs
 all: install pipeline doc
 	@echo "✅ All tasks complete."
+
