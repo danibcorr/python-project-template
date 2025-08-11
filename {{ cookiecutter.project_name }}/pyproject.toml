@@ -117,7 +117,6 @@ exclude = [
 cache_dir = "/dev/null"
 
 [tool.isort]
-profile = "ruff"
 known_first_party = ["{{ cookiecutter.project_module_name }}"]
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 import_heading_stdlib = "Standard libraries"

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "python-project-template"
-version = "2.4.1"
+version = "2.4.2"
 description = "Python project template"
 authors = [
     {name = "Daniel Bazo Correa", email = "none@none.com"},
@@ -119,7 +119,6 @@ exclude = [
 cache_dir = "/dev/null"
 
 [tool.isort]
-profile = "ruff"
 known_first_party = ["src"]
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 import_heading_stdlib = "Standard libraries"
