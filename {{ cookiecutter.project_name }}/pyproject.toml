@@ -11,7 +11,7 @@ authors = [
 ]
 license = {file = "LICENSE"}
 readme = "README.md"
-requires-python = "=={{ cookiecutter.project_version_python }}"
+requires-python = "=={{ cookiecutter.project_version_python }}.*"
 classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
