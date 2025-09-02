@@ -31,18 +31,18 @@ cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
 [dependency-groups]
 pipeline = [
     "bandit==1.8.6",
-    "complexipy==3.3.0",
+    "complexipy==4.0.2",
     "mypy==1.17.1",
     "pytest==8.4.1",
     "pytest-order==1.3.0",
-    "ruff==0.12.7",
+    "ruff==0.12.11",
     "isort==6.0.1",
     "nbqa==1.9.1"
 ]
 documentation = [
     "mkdocs==1.6.1",
     "mkdocstrings[python]==0.30.0",
-    "mkdocs-material==9.6.16",
+    "mkdocs-material==9.6.18",
     "mkdocs-git-revision-date-localized-plugin==1.4.7",
     "mkdocs-git-authors-plugin==0.10.0",
     "mkdocs-enumerate-headings-plugin==0.6.2",
