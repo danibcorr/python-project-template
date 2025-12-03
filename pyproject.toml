@@ -11,7 +11,7 @@ authors = [
 ]
 license = {file = "LICENSE"}
 readme = "README.md"
-requires-python = "==3.11.*"
+requires-python = ">=3.11"
 classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
@@ -23,7 +23,7 @@ classifiers = [
 ]
 keywords = ["python", "template"]
 dependencies = [
-    "cookiecutter==2.6.0",
+    "cookiecutter>=2.6.0",
 ]
 
 [tool.uv]
