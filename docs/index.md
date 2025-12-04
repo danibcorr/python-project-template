@@ -32,7 +32,7 @@ sets you up for success.
 - **CI/CD**: Automate your workflow using GitHub Actions — from linting and testing to
   doc deployment.
 
-And more...
+And more.
 
 ## Getting Started
 
