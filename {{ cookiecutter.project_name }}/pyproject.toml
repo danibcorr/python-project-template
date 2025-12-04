@@ -22,7 +22,6 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 keywords = ["python"]
-dependencies = []
 
 [tool.uv]
 default-groups = "all"
