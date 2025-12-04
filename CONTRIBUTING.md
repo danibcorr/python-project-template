@@ -1,85 +1,88 @@
 # Contributing to Python Project Template
 
-Hello and welcome! We're excited that you're interested in contributing to the Python
-Project Template project.
+Thank you for your interest in contributing to the **Python Project Template**.
+Contributions of all types are welcome, including code, documentation, bug reports, and
+feature requests. This guide outlines the recommended workflow for contributing
+effectively.
 
-We appreciate all types of contributions whether it's code, documentation, bug reports,
-or feature requests.
+## Joining the Project
 
-## Want to Join the Team?
+If you are interested in contributing or collaborating more closely, feel free to reach
+out to the maintainers.
 
-If you’re interested in contributing or collaborating more closely, feel free to reach
-out!.
+## Ways to Contribute
 
-## How to Contribute Code
+You can contribute by:
 
-There are two main ways to contribute:
+- Reporting bugs or requesting new features.
+- Submitting code contributions, including bug fixes, improvements, or new features.
 
-- Request a **new feature** or report a **bug**
-- Submit a **code contribution** (bug fix, feature, improvement, etc.)
+> Note: While we strive to respond promptly, we cannot guarantee an immediate reply due
+> to the number of projects we maintain.
 
-> Please note: we're actively supporting several projects, so while we’ll do our best to
-> respond promptly, we can't always guarantee an immediate reply.
+## Contributing Code
 
 ### Step 1: Open an Issue
 
-Start by opening an issue to describe your proposal or the problem you've found. This
-helps us evaluate and guide the work before coding begins.
+Start by opening an issue to describe your proposed change or the problem you
+encountered. This helps maintainers review and guide the work before coding begins.
 
-> If your change is small (e.g., a typo fix or minor bug), feel free to skip this and
-> open a pull request directly.
+> For minor changes, such as typo fixes, you may skip this step and submit a pull
+> request directly.
 
 ### Step 2: Make Your Changes
 
-1. Fork this repository.
-2. Clone it locally.
-3. Create a new branch for your change.
+1. Fork the repository.
+2. Clone your fork locally.
+3. Create a new branch for your changes.
 4. Set up your development environment (see [Setup Environment](#setup-environment)).
-5. Make your changes and ensure all tests pass.
+5. Implement your changes and ensure all tests pass.
 
 ### Step 3: Submit a Pull Request
 
-Once your changes are ready, open a pull request (PR) from your forked branch to the
-`main` branch.
+Open a pull request (PR) from your branch to the `main` branch of the repository.
 
 ### Step 4: Code Review
 
-A maintainer will review your PR and may leave feedback. You may be asked to revise the
-code, improve formatting, or adjust test coverage.
+A maintainer will review your PR and may provide feedback. You might be asked to:
 
-> Fix any failing tests and address review comments before re-requesting review.
+- Revise code for correctness or clarity
+- Adjust formatting
+- Improve test coverage
+
+> Address any review comments and ensure all tests pass before requesting a re-review.
 
 ### Step 5: Merge
 
-Once approved, a maintainer will merge the pull request.
+After approval, a maintainer will merge your pull request.
 
 ## Setup Environment
 
-You can set up your dev environment in two ways:
+You can set up the development environment in one of two ways:
 
 ### Option 1: Dev Container
 
-We support Visual Studio Code, GitHub Codespaces, and JetBrains IDEs dev containers for
-an easy, preconfigured development setup.
+We support development containers for Visual Studio Code, GitHub Codespaces, and
+JetBrains IDEs. This provides a preconfigured environment for immediate work.
 
 ### Option 2: Local Setup
 
-To work locally:
+To set up locally:
 
-1. Install `git`, `python`, and preferably [`uv`](https://github.com/astral-sh/uv).
-2. Clone the repository.
-3. Run:
+1. Ensure `git` and Python (3.10, 3.11, or 3.12) are installed.
+2. Optionally, install [`uv`](https://github.com/astral-sh/uv) to manage dependency
+   groups.
+3. Clone the repository and run:
 
-   ```bash
-   make install
-   ```
+```bash
+make install
+```
 
-> The required Python version is defined in `pyproject.toml`. If using `uv`, it will
-> create a compatible virtual environment automatically.
+> If using `uv`, a compatible virtual environment will be created automatically.
 
 ## Running Tests
 
-We use [pytest](https://docs.pytest.org/) for testing. Run all tests with:
+All tests are run using [pytest](https://docs.pytest.org/):
 
 ```bash
 make tests
@@ -87,41 +90,42 @@ make tests
 
 ## Code Formatting & Quality Checks
 
-We use `make` to automate formatting, linting, and checks. Just run:
+Use `make` to automate formatting, linting, static analysis, testing, and documentation:
 
 ```bash
 make
 ```
 
-This will:
+This executes:
 
-- Install dependencies
-- Run linters (`black`, `isort`, `ruff`, ...)
-- Run static analysis (`complexipy`)
-- Run tests
-- Serve the documentation locally
+- Dependency installation
+- Linters (`ruff`, `black`, `isort`)
+- Static analysis (`complexipy`, `mypy`, `bandit`)
+- Test suite execution
+- Local documentation preview
 
-## Docstring Style
+## Docstring Guidelines
 
-A good function docstring typically includes:
+Function docstrings should include:
 
-- A short one-line description
-- Optional longer explanation
-- `Args:` section with parameter descriptions
+- A concise one-line description
+- Optional detailed explanation
+- `Args:` section describing parameters
 - `Returns:` section
-- Optional `Raises:` section
-- Optional `Examples:` section
+- Optional `Raises:` section for exceptions
+- Optional `Examples:` section demonstrating usage
 
-Please write clear, concise, and consistent docstrings.
+Maintain clarity, consistency, and completeness in docstrings.
 
 ## Other Ways to Contribute
 
-Not a fan of writing code? You can still help by:
+Non-code contributions are highly valuable, including:
 
 - Improving documentation or examples
-- Fixing typos or grammar
-- Suggesting features or usability improvements
-- Helping triage and respond to issues
+- Fixing typos and grammar issues
+- Suggesting features or enhancements
+- Assisting with issue triage and responses
 
-Thank you for being part of Python Project Template's journey. We’re thrilled to have
-you here. If you have questions, feel free to reach out or open an issue.
+Thank you for contributing to the Python Project Template. Your participation helps
+improve the project for everyone. If you have questions, feel free to reach out or open
+an issue.

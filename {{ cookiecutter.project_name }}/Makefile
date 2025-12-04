@@ -53,6 +53,12 @@ doc:
 	@echo "Serving documentation..."
 	@uv run mkdocs serve
 
+# Check dead code
+check-dead-code:
+	@echo "Checking dead code..."
+	@uv run deadcode $(SRC_PROJECT_NAME)
+	@echo "✅ Dead code check complete."
+
 # Run code checks and tests
 pipeline: clean lint code_check tests
 	@echo "✅ Pipeline complete."

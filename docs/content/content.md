@@ -2,96 +2,89 @@
 
 ## Overview
 
-The **Python Project Template** offers a standardized, maintainable foundation for Python
-projects, with integrated tooling for:
+The **Python Project Template** provides a fully structured foundation for Python
+projects, integrating modern tooling for code quality, static analysis, security
+auditing, testing, documentation, and development automation. It enables consistent,
+maintainable, and reproducible workflows, streamlining project setup and encouraging
+adherence to best practices.
 
-- Code quality enforcement
-- Static analysis and security auditing
-- Automated testing
-- Documentation generation
-- Development automation via Make and GitHub Actions
-
-This template is intended to streamline development processes, promote consistency across
-projects, and encourage best practices.
+This template is suitable for libraries, applications, and collaborative projects,
+ensuring a professional development environment from the start.
 
 ## Project Structure and Core Components
 
-### `Makefile`
+### Makefile
 
-The `Makefile` defines reusable commands to facilitate routine operations such as
-installation, cleaning, linting, testing, and documentation. These tasks can be executed
-using `make <target>`.
+The Makefile defines reusable targets to automate common tasks, including installation,
+cleaning, linting, testing, and documentation. Commands are executed via
+`make <target>`.
 
 #### `make install`
 
-Installs and upgrades the project’s dependencies using
-[`uv`](https://github.com/astral-sh/uv), based on the `pyproject.toml` file. This
-includes both development and documentation tools, organized by dependency groups.
+Installs all project dependencies using [`uv`](https://github.com/astral-sh/uv), as
+defined in `pyproject.toml`. Dependencies are organized into groups such as `pipeline`
+and `documentation`, ensuring modular and selective installation.
 
 #### `make clean`
 
-Cleans the workspace by removing generated cache and temporary files, including:
+Removes temporary and cache files to reset the workspace, including:
 
 - Python bytecode (`.pyc`, `.pyo`)
 - Cache directories: `__pycache__`, `.pytest_cache`, `.mypy_cache`
 
-This ensures a clean state for test and lint runs.
+This ensures a clean state for linting, testing, and analysis.
 
 #### `make lint`
 
-Formats and analyzes code using [Ruff](https://docs.astral.sh/ruff/):
-
-- Automatically applies code formatting.
-- Performs static lint checks on both source and test directories to ensure adherence to
-  defined coding standards.
+Uses [Ruff](https://docs.astral.sh/ruff/) to automatically format and statically analyze
+code. Linting is applied to source and test directories to enforce consistent coding
+standards.
 
 #### `make code_check`
 
-Performs in-depth code analysis and security checks:
+Performs deeper analysis and security checks, including:
 
-- **Mypy**: Validates static type annotations.
-- **Complexipy**: Analyzes code complexity to identify overly complicated logic
-  structures.
-- **Bandit**: Detects common security issues in Python code.
+- **Mypy**: Validates type annotations and detects type inconsistencies.
+- **Complexipy**: Measures code complexity to highlight potentially complicated logic.
+- **Bandit**: Identifies common security issues in Python code.
 
-This step is essential for maintaining robust, secure, and maintainable codebases.
+This step ensures robust, maintainable, and secure code.
 
 #### `make tests`
 
-Executes the project's unit tests using [Pytest](https://docs.pytest.org/en/stable/). If
-no tests or test files are detected, the command exits gracefully without failure.
+Runs unit tests with [Pytest](https://docs.pytest.org/en/stable/). The command exits
+gracefully if no tests are detected, making it safe for partial or initial setups.
 
 #### `make doc`
 
-Serves the documentation locally using [MkDocs](https://www.mkdocs.org/). This allows for
-live previews of your documentation before deployment.
+Serves the project documentation locally using [MkDocs](https://www.mkdocs.org/),
+enabling live previews before deployment.
 
 #### `make pipeline`
 
-Runs a full quality pipeline comprising:
+Executes a full quality pipeline comprising:
 
 - Environment cleanup
-- Code linting and formatting
-- Static analysis and security scans
+- Linting and formatting
+- Static analysis and security checks
 - Test execution
 
-This target is suitable for continuous integration environments and pre-release
-validations.
+This target is ideal for continuous integration and pre-release validation.
 
 #### `make all`
 
-Performs a complete workflow:
+Performs the complete workflow:
 
 - Installs dependencies
-- Executes the full quality pipeline
-- Builds and serves the documentation
+- Runs the full quality pipeline
+- Builds and serves documentation
 
-Recommended for initial setup and full-cycle verifications.
+Recommended for initial setup and full-cycle verification.
 
-## `pyproject.toml`
+## pyproject.toml
 
-The `pyproject.toml` file defines the project's metadata, dependency groups, and tool
-configurations in accordance with modern Python standards.
+Defines project metadata, dependency groups, and tool configurations in alignment with
+modern Python standards.
 
 ### `[project]`
 
@@ -99,87 +92,55 @@ Specifies metadata such as:
 
 - Project name, version, and description
 - Python version compatibility
-- Required runtime dependencies (if any)
+- Runtime dependencies
 
-This section aligns with PEP 621 standards for project metadata.
+Conforms to [PEP 621](https://peps.python.org/pep-0621/) standards.
 
 ### `[dependency-groups]`
 
 Organizes development dependencies into logical groups:
 
-- **`pipeline`**: Tools used for static analysis, linting, security checks, complexity
-  analysis, and testing:
-
+- **`pipeline`**: Tools for code analysis, linting, testing, and security checks:
   - `pytest`, `pytest-order`, `ruff`, `mypy`, `bandit`, `complexipy`
+- **`documentation`**: Tools for building and extending documentation:
+  - `mkdocs-material`, `mkdocstrings`, `mkdocs-jupyter`, and related plugins
 
-- **`documentation`**: Tools used to build and extend project documentation with MkDocs
-  and various plugins:
-
-  - `mkdocs-material`, `mkdocstrings`, `mkdocs-jupyter`, etc.
-
-These groups allow selective installation via `uv`, improving modularity and dependency
-management.
+This allows selective installation, improving modularity and manageability.
 
 ### `[tool.ruff]`
 
-Defines configuration for **Ruff**, the linter and code formatter:
+Configures Ruff for linting and formatting:
 
-- Line and indentation style
-- Linting rules to enforce (e.g., error detection, unused imports, code simplifications)
-- Excluded directories (e.g., `venv`, `dist`, `.pytest_cache`, `.ipynb_checkpoints`)
+- Line length and indentation rules
+- Linting rules and error detection
+- Excluded directories (e.g., `venv`, `dist`, `.pytest_cache`)
 - Formatting settings for docstrings and imports
 
 ### `[tool.mypy]`
 
-Configures **Mypy**, the static type checker:
+Configures Mypy for static type checking:
 
-- Enables checks on untyped function definitions
-- Ignores unresolved imports (helpful for missing stubs)
-- Excludes irrelevant directories such as build environments
+- Checks untyped functions
+- Ignores unresolved imports to handle missing stubs
+- Excludes build and cache directories
 
-These settings help detect type-related issues early in the development process.
+This ensures early detection of type-related issues.
 
-## Development Workflow
+## GitHub Actions CI/CD
 
-A typical development and validation workflow using this template may include the
+The template includes a preconfigured GitHub Actions workflow located in
+`.github/workflows`. It runs automatically on pushes or pull requests and performs the
 following steps:
 
-1. **Setup**
+1. **Checkout and Python Setup** – Clones the repository and configures the Python
+   environment.
+2. **Install Dependencies** – Installs all required packages for development, testing,
+   and documentation.
+3. **Linting and Static Analysis** – Runs Ruff, Mypy, Bandit, and Complexipy to enforce
+   code quality, type safety, security, and complexity standards.
+4. **Testing** – Executes Pytest to validate functionality and detect regressions.
+5. **Documentation** – Optionally builds and deploys documentation with MkDocs to GitHub
+   Pages.
 
-   ```bash
-   make install
-   ```
-
-2. **Clean Environment**
-
-   ```bash
-   make clean
-   ```
-
-3. **Code Linting and Analysis**
-
-   ```bash
-   make lint
-   make code_check
-   ```
-
-4. **Run Tests**
-
-   ```bash
-   make tests
-   ```
-
-5. **Generate and Preview Documentation**
-
-   ```bash
-   make doc
-   ```
-
-6. **Full Workflow Execution**
-
-   ```bash
-   make all
-   ```
-
-These commands can be used locally or integrated into CI/CD pipelines for automated
-validation.
+This workflow ensures every code change is automatically validated, tested, and
+documented.
