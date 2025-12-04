@@ -26,7 +26,7 @@ jobs:
           uv-extra: "--all-extras"
 
   build-deploy-mkdocs:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     name: Build MkDocs Documentation
     runs-on: ubuntu-latest
     needs: setup
@@ -58,7 +58,7 @@ jobs:
           docs-version: ${{ steps.version.outputs.version }}
 
   create-release:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     name: Create Release
     runs-on: ubuntu-latest
     needs: build-deploy-mkdocs
