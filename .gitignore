@@ -23,7 +23,6 @@ __pycache__/
 *.pyd
 *.egg-info
 .python-version
-uv.lock
 
 # Exceptions
 !/.devcontainer/*
