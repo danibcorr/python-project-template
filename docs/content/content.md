@@ -2,145 +2,132 @@
 
 ## Overview
 
-The **Python Project Template** provides a fully structured foundation for Python
-projects, integrating modern tooling for code quality, static analysis, security
-auditing, testing, documentation, and development automation. It enables consistent,
-maintainable, and reproducible workflows, streamlining project setup and encouraging
-adherence to best practices.
+The **Python Project Template** provides a comprehensive and structured foundation for
+Python projects, integrating modern tooling to ensure code quality, static analysis,
+security auditing, testing, documentation, and development automation. The template
+promotes consistent, maintainable, and reproducible workflows, streamlining project
+setup and enforcing adherence to established best practices.
 
-This template is suitable for libraries, applications, and collaborative projects,
-ensuring a professional development environment from the start.
+This framework is suitable for libraries, applications, and collaborative projects,
+establishing a professional development environment from the outset.
 
 ## Project Structure and Core Components
 
 ### Makefile
 
-The Makefile defines reusable targets to automate common tasks, including installation,
-cleaning, linting, testing, and documentation. Commands are executed via
+The Makefile defines reusable targets to automate common development tasks, including
+dependency installation, workspace cleanup, linting, testing, static and security
+analysis, and documentation management. Commands are executed using the syntax
 `make <target>`.
 
 #### `make install`
 
-Installs all project dependencies using [`uv`](https://github.com/astral-sh/uv), as
-defined in `pyproject.toml`. Dependencies are organized into groups such as `pipeline`
-and `documentation`, ensuring modular and selective installation.
+Installs all project dependencies using [`uv`](https://github.com/astral-sh/uv) as
+defined in `pyproject.toml`. Dependencies are organized into modular groups such as
+`pipeline` and `documentation`, enabling selective installation according to the
+required development context.
 
 #### `make clean`
 
-Removes temporary and cache files to reset the workspace, including:
-
-- Python bytecode (`.pyc`, `.pyo`)
-- Cache directories: `__pycache__`, `.pytest_cache`, `.mypy_cache`
-
-This ensures a clean state for linting, testing, and analysis.
+Removes temporary and cache files to restore a clean workspace. This includes Python
+bytecode files (`.pyc`, `.pyo`) and cache directories such as `__pycache__`,
+`.pytest_cache`, and `.mypy_cache`. Performing this step ensures reliable results for
+linting, testing, and static analysis by eliminating residual artifacts from previous
+runs.
 
 #### `make lint`
 
-Uses [Ruff](https://docs.astral.sh/ruff/) to automatically format and statically analyze
-code. Linting is applied to source and test directories to enforce consistent coding
-standards.
+Executes [Ruff](https://docs.astral.sh/ruff/) to enforce code formatting and static
+analysis rules across source and test directories. This target promotes consistent
+coding standards and prevents stylistic inconsistencies.
 
 #### `make code_check`
 
-Performs deeper analysis and security checks, including:
+Performs advanced code validation and security assessments, including:
 
-- **Mypy**: Validates type annotations and detects type inconsistencies.
-- **Complexipy**: Measures code complexity to highlight potentially complicated logic.
-- **Bandit**: Identifies common security issues in Python code.
+- **Mypy**: Validates type annotations and identifies type inconsistencies.
+- **Complexipy**: Measures code complexity, highlighting potentially intricate or
+  hard-to-maintain logic.
+- **Bandit**: Conducts static security analysis (SAST) to detect common vulnerabilities
+  and security issues within Python code.
 
-This step ensures robust, maintainable, and secure code.
+This step ensures that the codebase remains robust, maintainable, and secure.
 
 #### `make tests`
 
-Runs unit tests with [Pytest](https://docs.pytest.org/en/stable/). The command exits
-gracefully if no tests are detected, making it safe for partial or initial setups.
+Runs unit tests using [Pytest](https://docs.pytest.org/en/stable/). The command exits
+gracefully if no tests are detected, making it suitable for partial implementations or
+early-stage project setups.
 
 #### `make doc`
 
-Serves the project documentation locally using [MkDocs](https://www.mkdocs.org/),
-enabling live previews before deployment.
+Builds and serves project documentation locally with [MkDocs](https://www.mkdocs.org/),
+allowing developers to preview documentation changes in real time before deployment.
 
 #### `make pipeline`
 
-Executes a full quality pipeline comprising:
-
-- Environment cleanup
-- Linting and formatting
-- Static analysis and security checks
-- Test execution
-
-This target is ideal for continuous integration and pre-release validation.
+Executes a complete quality pipeline that includes environment cleanup, linting, static
+analysis, security checks, and test execution. This target is designed for continuous
+integration workflows and pre-release verification.
 
 #### `make all`
 
-Performs the complete workflow:
+Performs the full project workflow, encompassing dependency installation, execution of
+the full quality pipeline, and documentation build and preview. This target is
+recommended for initial project setup and comprehensive workflow verification.
 
-- Installs dependencies
-- Runs the full quality pipeline
-- Builds and serves documentation
+### `pyproject.toml`
 
-Recommended for initial setup and full-cycle verification.
+The `pyproject.toml` file defines project metadata, dependency groups, and tool
+configurations in accordance with modern Python standards.
 
-## pyproject.toml
+#### `[project]`
 
-Defines project metadata, dependency groups, and tool configurations in alignment with
-modern Python standards.
+Specifies core project metadata, including project name, version, description, Python
+version compatibility, and runtime dependencies. This section adheres to
+[PEP 621](https://peps.python.org/pep-0621/) standards.
 
-### `[project]`
+#### `[dependency-groups]`
 
-Specifies metadata such as:
+Organizes development dependencies into logical groups to enable modular installation:
 
-- Project name, version, and description
-- Python version compatibility
-- Runtime dependencies
+- **`pipeline`**: Includes tools for code quality, testing, and security assessment,
+  such as `pytest`, `pytest-order`, `ruff`, `mypy`, `bandit`, and `complexipy`.
+- **`documentation`**: Contains tools for building and enhancing documentation,
+  including `mkdocs-material`, `mkdocstrings`, `mkdocs-jupyter`, and related plugins.
 
-Conforms to [PEP 621](https://peps.python.org/pep-0621/) standards.
+This modular approach improves maintainability and flexibility of the development
+environment.
 
-### `[dependency-groups]`
+#### `[tool.ruff]`
 
-Organizes development dependencies into logical groups:
+Configures Ruff for code linting and formatting, including rules for line length,
+indentation, error detection, and docstring formatting. Certain directories, such as
+`venv`, `dist`, and `.pytest_cache`, are excluded to optimize performance.
 
-- **`pipeline`**: Tools for code analysis, linting, testing, and security checks:
-  - `pytest`, `pytest-order`, `ruff`, `mypy`, `bandit`, `complexipy`
-- **`documentation`**: Tools for building and extending documentation:
-  - `mkdocs-material`, `mkdocstrings`, `mkdocs-jupyter`, and related plugins
+#### `[tool.mypy]`
 
-This allows selective installation, improving modularity and manageability.
-
-### `[tool.ruff]`
-
-Configures Ruff for linting and formatting:
-
-- Line length and indentation rules
-- Linting rules and error detection
-- Excluded directories (e.g., `venv`, `dist`, `.pytest_cache`)
-- Formatting settings for docstrings and imports
-
-### `[tool.mypy]`
-
-Configures Mypy for static type checking:
-
-- Checks untyped functions
-- Ignores unresolved imports to handle missing stubs
-- Excludes build and cache directories
-
-This ensures early detection of type-related issues.
+Configures Mypy for static type checking. It enables detection of untyped functions,
+ignores unresolved imports to accommodate missing type stubs, and excludes build and
+cache directories. This configuration allows early detection of type-related errors,
+improving code reliability.
 
 ## GitHub Actions CI/CD
 
 The template includes a preconfigured GitHub Actions workflow located in
-`.github/workflows`. It runs automatically on pushes or pull requests and performs the
-following steps:
+`.github/workflows`. This workflow is triggered automatically on pushes or pull requests
+and performs the following steps:
 
 1. **Checkout and Python Setup** – Clones the repository and configures the Python
    environment.
-2. **Install Dependencies** – Installs all required packages for development, testing,
-   and documentation.
-3. **Linting and Static Analysis** – Runs Ruff, Mypy, Bandit, and Complexipy to enforce
-   code quality, type safety, security, and complexity standards.
-4. **Testing** – Executes Pytest to validate functionality and detect regressions.
-5. **Documentation** – Optionally builds and deploys documentation with MkDocs to GitHub
-   Pages.
+2. **Dependency Installation** – Installs all required packages for development,
+   testing, and documentation.
+3. **Linting and Static Analysis** – Executes Ruff, Mypy, Bandit, and Complexipy to
+   enforce code quality, type safety, security, and maintainability.
+4. **Testing** – Runs Pytest to validate functionality and detect regressions.
+5. **Documentation** – Optionally builds and deploys project documentation to GitHub
+   Pages using MkDocs.
 
-This workflow ensures every code change is automatically validated, tested, and
-documented.
+This workflow ensures that all code changes are automatically validated, tested, and
+documented, supporting continuous integration and promoting high-quality software
+development practices.
