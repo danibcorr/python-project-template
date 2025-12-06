@@ -14,12 +14,16 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 *.ruff_cache/
+.cache
+.complexipy_cache/
 
 # Files
 *.pyc
 *.pyo
 *.pyd
 *.egg-info
+.python-version
+uv.lock
 
 # Exceptions
 !/.devcontainer/*

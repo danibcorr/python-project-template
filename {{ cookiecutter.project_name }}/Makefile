@@ -38,7 +38,7 @@ lint:
 code_check:
 	@echo "Running static code checks..."
 	@uv run mypy $(SRC_PROJECT_NAME)/
-	@uv run complexipy -d low $(SRC_PROJECT_NAME)/
+	@uv run complexipy -f $(SRC_PROJECT_NAME)/
 	@uv run bandit -r $(SRC_PROJECT_NAME)/ --exclude $(SRC_PROJECT_TESTS)
 	@echo "✅ Code and security checks complete."
 

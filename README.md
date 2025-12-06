@@ -29,6 +29,8 @@ professional foundation.
 - **Auto Documentation**: MkDocs + GitHub Pages for automated docs.
 - **CI/CD**: GitHub Actions automates linting, testing, and documentation deployment.
 
+And more.
+
 ## GitHub Actions
 
 The template includes a preconfigured GitHub Actions workflow that runs automatically on
