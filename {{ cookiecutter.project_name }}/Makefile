@@ -1,5 +1,5 @@
 # Declare all phony targets
-.PHONY: install clean lint code_check tests doc pipeline all
+.PHONY: install clean lint code_check tests doc check-dead-code pipeline all
 
 # Default target
 .DEFAULT_GOAL := all
