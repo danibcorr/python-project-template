@@ -1,16 +1,18 @@
 {
-  "project_authors": "Author",
-  "project_authors_email": "none@none.com",
+  "project_authors": "Your Name",
+  "project_authors_email": "your.email@example.com",
   "project_name": "project-name",
   "project_module_name": "src",
   "project_test_folder_name": "tests",
-  "project_short_description": "Project description.",
+  "project_short_description": "Short, clear description of what this project does.",
   "project_version": "0.0.1",
   "project_version_python": "3.11",
   "project_license": ["MIT"],
   "mkdocs_site_name": "Project Title MkDocs",
   "mkdocs_repo_url": "https://github.com/user-name/repo-name",
   "mkdocs_site_url": "https://repo-name-web-site",
-  "add_prompt_folder": ["yes", "no"],
+  "add_dev_container_folder": ["yes", "no"],
+  "add_notebooks_folder": ["yes", "no"],
+  "add_prompts_folder": ["yes", "no"],
   "_copy_without_render": ["*action.yml", "*.js"]
 }
