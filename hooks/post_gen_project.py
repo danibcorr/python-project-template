@@ -11,7 +11,7 @@ def remove(path: Path) -> None:
         shutil.rmtree(path)
 
 folders = {
-    "prompt": "{{ cookiecutter.add_prompt_folder }}",
+    "prompts": "{{ cookiecutter.add_prompt_folder }}",
 }
 
 for folder, enabled in folders.items():
