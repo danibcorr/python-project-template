@@ -1,10 +1,6 @@
-[build-system]
-requires = ["setuptools==80.9"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "python-project-template"
-version = "2.4.7"
+version = "2.4.8"
 description = "Python project template"
 authors = [
     {name = "Daniel Bazo Correa", email = "none@none.com"},
@@ -23,22 +19,26 @@ classifiers = [
 ]
 keywords = ["python", "template"]
 dependencies = [
-    "cookiecutter>=2.6.0",
+    "cookiecutter==2.6.0",
 ]
 
 [tool.uv]
 default-groups = "all"
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
+environments = [
+    "sys_platform == 'linux'",
+]
+required-environments = [
+    "sys_platform == 'linux' and platform_machine == 'x86_64'"
+]
 
 [dependency-groups]
 documentation = [
     "mkdocs==1.6.1",
-    "mkdocstrings[python]==1.0.0",
     "mkdocs-material==9.7.0",
     "mkdocs-git-revision-date-localized-plugin==1.5.0",
     "mkdocs-git-authors-plugin==0.10.0",
     "mkdocs-enumerate-headings-plugin==0.6.2",
-    "mkdocs-jupyter==0.25.1",
     "mkdocs-awesome-nav==3.2.0",
     "mike==2.1.3"
 ]

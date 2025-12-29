@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools==80.9"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
 
 [project]
 name = "{{ cookiecutter.project_name }}"
@@ -26,6 +26,12 @@ keywords = ["python"]
 [tool.uv]
 default-groups = "all"
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
+environments = [
+    "sys_platform == 'linux'",
+]
+required-environments = [
+    "sys_platform == 'linux' and platform_machine == 'x86_64'"
+]
 
 [dependency-groups]
 pipeline = [

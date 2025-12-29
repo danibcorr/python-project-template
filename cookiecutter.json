@@ -11,5 +11,6 @@
   "mkdocs_site_name": "Project Title MkDocs",
   "mkdocs_repo_url": "https://github.com/user-name/repo-name",
   "mkdocs_site_url": "https://repo-name-web-site",
+  "add_prompt_folder": ["yes", "no"],
   "_copy_without_render": ["*action.yml", "*.js"]
 }

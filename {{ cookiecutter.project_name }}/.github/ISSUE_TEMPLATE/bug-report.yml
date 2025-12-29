@@ -15,8 +15,7 @@ body:
       label: "System Information"
       description: "Please provide details about your system configuration."
       placeholder:
-        "{{ cookiecutter.project_module_name }} version:\nPlatform/OS:\nPython
-        version:\nBackend:"
+        "{{ cookiecutter.project_module_name }} version:\nPlatform/OS:\nPython version:"
     validations:
       required: true
 

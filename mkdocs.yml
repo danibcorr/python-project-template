@@ -69,27 +69,6 @@ extra_javascript:
 plugins:
   - search:
       lang: en
-  - mkdocstrings:
-      enabled: !ENV [ENABLE_MKDOCSTRINGS, true]
-      default_handler: python
-      handlers:
-        python:
-          options:
-            summary: false
-            merge_init_into_class: true
-            docstring_style: google
-            show_root_heading: true
-            show_source: true
-            show_bases: false
-            show_root_full_path: false
-            show_symbol_type_heading: true
-            show_symbol_type_toc: true
-            modernize_annotations: true
-            show_submodules: false
-            filters: ["!get_config", "!build", "!^_[^_]"]
-            extra:
-              ignore_init_summary: true
-              show_special_methods: false
   - git-revision-date-localized
   - git-authors:
       show_email_address: false
@@ -97,7 +76,6 @@ plugins:
       toc_depth: 0
       exclude:
         - index.md
-  - mkdocs-jupyter
   - awesome-nav
 
 extra:
