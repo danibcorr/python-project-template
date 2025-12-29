@@ -1,8 +1,7 @@
-import os
 import shutil
 from pathlib import Path
 
-project_dir = Path.cwd().parent / "{{ cookiecutter.project_name }}"
+project_dir = Path.cwd()
 
 def remove(path: Path) -> None:
     if path.is_file():
