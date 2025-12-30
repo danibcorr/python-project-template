@@ -30,20 +30,6 @@ professional foundation.
 
 And more.
 
-## GitHub Actions
-
-The template includes a preconfigured GitHub Actions workflow that runs automatically on
-pushes or pull requests. The workflow performs the following steps:
-
-1. Checks out the repository and sets up Python.
-2. Installs project dependencies.
-3. Runs linters, type checks, security scans, and complexity analysis.
-4. Executes tests with Pytest.
-5. Optionally generates and deploys documentation.
-
-This ensures every change is validated, tested, and documented automatically,
-maintaining high-quality and reproducible results.
-
 ## Getting Started
 
 Before starting, ensure that you have required Python installed and a virtual
@@ -94,3 +80,4 @@ make all
 
 This ensures that the project environment is fully prepared for development and
 validation.
+
