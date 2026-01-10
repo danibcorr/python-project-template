@@ -47,7 +47,7 @@ check-dead-code:
 	@echo "✅ Dead code check complete."
 	
 tests:
-	@echo "Runing test per each backend..."
+	@echo "Running tests..."
 	@uv run pytest $(SRC_PROJECT_TESTS)/
 	@echo "✅ Tests complete."
 

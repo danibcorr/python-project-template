@@ -38,7 +38,7 @@ manage dependencies cleanly. Additionally, ensure that
 [`uv`](https://github.com/astral-sh/uv) is installed in your environment to handle
 grouped dependency installations.
 
-### 1. Generate Your Project
+1. Generate Your Project
 
 Use Cookiecutter to create a new project from the template:
 
@@ -48,7 +48,7 @@ cookiecutter https://github.com/danibcorr/python-project-template.git
 
 Follow the prompts to configure project metadata, package name, and other options.
 
-### 2. Install Dependencies
+2. Install Dependencies
 
 Activate your virtual environment and install all dependencies using the included
 `Makefile`:
@@ -60,7 +60,7 @@ make install
 This installs development, testing, and documentation tools as defined in
 `pyproject.toml`.
 
-### 3. Run the Pipeline
+3. Run the Pipeline
 
 Execute the quality pipeline, which includes linting, type checking, security analysis,
 complexity checks, and test execution:
@@ -69,7 +69,7 @@ complexity checks, and test execution:
 make pipeline
 ```
 
-### 4. Run the Full Workflow (Optional)
+4. Run the Full Workflow (Optional)
 
 To perform a complete setup including dependency installation, full quality checks, and
 local documentation preview:
