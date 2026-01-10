@@ -1,26 +1,32 @@
+# Standard libraries
 import shutil
 from pathlib import Path
 
 project_dir = Path.cwd()
 
+
 def remove(path: Path) -> None:
     """
     Removes a file or directory at the specified path.
-    
+
     If the path points to a file, it is deleted. If it points to a
     directory, the entire directory tree is removed recursively.
-    
+
     Args:
         path: The filesystem path to remove.
-    
+
     Returns:
         None
     """
-    
+
+    if not path.exists():
+        return
+
     if path.is_file():
         path.unlink()
     elif path.is_dir():
         shutil.rmtree(path)
+
 
 folders: dict[str, str] = {
     ".devcontainer": "{{ cookiecutter.add_dev_container_folder }}",

@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: local-check
+        name: Makefile Validation
+        entry: make pipeline
+        language: system
+        pass_filenames: false
+        always_run: true
+        verbose: true

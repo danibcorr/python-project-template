@@ -1,6 +1,12 @@
 nav:
   - Home: index.md
-  - Documentation: content/
+  - Documentation:
+      - Overview: content/overview.md
+      - Getting Started: content/cookiecutter.md
+      - Makefile Commands: content/makefile-commands.md
+      - Configuration: content/pyproject-configuration.md
+      - Pre-commit Hooks: content/pre-commit-hooks.md
+      - CI/CD: content/ci-cd.md
 
 sort:
   ignore_case: true
