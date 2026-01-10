@@ -1,6 +1,6 @@
 [project]
 name = "python-project-template"
-version = "2.4.8"
+version = "2.5.0"
 description = "Python project template"
 authors = [
     {name = "Daniel Bazo Correa", email = "none@none.com"},
@@ -35,10 +35,10 @@ required-environments = [
 [dependency-groups]
 documentation = [
     "mkdocs==1.6.1",
-    "mkdocs-material==9.7.0",
+    "mkdocs-material==9.7.1",
     "mkdocs-git-revision-date-localized-plugin==1.5.0",
     "mkdocs-git-authors-plugin==0.10.0",
     "mkdocs-enumerate-headings-plugin==0.6.2",
-    "mkdocs-awesome-nav==3.2.0",
+    "mkdocs-awesome-nav==3.3.0",
     "mike==2.1.3"
 ]

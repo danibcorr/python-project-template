@@ -10,27 +10,27 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Lint with ruff
+    - name: Lint with Ruff
       id: ruff
       run: |
-        echo "Running ruff linter..."  
+        echo "Running Ruff..."  
         uv run ruff check ${{ inputs.src-project-folder }}/
       shell: bash
 
-    - name: Check imports with isort
+    - name: Checking Imports with isort
       run: |
         echo "Running isort..."  
         uv run isort --check ${{ inputs.src-project-folder }}/
       shell: bash
 
-    - name: Cognitive Complexity with complexipy
+    - name: Checking Cognitive Complexity with complexipy
       run: |
         echo "Running complexipy..."
         uv run complexipy -f ${{ inputs.src-project-folder }}/
       shell: bash
 
-    - name: Check Mypy
+    - name: Running Mypy Type Checker
       run: |
-        echo "Running Mypy type checker..."
+        echo "Running Mypy..."
         uv run mypy ${{ inputs.src-project-folder }}/
       shell: bash

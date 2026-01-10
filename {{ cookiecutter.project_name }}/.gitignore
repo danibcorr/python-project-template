@@ -3,7 +3,6 @@
 /saved_objects/
 /runs/
 __pycache__/
-.vscode/
 .mypy_cache/
 /results/
 *build/

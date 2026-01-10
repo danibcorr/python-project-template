@@ -4,26 +4,72 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "python.testing.pytestEnabled": true,
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.organizeImports": true,
-          "source.fixAll.ruff": true
-        },
-        "[python]": {
-          "editor.defaultFormatter": "charliermarsh.ruff",
-          "editor.codeActionsOnSave": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
+        "todo-tree.regex.enableMultiLine": true,
+        "editor.rulers": [
+          {
+            "column": 72,
+            "color": "#4a4f63"
+          },
+          {
+            "column": 88,
+            "color": "#7a8ad1"
           }
+        ],
+        "autoDocstring.docstringFormat": "google-notypes",
+        "autoDocstring.startOnNewLine": true,
+        "better-comments.tags": [
+          {
+            "tag": "!!",
+            "color": "#F6FF33",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+          },
+          {
+            "tag": "#!",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+          },
+          {
+            "tag": "TODO",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+          },
+          {
+            "tag": "//",
+            "color": "#68FF33",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+          },
+          {
+            "tag": "**",
+            "color": "#FF33EC",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+          }
+        ],
+        "[python]": {
+          "editor.formatOnType": true
         },
-        "editor.rulers": [88],
-        "ruff.lint.enable": true,
-        "ruff.format.enable": true,
-        "ruff.organizeImports": true,
-        "ruff.fixAll": true
+        "python.defaultInterpreterPath": "/home/jovyan/envs/env/bin/python",
+        "[jsonc]": {
+          "editor.defaultFormatter": "vscode.json-language-features"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "prettier.printWidth": 88,
+        "prettier.proseWrap": "always"
       },
-      "extensions": ["ms-python.python", "charliermarsh.ruff"]
+      "extensions": [
+        "njpwerner.autodocstring",
+        "aaron-bond.better-comments",
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "Gruntfuggly.todo-tree"
+      ]
     }
   },
   "features": {
