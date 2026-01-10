@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "njpwerner.autodocstring",
+    "aaron-bond.better-comments",
+    "esbenp.prettier-vscode",
+    "ms-python.python",
+    "ms-python.debugpy",
+    "Gruntfuggly.todo-tree"
+  ]
+}

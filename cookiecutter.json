@@ -12,6 +12,7 @@
   "mkdocs_repo_url": "https://github.com/user-name/repo-name",
   "mkdocs_site_url": "https://repo-name-web-site",
   "add_dev_container_folder": ["yes", "no"],
+  "add_vscode_folder": ["yes", "no"],
   "add_notebooks_folder": ["yes", "no"],
   "add_prompts_folder": ["yes", "no"],
   "_copy_without_render": ["*action.yml", "*.js"]

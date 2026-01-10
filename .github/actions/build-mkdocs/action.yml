@@ -40,7 +40,7 @@ runs:
         echo "Deploying Docs Version: ${{ inputs.docs-version }}"
         uv run mike deploy --push --update-aliases "${{ inputs.docs-version }}" latest
 
-    - name: Set Default Version
+    - name: Set Default Version to Docs
       shell: bash
       run: |
         echo "Setting 'Latest' as Default Version"

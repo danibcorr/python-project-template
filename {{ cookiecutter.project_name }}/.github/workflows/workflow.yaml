@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: ["*"]
+    branches: [main, dev]
   pull_request:
     branches: [main, dev]
 
@@ -13,38 +13,38 @@ env:
 
 jobs:
   setup-lint-test:
-    name: Setup, Lint, Test, and Secure Code
+    name: Setup, Lint, Test, and Security Check
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
-      - name: Setup Python & Install Dependencies
+      - name: Setup Python Environment
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}
           uv-group: "pipeline"
           uv-extra: "--all-extras"
 
-      - name: Lint Code (ruff, Mypy, Complexipy)
+      - name: Lint Code
         uses: ./.github/actions/lint-code
         with:
           src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
 
-      - name: Run Tests with Pytest
+      - name: Run Tests
         uses: ./.github/actions/test-code
         with:
           src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
           src-tests-folder: ${{'{{'}} env.SRC_PROJECT_TESTS {{'}}'}}
 
-      - name: Run Bandit Security Scan
+      - name: Security Scan
         uses: ./.github/actions/security
         with:
           src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
           src-exclude: ${{'{{'}} env.SRC_PROJECT_TESTS {{'}}'}}
 
-  build-deploy-mkdocs:
+  build-deploy-docs:
     if: github.ref == 'refs/heads/main'
     name: Build MkDocs Documentation
     runs-on: ubuntu-latest
@@ -57,11 +57,11 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Setup Python & Install Dependencies
+      - name: Setup Python Environment
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}
@@ -71,7 +71,7 @@ jobs:
         id: version
         uses: ./.github/actions/obtain-version
 
-      - name: Build MkDocs Site with Mike
+      - name: Build Documentation
         uses: ./.github/actions/build-mkdocs
         with:
           docs-version: ${{'{{'}} steps.version.outputs.version {{'}}'}}
@@ -80,18 +80,18 @@ jobs:
     if: github.ref == 'refs/heads/main'
     name: Create Release
     runs-on: ubuntu-latest
-    needs: build-deploy-mkdocs
+    needs: build-deploy-docs
 
     permissions:
       contents: write
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Setup Python & Install Dependencies
+      - name: Setup Python Environment
         uses: ./.github/actions/setup-python-env
         with:
           src-python-version: ${{'{{'}} env.SRC_PYTHON_VERSION {{'}}'}}

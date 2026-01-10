@@ -1,17 +1,16 @@
-# Declare all phony targets
-.PHONY: install clean doc pipeline all
+.PHONY: setup \
+		clean-cache-temp-files \
+		doc \
+		pipeline all
 
-# Default target
 .DEFAULT_GOAL := all
 
-# Install project dependencies
-install:
+setup:
 	@echo "Installing dependencies..."
 	@uv sync --all-extras
 	@echo "✅ Dependencies installed."
 
-# Clean cache and temporary files
-clean:
+clean-cache-temp-files:
 	@echo "Cleaning cache and temporary files..."
 	@find . -type d -name __pycache__ -exec rm -rf {} +
 	@find . -type d -name .pytest_cache -exec rm -rf {} +
@@ -19,15 +18,12 @@ clean:
 	@find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
 	@echo "✅ Clean complete."
 
-# Serve documentation locally
 doc:
 	@echo "Serving documentation..."
 	@uv run mkdocs serve
 
-# Run code checks and tests
-pipeline: clean
+pipeline: clean-cache-temp-files
 	@echo "✅ Pipeline complete."
 
-# Run full workflow including install and docs
-all: install pipeline doc
+all: setup pipeline doc
 	@echo "✅ All tasks complete."

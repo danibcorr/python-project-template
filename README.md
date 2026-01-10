@@ -12,12 +12,12 @@
   </a>
 </p>
 
-# 🐍 Python Project Template
+# Python Project Template
 
 Python Project Template provides a ready-to-use structure for Python projects,
-integrating best practices for code quality, testing, security, documentation, and
-CI/CD. It helps developers start new projects quickly with a maintainable and
-professional foundation.
+integrating best practices for code quality, testing, security, documentation, and CI/CD.
+It helps developers start new projects quickly with a maintainable and professional
+foundation.
 
 ## Features
 
@@ -32,9 +32,9 @@ And more.
 
 ## Getting Started
 
-Before starting, ensure that you have required Python installed and a virtual
-environment set up. It is recommended to create an isolated environment (e.g., using
-`venv`) to manage dependencies cleanly. Additionally, ensure that
+Before starting, ensure that you have required Python installed and a virtual environment
+set up. It is recommended to create an isolated environment (e.g., using `venv`) to
+manage dependencies cleanly. Additionally, ensure that
 [`uv`](https://github.com/astral-sh/uv) is installed in your environment to handle
 grouped dependency installations.
 
@@ -80,4 +80,3 @@ make all
 
 This ensures that the project environment is fully prepared for development and
 validation.
-

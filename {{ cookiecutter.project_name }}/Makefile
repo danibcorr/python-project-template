@@ -1,22 +1,23 @@
-# Declare all phony targets
-.PHONY: install clean lint code_check tests doc check-dead-code pipeline all
+.PHONY: setup \
+		clean-cache-temp-files \
+		lint code-check check-dead-code \
+		tests \
+		doc  \
+		pipeline all
 
-# Default target
 .DEFAULT_GOAL := all
 
-# Variables
 SRC_PROJECT_NAME ?= {{ cookiecutter.project_module_name }}
 SRC_PROJECT_TESTS ?= {{ cookiecutter.project_test_folder_name }}
-SRC_ALL ?= .
+SRC_PROJECT_NOTEBOOKS_FOLDER ?= notebooks
 
-# Install project dependencies
-install:
+setup:
 	@echo "Installing dependencies..."
 	@uv sync --all-extras
+	@uv run pre-commit install
 	@echo "✅ Dependencies installed."
 
-# Clean cache and temporary files
-clean:
+clean-cache-temp-files:
 	@echo "Cleaning cache and temporary files..."
 	@find . -type d -name __pycache__ -exec rm -rf {} +
 	@find . -type d -name .pytest_cache -exec rm -rf {} +
@@ -24,45 +25,38 @@ clean:
 	@find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
 	@echo "✅ Clean complete."
 
-# Check code formatting and linting
 lint:
 	@echo "Running lint checks..."
-	@uv run isort $(SRC_ALL)/
-	@uv run nbqa isort $(SRC_ALL)/
-	@uv run ruff check --fix $(SRC_ALL)/
-	@uv run ruff format $(SRC_ALL)/
-	@uv run nbqa ruff $(SRC_ALL)/
+	@uv run isort $(SRC_PROJECT_NAME)/
+	@uv run nbqa isort $(SRC_PROJECT_NOTEBOOKS_FOLDER)/
+	@uv run ruff check --fix $(SRC_PROJECT_NAME)/
+	@uv run ruff format $(SRC_PROJECT_NAME)/
+	@uv run nbqa ruff $(SRC_PROJECT_NOTEBOOKS_FOLDER)/
 	@echo "✅ Linting complete."
 
-# Static analysis and security checks
-code_check:
+code-check:
 	@echo "Running static code checks..."
 	@uv run mypy $(SRC_PROJECT_NAME)/
 	@uv run complexipy -f $(SRC_PROJECT_NAME)/
 	@uv run bandit -r $(SRC_PROJECT_NAME)/ --exclude $(SRC_PROJECT_TESTS)
 	@echo "✅ Code and security checks complete."
 
-# Test the code, only if the tests directory exists
+check-dead-code:
+	@echo "Checking dead code..."
+	@uv run deadcode $(SRC_PROJECT_NAME)
+	@echo "✅ Dead code check complete."
+	
 tests:
 	@echo "Runing test per each backend..."
 	@uv run pytest $(SRC_PROJECT_TESTS)/
 	@echo "✅ Tests complete."
 
-# Serve documentation locally
 doc:
 	@echo "Serving documentation..."
 	@uv run mkdocs serve
 
-# Check dead code
-check-dead-code:
-	@echo "Checking dead code..."
-	@uv run deadcode $(SRC_PROJECT_NAME)
-	@echo "✅ Dead code check complete."
-
-# Run code checks and tests
-pipeline: clean lint code_check tests
+pipeline: clean-cache-temp-files lint code-check tests
 	@echo "✅ Pipeline complete."
 
-# Run full workflow including install and docs
-all: install pipeline doc
+all: setup pipeline doc
 	@echo "✅ All tasks complete."
