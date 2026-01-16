@@ -16,6 +16,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../assets/css/custom.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="black" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
@@ -289,55 +290,55 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#overview-of-the-automation-strategy">
+<a class="md-nav__link" href="#automation-strategy-overview">
 <span class="md-ellipsis">
       
-        Overview of the Automation Strategy
+        Automation Strategy Overview
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#workflow-architecture-and-execution-logic">
+<a class="md-nav__link" href="#workflow-architecture-and-execution-model">
 <span class="md-ellipsis">
       
-        Workflow Architecture and Execution Logic
+        Workflow Architecture and Execution Model
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#environment-setup-and-dependency-initialization">
+<a class="md-nav__link" href="#environment-initialization-and-dependency-setup">
 <span class="md-ellipsis">
       
-        Environment Setup and Dependency Initialization
+        Environment Initialization and Dependency Setup
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#documentation-build-and-deployment-on-the-main-branch">
+<a class="md-nav__link" href="#documentation-build-and-deployment">
 <span class="md-ellipsis">
       
-        Documentation Build and Deployment on the Main Branch
+        Documentation Build and Deployment
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#automated-release-creation-and-versioning">
+<a class="md-nav__link" href="#automated-release-management">
 <span class="md-ellipsis">
       
-        Automated Release Creation and Versioning
+        Automated Release Management
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#github-pages-configuration-and-activation">
+<a class="md-nav__link" href="#github-pages-configuration-requirements">
 <span class="md-ellipsis">
       
-        GitHub Pages Configuration and Activation
+        GitHub Pages Configuration Requirements
       
     </span>
 </a>
@@ -380,69 +381,61 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
 <h1 id="continuous-integration-and-continuous-deployment-with-github-actions"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.</span> Continuous Integration and Continuous Deployment with GitHub Actions</h1>
-<h2 id="overview-of-the-automation-strategy"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.1</span> Overview of the Automation Strategy</h2>
-<p>The continuous integration and continuous deployment (CI/CD) process is implemented
-through GitHub Actions using a workflow definition located at
-<code>.github/workflows/workflow.yml</code>. This workflow is designed to automate, in a unified and
-reproducible manner, the validation, documentation generation, and release management
-phases of the project lifecycle. By integrating these activities into a single automated
-pipeline, the repository ensures consistency between code changes, documentation updates,
-and published releases, while reducing manual intervention and the risk of human error.</p>
-<h2 id="workflow-architecture-and-execution-logic"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2</span> Workflow Architecture and Execution Logic</h2>
-<p>The workflow is composed of several logically separated jobs, each responsible for a
-specific stage of the CI/CD process. These jobs are executed according to clearly defined
-triggering conditions, primarily based on repository events and branch context. The
-structure reflects a progressive validation model in which foundational checks are
-performed first, followed by documentation deployment and release creation when the code
-reaches a stable state.</p>
-<h2 id="environment-setup-and-dependency-initialization"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.3</span> Environment Setup and Dependency Initialization</h2>
-<p>The initial job, referred to as the setup phase, is executed on every push and on every
-pull request. Its primary purpose is to establish a controlled and reproducible execution
-environment. During this phase, a Python runtime environment is provisioned, ensuring
-that subsequent jobs operate under consistent interpreter conditions. All dependencies
-defined under the <code>pipeline</code> group are then installed, which guarantees that the tools
-required for validation, documentation generation, and automation are available before
-any further processing occurs. This step functions as a foundational safeguard, as
-failures at this stage prevent downstream jobs from executing under incomplete or
-misconfigured conditions.</p>
-<h2 id="documentation-build-and-deployment-on-the-main-branch"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4</span> Documentation Build and Deployment on the Main Branch</h2>
-<p>When changes are merged into the <code>main</code> branch, the workflow activates an additional job
-dedicated to documentation management. In this phase, the project documentation is built
-using MkDocs, a static site generator specifically designed for technical documentation.
-The resulting site is then automatically deployed to GitHub Pages, ensuring that the
-published documentation always reflects the current state of the main codebase.</p>
-<p>Version management of the documentation is handled through <code>mike</code>, which enables the
-coexistence of multiple documentation versions corresponding to different project
-releases. This approach allows users to consult documentation aligned with specific
-versions of the software, thereby improving traceability and long-term maintainability.
-The deployment process is fully automated and does not require manual approval once the
+<h2 id="automation-strategy-overview"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.1</span> Automation Strategy Overview</h2>
+<p>Continuous integration and continuous deployment are implemented through GitHub Actions
+using a workflow definition located at <code>.github/workflows/workflow.yml</code>. This workflow
+serves as the central automation mechanism of the project and orchestrates validation,
+documentation generation, and release management within a unified pipeline. By
+integrating these processes, the repository maintains consistency between code changes,
+documentation, and released artifacts, while reducing manual intervention and operational
+errors.</p>
+<h2 id="workflow-architecture-and-execution-model"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.2</span> Workflow Architecture and Execution Model</h2>
+<p>The workflow is organized into distinct jobs, each corresponding to a specific stage of
+the CI/CD lifecycle. Job execution is controlled by repository events, such as pushes and
+pull requests, and by branch-specific conditions. The overall design follows a
+progressive execution model in which preliminary checks are completed first, establishing
+a stable baseline before documentation deployment and release publication are triggered.
+This structure ensures that only validated code advances to user-facing outputs.</p>
+<h2 id="environment-initialization-and-dependency-setup"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.3</span> Environment Initialization and Dependency Setup</h2>
+<p>The initial job is executed on every push and pull request and is responsible for
+preparing a reproducible execution environment. A Python runtime is provisioned to ensure
+consistent interpreter behavior across all stages of the pipeline. Subsequently, all
+dependencies defined in the <code>pipeline</code> group are installed, guaranteeing the availability
+of the tools required for validation, documentation building, and automation tasks. Any
+failure during this phase interrupts the workflow, preventing downstream jobs from
+running under incomplete or unreliable conditions.</p>
+<h2 id="documentation-build-and-deployment"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.4</span> Documentation Build and Deployment</h2>
+<p>When changes are integrated into the <code>main</code> branch, the workflow triggers a dedicated
+documentation job. In this stage, MkDocs is used to generate a static documentation site
+from the project sources, which is then automatically deployed to GitHub Pages. This
+process ensures that the published documentation accurately reflects the current state of
+the main codebase.</p>
+<p>Documentation versioning is handled through <code>mike</code>, which allows multiple versions of the
+documentation to coexist. Each version corresponds to a specific software release,
+enabling users to consult documentation aligned with the version they are using. The
+entire build and deployment process is automated and requires no manual approval once the
 workflow conditions are satisfied.</p>
-<h2 id="automated-release-creation-and-versioning"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.5</span> Automated Release Creation and Versioning</h2>
-<p>Also restricted to the <code>main</code> branch, the release creation job formalizes the delivery of
-a new software version. During this stage, the workflow programmatically determines the
-current project version and uses this information to create a new GitHub release. Release
-notes are generated automatically, typically by aggregating relevant commit messages or
-changes since the previous release. This ensures that each release is consistently
-documented and that users have immediate access to a structured summary of modifications,
-enhancements, and fixes.</p>
-<p>By integrating release creation into the CI/CD pipeline, the workflow enforces a direct
-relationship between the main branch state and published artifacts, reducing
-discrepancies between source code and released versions.</p>
-<h2 id="github-pages-configuration-and-activation"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.6</span> GitHub Pages Configuration and Activation</h2>
-<p>For the automated documentation deployment to function correctly, GitHub Pages must be
-configured to use GitHub Actions as its source. This configuration is performed within
-the repository settings by navigating to the Pages section and selecting GitHub Actions
-as the publication source. Once this setting is applied, every push to the <code>main</code> branch
-triggers the documentation build and deployment process defined in the workflow. As a
-result, the documentation site is continuously updated without requiring any additional
-manual steps, ensuring alignment between the repository content and its public technical
+<h2 id="automated-release-management"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.5</span> Automated Release Management</h2>
+<p>Release creation is also restricted to the <code>main</code> branch and represents the final stage
+of the CI/CD pipeline. During this phase, the workflow determines the current project
+version and creates a corresponding GitHub release. Release notes are generated
+automatically based on changes since the previous release, providing users with a concise
+and structured summary of updates. Integrating release management into the workflow
+enforces a direct relationship between the repository state and published versions,
+reducing discrepancies between source code and distributed artifacts.</p>
+<h2 id="github-pages-configuration-requirements"><span class="enumerate-headings-plugin enumerate-heading-plugin">6.6</span> GitHub Pages Configuration Requirements</h2>
+<p>For documentation deployment to function correctly, GitHub Pages must be configured to
+use GitHub Actions as its publication source. This setting is applied in the repository
+Pages configuration. Once enabled, every push to the <code>main</code> branch automatically triggers
+the documentation build and deployment defined in the workflow, ensuring continuous
+alignment between the repository content and its publicly available technical
 documentation.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 10, 2026 12:09:10 UTC">January 10, 2026</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 16, 2026 15:15:28 UTC">January 16, 2026</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Contributors">
