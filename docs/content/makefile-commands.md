@@ -82,7 +82,7 @@ during refactoring or when optimizing the codebase for maintainability.
 make check-dead-code
 ```
 
-## Running Unit Tests: `make tests`
+## Running Unit Tests: `make test`
 
 This command executes all unit tests using Pytest. It supports structured test execution
 via `pytest-order` and can generate coverage reports if configured. The `tests/`
@@ -90,7 +90,7 @@ directory is scanned recursively, ensuring that all modules are tested thoroughl
 command should be run frequently after code modifications to verify correctness.
 
 ```bash
-make tests
+make test
 ```
 
 ## Documentation Management: `make doc`
@@ -103,6 +103,22 @@ local edits and published content.
 
 ```bash
 make doc
+```
+
+## Pre-Commit Validation: `make pre-commit`
+
+The `pre-commit` command runs a subset of the pipeline specifically designed for
+pre-commit hooks. It sequentially:
+
+1. Cleans caches and temporary files.
+2. Runs linting and formatting.
+3. Performs static analysis, complexity measurement, and security scanning.
+
+This command is automatically executed by Git pre-commit hooks to validate code before
+committing.
+
+```bash
+make pre-commit
 ```
 
 ## Complete Code Quality Pipeline: `make pipeline`

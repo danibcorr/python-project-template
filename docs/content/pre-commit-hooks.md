@@ -12,10 +12,10 @@ changes meet established coding standards and pass essential checks automaticall
 ## Functionality
 
 When a developer attempts to commit changes, the pre-commit system automatically triggers
-the full development pipeline by executing:
+the pre-commit validation pipeline by executing:
 
 ```bash
-make pipeline
+make pre-commit
 ```
 
 This command performs a comprehensive sequence of actions, including:
@@ -23,10 +23,11 @@ This command performs a comprehensive sequence of actions, including:
 - Linting and formatting checks to ensure consistent code style.
 - Type validation using Mypy to detect mismatches and type-related errors.
 - Security analysis with Bandit to identify potential vulnerabilities in the code.
-- Execution of all unit tests to confirm that functionality remains correct.
+- Complexity analysis with Complexipy to identify overly complex code.
 
 If any of these checks fail, the commit is blocked, thereby preventing problematic code
-from being added to the repository.
+from being added to the repository. Note that tests are not executed during pre-commit to
+keep the validation fast, but they are run in the full `make pipeline` command.
 
 ## Advantages
 

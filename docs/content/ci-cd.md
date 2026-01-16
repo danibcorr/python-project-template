@@ -1,72 +1,63 @@
 # Continuous Integration and Continuous Deployment with GitHub Actions
 
-## Overview of the Automation Strategy
+## Automation Strategy Overview
 
-The continuous integration and continuous deployment (CI/CD) process is implemented
-through GitHub Actions using a workflow definition located at
-`.github/workflows/workflow.yml`. This workflow is designed to automate, in a unified and
-reproducible manner, the validation, documentation generation, and release management
-phases of the project lifecycle. By integrating these activities into a single automated
-pipeline, the repository ensures consistency between code changes, documentation updates,
-and published releases, while reducing manual intervention and the risk of human error.
+Continuous integration and continuous deployment are implemented through GitHub Actions
+using a workflow definition located at `.github/workflows/workflow.yml`. This workflow
+serves as the central automation mechanism of the project and orchestrates validation,
+documentation generation, and release management within a unified pipeline. By
+integrating these processes, the repository maintains consistency between code changes,
+documentation, and released artifacts, while reducing manual intervention and operational
+errors.
 
-## Workflow Architecture and Execution Logic
+## Workflow Architecture and Execution Model
 
-The workflow is composed of several logically separated jobs, each responsible for a
-specific stage of the CI/CD process. These jobs are executed according to clearly defined
-triggering conditions, primarily based on repository events and branch context. The
-structure reflects a progressive validation model in which foundational checks are
-performed first, followed by documentation deployment and release creation when the code
-reaches a stable state.
+The workflow is organized into distinct jobs, each corresponding to a specific stage of
+the CI/CD lifecycle. Job execution is controlled by repository events, such as pushes and
+pull requests, and by branch-specific conditions. The overall design follows a
+progressive execution model in which preliminary checks are completed first, establishing
+a stable baseline before documentation deployment and release publication are triggered.
+This structure ensures that only validated code advances to user-facing outputs.
 
-## Environment Setup and Dependency Initialization
+## Environment Initialization and Dependency Setup
 
-The initial job, referred to as the setup phase, is executed on every push and on every
-pull request. Its primary purpose is to establish a controlled and reproducible execution
-environment. During this phase, a Python runtime environment is provisioned, ensuring
-that subsequent jobs operate under consistent interpreter conditions. All dependencies
-defined under the `pipeline` group are then installed, which guarantees that the tools
-required for validation, documentation generation, and automation are available before
-any further processing occurs. This step functions as a foundational safeguard, as
-failures at this stage prevent downstream jobs from executing under incomplete or
-misconfigured conditions.
+The initial job is executed on every push and pull request and is responsible for
+preparing a reproducible execution environment. A Python runtime is provisioned to ensure
+consistent interpreter behavior across all stages of the pipeline. Subsequently, all
+dependencies defined in the `pipeline` group are installed, guaranteeing the availability
+of the tools required for validation, documentation building, and automation tasks. Any
+failure during this phase interrupts the workflow, preventing downstream jobs from
+running under incomplete or unreliable conditions.
 
-## Documentation Build and Deployment on the Main Branch
+## Documentation Build and Deployment
 
-When changes are merged into the `main` branch, the workflow activates an additional job
-dedicated to documentation management. In this phase, the project documentation is built
-using MkDocs, a static site generator specifically designed for technical documentation.
-The resulting site is then automatically deployed to GitHub Pages, ensuring that the
-published documentation always reflects the current state of the main codebase.
+When changes are integrated into the `main` branch, the workflow triggers a dedicated
+documentation job. In this stage, MkDocs is used to generate a static documentation site
+from the project sources, which is then automatically deployed to GitHub Pages. This
+process ensures that the published documentation accurately reflects the current state of
+the main codebase.
 
-Version management of the documentation is handled through `mike`, which enables the
-coexistence of multiple documentation versions corresponding to different project
-releases. This approach allows users to consult documentation aligned with specific
-versions of the software, thereby improving traceability and long-term maintainability.
-The deployment process is fully automated and does not require manual approval once the
+Documentation versioning is handled through `mike`, which allows multiple versions of the
+documentation to coexist. Each version corresponds to a specific software release,
+enabling users to consult documentation aligned with the version they are using. The
+entire build and deployment process is automated and requires no manual approval once the
 workflow conditions are satisfied.
 
-## Automated Release Creation and Versioning
+## Automated Release Management
 
-Also restricted to the `main` branch, the release creation job formalizes the delivery of
-a new software version. During this stage, the workflow programmatically determines the
-current project version and uses this information to create a new GitHub release. Release
-notes are generated automatically, typically by aggregating relevant commit messages or
-changes since the previous release. This ensures that each release is consistently
-documented and that users have immediate access to a structured summary of modifications,
-enhancements, and fixes.
+Release creation is also restricted to the `main` branch and represents the final stage
+of the CI/CD pipeline. During this phase, the workflow determines the current project
+version and creates a corresponding GitHub release. Release notes are generated
+automatically based on changes since the previous release, providing users with a concise
+and structured summary of updates. Integrating release management into the workflow
+enforces a direct relationship between the repository state and published versions,
+reducing discrepancies between source code and distributed artifacts.
 
-By integrating release creation into the CI/CD pipeline, the workflow enforces a direct
-relationship between the main branch state and published artifacts, reducing
-discrepancies between source code and released versions.
+## GitHub Pages Configuration Requirements
 
-## GitHub Pages Configuration and Activation
-
-For the automated documentation deployment to function correctly, GitHub Pages must be
-configured to use GitHub Actions as its source. This configuration is performed within
-the repository settings by navigating to the Pages section and selecting GitHub Actions
-as the publication source. Once this setting is applied, every push to the `main` branch
-triggers the documentation build and deployment process defined in the workflow. As a
-result, the documentation site is continuously updated without requiring any additional
-manual steps, ensuring alignment between the repository content and its public technical
+For documentation deployment to function correctly, GitHub Pages must be configured to
+use GitHub Actions as its publication source. This setting is applied in the repository
+Pages configuration. Once enabled, every push to the `main` branch automatically triggers
+the documentation build and deployment defined in the workflow, ensuring continuous
+alignment between the repository content and its publicly available technical
 documentation.

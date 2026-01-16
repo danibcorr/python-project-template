@@ -118,9 +118,17 @@ exclude = [
 cache_dir = "/dev/null"
 
 [tool.isort]
+profile = "black"
 known_first_party = ["{{ cookiecutter.project_module_name }}"]
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 import_heading_stdlib = "Standard libraries"
 import_heading_thirdparty = "3pps"
 import_heading_firstparty = "Own modules"
+import_heading_localfolder = "Own modules"
 line_length = 88
+include_trailing_comma = true
+combine_as_imports = true
+skip_glob = [".venv/*", ".uv-cache/*"]
+
+[tool.deadcode]
+exclude = [".venv", ".uv-cache", "tests"]

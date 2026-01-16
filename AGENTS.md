@@ -1,59 +1,40 @@
 # Agent Instructions
 
-This project is a **Cookiecutter template** used to generate new Python projects with a
-professional, ready-to-use structure. It integrates best practices for code quality,
-testing, security, documentation, and CI/CD. Because it is highly dynamic, it includes
-many optional settings and Jinja2 template blocks.
+This is a **Cookiecutter template** for generating Python projects with integrated best
+practices for code quality, testing, security, documentation, and CI/CD.
 
-## Getting Context
+## Before You Start
 
-Before interacting with the template, make sure to:
+1. Review `README.md` for template overview and features
+2. Check `AGENTS.md` in generated projects for project-specific instructions
+3. Understand this is a **dynamic generator**, not a static project
 
-1. **Review the README**: The `README.md` provides a high-level overview of the template,
-   its features, CI/CD workflow, and instructions to generate new projects. Key features
-   include:
+## Key Files
 
-   - Linting & type checking (Ruff & Mypy)
-   - Security scanning (Bandit)
-   - Code complexity analysis (Complexipy)
-   - Testing (Pytest)
-   - Auto documentation (MkDocs + GitHub Pages)
-   - Preconfigured GitHub Actions for CI/CD
+- **cookiecutter.json**: Template variables (metadata, Python version, optional features)
+- **hooks/post_gen_project.py**: Removes disabled optional folders post-generation
+- **Makefile**: Workflow commands (`setup`, `lint`, `code-check`, `test`, `pipeline`)
+- **.github/actions/**: Reusable GitHub Actions for CI/CD
 
-2. **Review `AGENTS.md` in the generated project**: After generating a new project, the
-   template copies an `AGENTS.md` file to the project itself
-   (`{{cookiecutter.__package_slug}}/AGENTS.md`). This file provides project-specific
-   instructions for agents.
+## Template Syntax
 
-## Working with the Template
+- Files use **Jinja2 syntax**: `{{ cookiecutter.project_name }}`
+- Preserve template delimiters and conditional blocks when modifying
+- Invalid syntax breaks project generation
 
-- **Jinja2 blocks**: Because this is a Cookiecutter template, many files contain Jinja2
-  template syntax. Agents should expect template variables like
-  `{{ cookiecutter.project_name }}` or conditional blocks.
+## Validation Workflow
 
-- **Testing functionality**:
+Run `make pipeline` to execute:
 
-  - Create new projects inside the `workspaces/` directory.
-  - Run the Makefile targets to validate functionality:
+- Linting (Ruff, isort)
+- Type checking (Mypy)
+- Complexity analysis (Complexipy)
+- Security scanning (Bandit)
+- Tests (Pytest)
 
-    - `make setup` → installs dependencies
-    - `make pipeline` → runs linting, type checking, security analysis, complexity
-      checks, and tests
-    - `make all` → full workflow including documentation preview
+## Critical Rules
 
-  - Ensure the environment is isolated (e.g., via `venv`) and that
-    [`uv`](https://github.com/astral-sh/uv) is installed to handle grouped dependency
-    installations.
-
-## Summary
-
-Agents interacting with this template should:
-
-- Understand it is a **dynamic project generator**, not a single static project.
-- Always use the generated `workspaces/` directory for testing.
-- Follow the Makefile workflow to validate and test features.
-- Keep track of optional components and ensure `post_gen_project.py` handles cleanup
-  properly.
-
-By following these instructions, agents will be able to safely generate, test, and
-maintain projects derived from this Python template.
+1. This generates projects; each instance differs based on `cookiecutter.json` choices
+2. Optional features: `.devcontainer/`, `.vscode/`, `notebooks/`, `prompts/`
+3. Always validate changes with `make pipeline`
+4. Never break Jinja2 template syntax

@@ -98,8 +98,8 @@ Follow these specifications for all docstrings:
 **Critical**: Maintain strict consistency across all docstrings in the codebase
 
 - Identical parameters, variables, or concepts **must** use identical descriptions
-- If a parameter appears in multiple functions, its description must be word-for-word
-  the same
+- If a parameter appears in multiple functions, its description must be word-for-word the
+  same
 - Establish and maintain consistent terminology throughout
 
 ### Code Optimization

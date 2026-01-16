@@ -1,7 +1,7 @@
 .PHONY: setup \
 		clean-cache-temp-files \
 		lint code-check check-dead-code \
-		tests \
+		test \
 		doc  \
 		pipeline all
 
@@ -44,7 +44,7 @@ check-dead-code:
 	@uv run deadcode $(SOURCE_PATH)
 	@echo "✅ Dead code check complete."
 	
-tests:
+test:
 	@echo "Running tests..."
 	@uv run pytest $(TEST_PATH)
 	@echo "✅ Tests complete."
@@ -53,7 +53,7 @@ doc:
 	@echo "Serving documentation..."
 	@uv run mkdocs serve
 
-pipeline: clean-cache-temp-files lint code-check tests
+pipeline: clean-cache-temp-files lint code-check test
 	@echo "✅ Pipeline complete."
 
 pre-commit: clean-cache-temp-files lint code-check
