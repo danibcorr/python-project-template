@@ -7,9 +7,9 @@
 
 .DEFAULT_GOAL := all
 
-SRC_PROJECT_NAME ?= {{ cookiecutter.project_module_name }}
-SRC_PROJECT_TESTS ?= {{ cookiecutter.project_test_folder_name }}
-SRC_PROJECT_NOTEBOOKS_FOLDER ?= notebooks
+SOURCE_PATH ?= {{ cookiecutter.project_module_name }}
+TEST_PATH ?= {{ cookiecutter.project_test_folder_name }}
+NOTEBOOKS_PATH ?= notebooks
 
 setup:
 	@echo "Installing dependencies..."
@@ -27,28 +27,26 @@ clean-cache-temp-files:
 
 lint:
 	@echo "Running lint checks..."
-	@uv run isort $(SRC_PROJECT_NAME)/
-	@uv run nbqa isort $(SRC_PROJECT_NOTEBOOKS_FOLDER)/
-	@uv run ruff check --fix $(SRC_PROJECT_NAME)/
-	@uv run ruff format $(SRC_PROJECT_NAME)/
-	@uv run nbqa ruff $(SRC_PROJECT_NOTEBOOKS_FOLDER)/
+	@uv run isort $(SOURCE_PATH)
+	@uv run ruff check --fix $(SOURCE_PATH)
+	@uv run ruff format $(SOURCE_PATH)
 	@echo "✅ Linting complete."
 
 code-check:
 	@echo "Running static code checks..."
-	@uv run mypy $(SRC_PROJECT_NAME)/
-	@uv run complexipy -f $(SRC_PROJECT_NAME)/
-	@uv run bandit -r $(SRC_PROJECT_NAME)/ --exclude $(SRC_PROJECT_TESTS)
+	@uv run mypy $(SOURCE_PATH)
+	@uv run complexipy -f $(SOURCE_PATH)
+	@uv run bandit -r $(SOURCE_PATH) --exclude $(TEST_PATH)
 	@echo "✅ Code and security checks complete."
 
 check-dead-code:
 	@echo "Checking dead code..."
-	@uv run deadcode $(SRC_PROJECT_NAME)
+	@uv run deadcode $(SOURCE_PATH)
 	@echo "✅ Dead code check complete."
 	
 tests:
 	@echo "Running tests..."
-	@uv run pytest $(SRC_PROJECT_TESTS)/
+	@uv run pytest $(TEST_PATH)
 	@echo "✅ Tests complete."
 
 doc:
@@ -57,6 +55,9 @@ doc:
 
 pipeline: clean-cache-temp-files lint code-check tests
 	@echo "✅ Pipeline complete."
+
+pre-commit: clean-cache-temp-files lint code-check
+	@echo "✅ Pipeline pre-commit complete."
 
 all: setup pipeline doc
 	@echo "✅ All tasks complete."

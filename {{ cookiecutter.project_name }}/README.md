@@ -38,7 +38,7 @@ collaboration, and maintainability:
     ├── models/              <- Training, inference, and model-related logic.
     │   ├── __init__.py
     │   ├── train.py         <- Scripts and functions to train machine learning models.
-    │   └── predict.py       <- Functions for generating model predictions.
+    │   └── inference.py     <- Scripts and functions for model inference.
     └── utils/               <- Utility scripts and helper functions used across modules.
         ├── __init__.py
         └── utils.py

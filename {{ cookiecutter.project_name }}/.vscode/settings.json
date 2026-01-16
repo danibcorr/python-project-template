@@ -47,7 +47,6 @@
   "[python]": {
     "editor.formatOnType": true
   },
-  "python.defaultInterpreterPath": "/home/jovyan/envs/env/bin/python",
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },

@@ -27,8 +27,8 @@ You can contribute by:
 Start by opening an issue to describe your proposed change or the problem you
 encountered. This helps maintainers review and guide the work before coding begins.
 
-> For minor changes, such as typo fixes, you may skip this step and submit a pull
-> request directly.
+> For minor changes, such as typo fixes, you may skip this step and submit a pull request
+> directly.
 
 ### Step 2: Make Your Changes
 
@@ -75,7 +75,7 @@ To set up locally:
 3. Clone the repository and run:
 
 ```bash
-make install
+make setup
 ```
 
 > If using `uv`, a compatible virtual environment will be created automatically.

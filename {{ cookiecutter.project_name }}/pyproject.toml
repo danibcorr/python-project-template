@@ -46,7 +46,6 @@ pipeline = [
     "pytest-order==1.3.0",
     "ruff==0.14.11",
     "isort==7.0.0",
-    "nbqa==1.9.1",
     "deadcode==2.4.1",
     "pre-commit==4.5.1",
 ]

@@ -54,7 +54,7 @@ grouped dependency installations.
    `Makefile`:
 
    ```bash
-   make install
+   make setup
    ```
 
    This installs development, testing, and documentation tools as defined in

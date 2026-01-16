@@ -26,52 +26,24 @@ runs:
       run: |
         if gh release view "${{ inputs.version }}" >/dev/null 2>&1; then
           echo "exists=true" >> $GITHUB_OUTPUT
-          echo "Release ${{ inputs.version }} already exists"
         else
           echo "exists=false" >> $GITHUB_OUTPUT
-          echo "Release ${{ inputs.version }} doesn't exist"
         fi
       env:
         GH_TOKEN: ${{ inputs.token }}
-
-    - name: Generate Release Notes
-      if: steps.check_release.outputs.exists == 'false'
-      shell: bash
-      run: |
-        echo "Generating release notes..."
-        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-
-        if [ -z "$LAST_TAG" ]; then
-          echo "No previous tags found, using last 10 commits..."
-          COMMITS=$(git log --pretty=format:"- %s" --no-merges -10)
-        else
-          echo "Previous tag found: $LAST_TAG"
-          COMMITS=$(git log "${LAST_TAG}..HEAD" --pretty=format:"- %s" --no-merges)
-        fi
-
-        cat > release-notes.md << EOF
-        ## Changes
-
-        $COMMITS
-        EOF
-
-        echo "Release notes generated:"
-        cat release-notes.md
 
     - name: Create Release
       if: steps.check_release.outputs.exists == 'false'
       shell: bash
       run: |
-        echo "Creating release ${{ inputs.version }}..."
+        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        RANGE="${LAST_TAG:+$LAST_TAG..HEAD}"
+        COMMITS=$(git log ${RANGE:---max-count=10} --pretty=format:"- %s" --no-merges)
+
         gh release create "${{ inputs.version }}" \
           --title "${{ inputs.version }}" \
-          --notes-file release-notes.md
-        echo "Release ${{ inputs.version }} created successfully"
+          --notes "## Changes
+
+        $COMMITS"
       env:
         GH_TOKEN: ${{ inputs.token }}
-
-    - name: Skip Release
-      if: steps.check_release.outputs.exists == 'true'
-      shell: bash
-      run: |
-        echo "Skipping release creation - ${{ inputs.version }} already exists"

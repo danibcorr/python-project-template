@@ -42,7 +42,6 @@ readability and maintainability. It integrates several tools:
 
 - **isort**: Organizes imports alphabetically and categorically.
 - **Ruff**: A high-performance linter that detects and fixes style issues.
-- **nbqa**: Applies linting to Jupyter notebooks.
 
 Typical automatic fixes include removing unused imports, correcting spacing and
 formatting, and reorganizing imports according to PEP 8 conventions. This command is

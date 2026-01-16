@@ -18,15 +18,8 @@ runs:
     - name: Setup gh-pages Branch
       shell: bash
       run: |
-        # Store current branch
-        CURRENT_BRANCH=$(git branch --show-current)
-
-        # Check if gh-pages branch exists
-        if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
-          echo "gh-pages branch exists, fetching..."
-          git fetch origin gh-pages:gh-pages
-        else
-          echo "gh-pages branch doesn't exist, creating..."
+        if ! git ls-remote --heads origin gh-pages | grep -q gh-pages; then
+          CURRENT_BRANCH=$(git branch --show-current)
           git checkout --orphan gh-pages
           git reset --hard
           git commit --allow-empty -m "Initial gh-pages commit"
@@ -34,14 +27,8 @@ runs:
           git checkout "$CURRENT_BRANCH"
         fi
 
-    - name: Build and Deploy Docs with Mike
+    - name: Build and Deploy Docs
       shell: bash
       run: |
-        echo "Deploying Docs Version: ${{ inputs.docs-version }}"
         uv run mike deploy --push --update-aliases "${{ inputs.docs-version }}" latest
-
-    - name: Set Default Version to Docs
-      shell: bash
-      run: |
-        echo "Setting 'Latest' as Default Version"
         uv run mike set-default --push latest
