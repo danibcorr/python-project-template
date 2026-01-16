@@ -7,7 +7,7 @@
 .DEFAULT_GOAL := all
 
 PATH_PROJECT_ROOT ?= .
-PATH_TEST ?= tests
+TEST_PATH ?= tests
 
 setup:
 	@echo "Installing dependencies..."
@@ -37,7 +37,7 @@ code-check:
 
 test:
 	@echo "Running tests..."
-	@uv run pytest $(PATH_TEST) -v
+	@uv run pytest $(TEST_PATH) -v
 	@echo "✅ Tests complete."
 
 doc:

@@ -1,0 +1,23 @@
+name: Test Code
+description: Run Python tests with Pytest
+
+inputs:
+  src-project-folder:
+    description: "Directory where the project is located"
+    required: true
+    default: "src"
+
+  src-tests-folder:
+    description: "Directory where the tests are located"
+    required: true
+    default: "tests"
+
+runs:
+  using: composite
+  steps:
+    - name: Run tests with Pytest
+      shell: bash
+      run: |
+        if [ -d "${{ inputs.src-tests-folder }}" ] && [ -n "$(find ${{ inputs.src-tests-folder }} -name 'test_*.py')" ]; then
+          uv run pytest ${{ inputs.src-tests-folder }}
+        fi

@@ -8,7 +8,7 @@ on:
 
 env:
   SRC_PROJECT_FOLDER: "{{ cookiecutter.project_module_name }}"
-  SRC_PROJECT_TESTS: "{{ cookiecutter.project_test_folder_name }}"
+  TEST_PATH: "{{ cookiecutter.project_test_folder_name }}"
   SRC_PYTHON_VERSION: "{{ cookiecutter.project_version_python }}"
 
 jobs:
@@ -36,13 +36,13 @@ jobs:
         uses: ./.github/actions/test-code
         with:
           src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
-          src-tests-folder: ${{'{{'}} env.SRC_PROJECT_TESTS {{'}}'}}
+          src-tests-folder: ${{'{{'}} env.TEST_PATH {{'}}'}}
 
       - name: Security Scan
         uses: ./.github/actions/security
         with:
           src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
-          src-exclude: ${{'{{'}} env.SRC_PROJECT_TESTS {{'}}'}}
+          src-exclude: ${{'{{'}} env.TEST_PATH {{'}}'}}
 
   build-deploy-docs:
     if: github.ref == 'refs/heads/main'
