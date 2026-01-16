@@ -1,7 +1,7 @@
 # Technical Document Rewriting
 
-Hello. From this point onward, you will receive documents, typically technical in
-nature. Your task is to return the entire document rewritten according to the following
+Hello. From this point onward, you will receive documents, typically technical in nature.
+Your task is to return the entire document rewritten according to the following
 specifications:
 
 ## Core Requirements

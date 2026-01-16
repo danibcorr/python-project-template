@@ -326,7 +326,7 @@ def test_makefile_commands_exist(tmp_path: Path, template_dir: Path) -> None:
     makefile = tmp_path / "project-name" / "Makefile"
     content = makefile.read_text()
 
-    required_commands = ["setup", "lint", "code-check", "tests", "pipeline"]
+    required_commands = ["setup", "lint", "code-check", "test", "pipeline"]
     for cmd in required_commands:
         assert f"{cmd}:" in content, f"Missing command: {cmd}"
 

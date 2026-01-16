@@ -10,12 +10,12 @@ enforces best practices and organizational standards in project structure.
 
 ## Configuration Variables
 
-The customization process is driven by a configuration file, typically named
-`cookiecutter.json`, which defines the variables that the template expects. Each variable
-corresponds to a specific aspect of the project, such as naming conventions, folder
-structures, or optional features. During project generation, Cookiecutter interactively
-prompts the user to provide values for these variables, thereby producing a project
-tailored to the user’s specifications. The main configuration variables include:
+The customization process is driven by a configuration file, `cookiecutter.json`, which
+defines the variables that the template expects. Each variable corresponds to a specific
+aspect of the project, such as naming conventions, folder structures, or optional
+features. During project generation, Cookiecutter interactively prompts the user to
+provide values for these variables, thereby producing a project tailored to the user’s
+specifications. The main configuration variables include:
 
 | Variable                   | Description                                     | Example                        |
 | -------------------------- | ----------------------------------------------- | ------------------------------ |
@@ -27,6 +27,7 @@ tailored to the user’s specifications. The main configuration variables includ
 | `add_notebooks_folder`     | Option to include a notebooks folder            | `yes` / `no`                   |
 | `add_prompts_folder`       | Option to include a prompts folder              | `yes` / `no`                   |
 | `add_dev_container_folder` | Option to include a Dev Container configuration | `yes` / `no`                   |
+| `add_vscode_folder`        | Option to include VS Code configuration         | `yes` / `no`                   |
 
 These variables enable fine-grained control over the structure and functionality of the
 generated project, accommodating different workflows and development environments.

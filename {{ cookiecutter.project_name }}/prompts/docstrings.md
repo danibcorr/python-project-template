@@ -28,8 +28,7 @@ ones following these specifications:
 
 - **Never** include types, parameter types, or default values in the descriptive text.
 - These belong exclusively in the function signature.
-- If type hints are missing from the signature, add them by inferring from usage
-  context.
+- If type hints are missing from the signature, add them by inferring from usage context.
 - If default values are missing but evident from the code, add them to the signature.
 
 ### Performance and Complexity
@@ -67,8 +66,8 @@ ones following these specifications:
 **Critical**: Maintain strict consistency across all docstrings in the codebase.
 
 - Identical parameters, variables, or concepts **must** use identical descriptions.
-- If a parameter appears in multiple functions, its description must be word-for-word
-  the same.
+- If a parameter appears in multiple functions, its description must be word-for-word the
+  same.
 - Establish and maintain consistent terminology throughout.
 
 ## Output Format

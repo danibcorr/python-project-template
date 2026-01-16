@@ -14,8 +14,7 @@ body:
     attributes:
       label: "System Information"
       description: "Please provide details about your system configuration."
-      placeholder:
-        "python-project-template version:\nPlatform/OS:\nPython version:"
+      placeholder: "python-project-template version:\nPlatform/OS:\nPython version:"
     validations:
       required: true
 

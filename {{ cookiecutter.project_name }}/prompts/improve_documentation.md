@@ -1,7 +1,7 @@
 # Technical Document Rewriting
 
-Hello. From this point onward, you will receive documents, typically technical in
-nature. Your task is to return the entire document rewritten according to the following
+Hello. From this point onward, you will receive documents, typically technical in nature.
+Your task is to return the entire document rewritten according to the following
 specifications:
 
 ## Structure and Organization
@@ -50,8 +50,7 @@ Ensure the text is completely free of:
 Additional quality standards:
 
 - Produce polished, well-crafted sentences with proper grammatical structure
-- Maintain stylistic consistency in vocabulary choices, sentence patterns, and
-  formatting
+- Maintain stylistic consistency in vocabulary choices, sentence patterns, and formatting
 - Use technical vocabulary accurately and consistently throughout
 - Ensure parallel structure in lists, comparisons, and related elements
 - Apply consistent capitalization, hyphenation, and formatting conventions
