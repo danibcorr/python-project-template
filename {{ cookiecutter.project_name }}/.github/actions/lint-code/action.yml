@@ -11,26 +11,17 @@ runs:
   using: composite
   steps:
     - name: Lint with Ruff
-      id: ruff
-      run: |
-        echo "Running Ruff..."  
-        uv run ruff check ${{ inputs.src-project-folder }}/
       shell: bash
+      run: uv run ruff check ${{ inputs.src-project-folder }}/
 
-    - name: Checking Imports with isort
-      run: |
-        echo "Running isort..."  
-        uv run isort --check ${{ inputs.src-project-folder }}/
+    - name: Check Imports with isort
       shell: bash
+      run: uv run isort --check ${{ inputs.src-project-folder }}/
 
-    - name: Checking Cognitive Complexity with complexipy
-      run: |
-        echo "Running complexipy..."
-        uv run complexipy -f ${{ inputs.src-project-folder }}/
+    - name: Check Cognitive Complexity
       shell: bash
+      run: uv run complexipy -f ${{ inputs.src-project-folder }}/
 
-    - name: Running Mypy Type Checker
-      run: |
-        echo "Running Mypy..."
-        uv run mypy ${{ inputs.src-project-folder }}/
+    - name: Run Mypy Type Checker
       shell: bash
+      run: uv run mypy ${{ inputs.src-project-folder }}/

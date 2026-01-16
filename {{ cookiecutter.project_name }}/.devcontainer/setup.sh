@@ -12,6 +12,6 @@ sudo apt-get install -y build-essential > /dev/null 2>&1
 echo "✅ System dependencies installed."
 
 echo "Installing Python dependencies with Makefile..."
-make install > /dev/null 2>&1
+make setup > /dev/null 2>&1
 
 echo "✅ Devcontainer setup complete."

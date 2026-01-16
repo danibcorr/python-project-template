@@ -9,9 +9,9 @@ many optional settings and Jinja2 template blocks.
 
 Before interacting with the template, make sure to:
 
-1. **Review the README**: The `README.md` provides a high-level overview of the
-   template, its features, CI/CD workflow, and instructions to generate new projects.
-   Key features include:
+1. **Review the README**: The `README.md` provides a high-level overview of the template,
+   its features, CI/CD workflow, and instructions to generate new projects. Key features
+   include:
 
    - Linting & type checking (Ruff & Mypy)
    - Security scanning (Bandit)
@@ -36,7 +36,7 @@ Before interacting with the template, make sure to:
   - Create new projects inside the `workspaces/` directory.
   - Run the Makefile targets to validate functionality:
 
-    - `make install` → installs dependencies
+    - `make setup` → installs dependencies
     - `make pipeline` → runs linting, type checking, security analysis, complexity
       checks, and tests
     - `make all` → full workflow including documentation preview

@@ -2,21 +2,19 @@ site_name: Python project template
 site_description: Python project template
 repo_name: python-project-template
 repo_url: https://github.com/danibcorr/python-project-template
-site_url: https://https://danibcorr.github.io/python-project-template
+site_url: https://danibcorr.github.io/python-project-template
 
 theme:
   name: "material"
   language: en
   palette:
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       primary: black
       accent: black
       toggle:
         icon: material/weather-night
         name: "Switch to light mode"
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - scheme: default
       primary: black
       accent: black
       toggle:
@@ -54,6 +52,9 @@ theme:
 use_directory_urls: false
 
 markdown_extensions:
+  - tables
+  - toc:
+      toc_depth: 2
   - admonition
   - pymdownx.details
   - pymdownx.superfences:

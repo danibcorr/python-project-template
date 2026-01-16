@@ -27,18 +27,16 @@ clean-cache-temp-files:
 
 lint:
 	@echo "Running lint checks..."
-	@uv run isort $(SRC_PROJECT_NAME)/
-	@uv run nbqa isort $(SRC_PROJECT_NOTEBOOKS_FOLDER)/
-	@uv run ruff check --fix $(SRC_PROJECT_NAME)/
-	@uv run ruff format $(SRC_PROJECT_NAME)/
-	@uv run nbqa ruff $(SRC_PROJECT_NOTEBOOKS_FOLDER)/
+	@uv run isort $(SRC_PROJECT_NAME)
+	@uv run ruff check --fix $(SRC_PROJECT_NAME)
+	@uv run ruff format $(SRC_PROJECT_NAME)
 	@echo "✅ Linting complete."
 
 code-check:
 	@echo "Running static code checks..."
-	@uv run mypy $(SRC_PROJECT_NAME)/
-	@uv run complexipy -f $(SRC_PROJECT_NAME)/
-	@uv run bandit -r $(SRC_PROJECT_NAME)/ --exclude $(SRC_PROJECT_TESTS)
+	@uv run mypy $(SRC_PROJECT_NAME)
+	@uv run complexipy -f $(SRC_PROJECT_NAME)
+	@uv run bandit -r $(SRC_PROJECT_NAME) --exclude $(SRC_PROJECT_TESTS)
 	@echo "✅ Code and security checks complete."
 
 check-dead-code:
@@ -48,7 +46,7 @@ check-dead-code:
 	
 tests:
 	@echo "Running tests..."
-	@uv run pytest $(SRC_PROJECT_TESTS)/
+	@uv run pytest $(SRC_PROJECT_TESTS)
 	@echo "✅ Tests complete."
 
 doc:
@@ -57,6 +55,9 @@ doc:
 
 pipeline: clean-cache-temp-files lint code-check tests
 	@echo "✅ Pipeline complete."
+
+pre-commit: clean-cache-temp-files lint code-check
+	@echo "✅ Pipeline pre-commit complete."
 
 all: setup pipeline doc
 	@echo "✅ All tasks complete."

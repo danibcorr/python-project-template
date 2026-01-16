@@ -71,7 +71,7 @@ To work locally:
 3. Run:
 
    ```bash
-   make install
+   make setup
    ```
 
 > The required Python version is defined in `pyproject.toml`. If using `uv`, it will
@@ -123,5 +123,5 @@ Not a fan of writing code? You can still help by:
 - Suggesting features or usability improvements
 - Helping triage and respond to issues
 
-Thank you for being part of {{ cookiecutter.project_name }}'s journey. We’re thrilled to have
-you here. If you have questions, feel free to reach out or open an issue.
+Thank you for being part of {{ cookiecutter.project_name }}'s journey. We’re thrilled to
+have you here. If you have questions, feel free to reach out or open an issue.

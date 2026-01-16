@@ -48,7 +48,6 @@ automation:
 - `complexipy`: Measures cyclomatic complexity to identify potentially unmaintainable
   code.
 - `isort`: Sorts imports according to standard conventions.
-- `nbqa`: Extends linting capabilities to Jupyter notebooks.
 - `deadcode`: Detects unused or unreachable code.
 - `pre-commit`: Manages Git pre-commit hooks for automated checks.
 

@@ -16,8 +16,7 @@ runs:
   using: composite
   steps:
     - name: Security Scan with Bandit
-      id: bandit
       shell: bash
       run: |
-        echo "Running Bandit..." 
-        uv run bandit -r "${{ inputs.src-project-folder }}/" --exclude "${{ inputs.src-exclude }}"
+        uv run bandit -r "${{ inputs.src-project-folder }}/" --exclude "${{
+        inputs.src-exclude }}"

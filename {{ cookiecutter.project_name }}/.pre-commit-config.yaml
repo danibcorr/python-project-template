@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: local-check
         name: Makefile Validation
-        entry: make pipeline
+        entry: make pre-commit
         language: system
         pass_filenames: false
         always_run: true
