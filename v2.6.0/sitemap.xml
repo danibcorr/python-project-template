@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://danibcorr.github.io/python-project-template/v2.6.0/index.html</loc>
+         <lastmod>2026-01-16</lastmod>
+    </url>
+    <url>
+         <loc>https://danibcorr.github.io/python-project-template/v2.6.0/content/ci-cd.html</loc>
+         <lastmod>2026-01-16</lastmod>
+    </url>
+    <url>
+         <loc>https://danibcorr.github.io/python-project-template/v2.6.0/content/cookiecutter.html</loc>
+         <lastmod>2026-01-16</lastmod>
+    </url>
+    <url>
+         <loc>https://danibcorr.github.io/python-project-template/v2.6.0/content/makefile-commands.html</loc>
+         <lastmod>2026-01-16</lastmod>
+    </url>
+    <url>
+         <loc>https://danibcorr.github.io/python-project-template/v2.6.0/content/overview.html</loc>
+         <lastmod>2026-01-16</lastmod>
+    </url>
+    <url>
+         <loc>https://danibcorr.github.io/python-project-template/v2.6.0/content/pre-commit-hooks.html</loc>
+         <lastmod>2026-01-16</lastmod>
+    </url>
+    <url>
+         <loc>https://danibcorr.github.io/python-project-template/v2.6.0/content/pyproject-configuration.html</loc>
+         <lastmod>2026-01-16</lastmod>
+    </url>
+</urlset>
