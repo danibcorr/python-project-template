@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.9.18,<0.10.0"]
+requires = ["uv_build>=0.10.4,<0.11.0"]
 build-backend = "uv_build"
 
 [project]
@@ -12,15 +12,6 @@ authors = [
 license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">={{ cookiecutter.project_version_python }}"
-classifiers = [
-    "Intended Audience :: Developers",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Software Development",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-]
 keywords = ["python"]
 
 [tool.uv]
@@ -39,12 +30,11 @@ module-root = ""
 
 [dependency-groups]
 pipeline = [
-    "bandit==1.9.2",
-    "complexipy==5.1.0",
+    "bandit==1.9.3",
+    "complexipy==5.2.0",
     "mypy==1.19.1",
     "pytest==9.0.2",
-    "pytest-order==1.3.0",
-    "ruff==0.14.11",
+    "ruff==0.15.1",
     "isort==7.0.0",
     "deadcode==2.4.1",
     "pre-commit==4.5.1",
@@ -53,7 +43,7 @@ documentation = [
     "mkdocs==1.6.1",
     "mkdocstrings[python]==1.0.0",
     "mkdocs-material==9.7.1",
-    "mkdocs-git-revision-date-localized-plugin==1.5.0",
+    "mkdocs-git-revision-date-localized-plugin==1.5.1",
     "mkdocs-git-authors-plugin==0.10.0",
     "mkdocs-enumerate-headings-plugin==0.6.2",
     "mkdocs-jupyter==0.25.1",
@@ -64,34 +54,6 @@ documentation = [
 [tool.ruff]
 line-length = 88
 indent-width = 4
-exclude = [
-    ".bzr",
-    ".direnv",
-    ".eggs",
-    ".git",
-    ".git-rewrite",
-    ".hg",
-    ".ipynb_checkpoints",
-    ".mypy_cache",
-    ".nox",
-    ".pants.d",
-    ".pyenv",
-    ".pytest_cache",
-    ".pytype",
-    ".ruff_cache",
-    ".svn",
-    ".tox",
-    ".venv",
-    ".vscode",
-    "__pypackages__",
-    "_build",
-    "buck-out",
-    "build",
-    "dist",
-    "node_modules",
-    "site-packages",
-    "venv",
-]
 extend-exclude = ["*.ipynb"]
 
 [tool.ruff.lint]

@@ -1,6 +1,8 @@
 # Standard libraries
+import importlib
+import sys
+import unittest.mock as mock
 from pathlib import Path
-from unittest.mock import patch
 
 # 3pps
 import pytest
@@ -26,6 +28,7 @@ def mock_project_dir(tmp_path: Path) -> Path:
     """
 
     folders = [".devcontainer", ".vscode", "notebooks", "prompts"]
+    
     for folder in folders:
         (tmp_path / folder).mkdir()
         (tmp_path / folder / "test.txt").write_text("test")
@@ -87,9 +90,7 @@ def test_remove_nonexistent_path(tmp_path: Path) -> None:
     remove(nonexistent)
 
 
-@patch("hooks.post_gen_project.project_dir")
-@patch("hooks.post_gen_project.remove")
-def test_folder_removal_logic(mock_remove, mock_project_dir, tmp_path: Path) -> None:
+def test_folder_removal_logic(mock_project_dir: Path, tmp_path: Path) -> None:
     """
     Test that folders are removed when not enabled.
 
@@ -97,25 +98,22 @@ def test_folder_removal_logic(mock_remove, mock_project_dir, tmp_path: Path) -> 
     folders based on cookiecutter configuration.
 
     Args:
-        mock_remove: Mock of the remove function.
-        mock_project_dir: Mock of the project directory path.
+        mock_project_dir: Mock project directory with optional folders.
         tmp_path: Temporary directory path provided by pytest.
 
     Returns:
         None
     """
-    
-    mock_project_dir.__truediv__ = lambda self, x: tmp_path / x
 
-    folders = {
-        ".devcontainer": "no",
-        ".vscode": "yes",
-        "notebooks": "no",
-        "prompts": "yes",
-    }
-    
-    for folder, enabled in folders.items():
-        if enabled != "yes":
-            mock_remove(mock_project_dir / folder)
+    sys.modules.pop("hooks.post_gen_project", None)
 
-    assert mock_remove.call_count == 2
+    with mock.patch("pathlib.Path.cwd", return_value=mock_project_dir):
+        # Own modules
+        import hooks.post_gen_project as hook
+
+        importlib.reload(hook)
+
+    assert not (mock_project_dir / ".devcontainer").exists()
+    assert not (mock_project_dir / ".vscode").exists()
+    assert not (mock_project_dir / "notebooks").exists()
+    assert not (mock_project_dir / "prompts").exists()

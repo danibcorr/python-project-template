@@ -17,20 +17,16 @@ new projects quickly with a maintainable and professional foundation.
 
 ## Features
 
-- **Linting & Type Checking**: [Ruff](https://docs.astral.sh/ruff/) and
-  [Mypy](https://www.mypy-lang.org/) for clean, consistent code.
-- **Security Scanning**: [Bandit](https://bandit.readthedocs.io/en/latest/) detects
-  potential vulnerabilities.
-- **Code Complexity Analysis**: [Complexipy](https://rohaquinlop.github.io/complexipy/)
-  identifies complex functions and modules.
-- **Testing Suite**: Reliable unit testing with
-  [Pytest](https://docs.pytest.org/en/stable/).
-- **Auto Documentation**: [MkDocs](https://www.mkdocs.org/) +
-  [GitHub Pages](https://docs.github.com/en/pages) for automated docs.
-- **CI/CD**: [GitHub Actions](https://docs.github.com/en/actions) automates linting,
-  testing, and documentation deployment.
-
-And more.
+The template includes [Ruff](https://docs.astral.sh/ruff/) and
+[Mypy](https://www.mypy-lang.org/) for linting and type checking, keeping code clean and
+consistent. [Bandit](https://bandit.readthedocs.io/en/latest/) handles security scanning
+to detect potential vulnerabilities, while
+[Complexipy](https://rohaquinlop.github.io/complexipy/) identifies complex functions and
+modules. Unit testing is covered by [Pytest](https://docs.pytest.org/en/stable/), and
+documentation is automated with [MkDocs](https://www.mkdocs.org/) deployed via
+[GitHub Pages](https://docs.github.com/en/pages). Finally,
+[GitHub Actions](https://docs.github.com/en/actions) ties everything together by
+automating linting, testing, and documentation deployment in CI/CD.
 
 ## Getting Started
 
@@ -39,45 +35,32 @@ set up. It is recommended to create an isolated environment to manage dependenci
 cleanly. Additionally, ensure that [`uv`](https://github.com/astral-sh/uv) is installed
 in your environment to handle grouped dependency installations.
 
-1. Generate Your Project
+**Generate Your Project** — Use Cookiecutter to create a new project from the template
+and follow the prompts to configure project metadata, package name, and other options:
 
-   Use Cookiecutter to create a new project from the template:
+```bash
+cookiecutter https://github.com/danibcorr/python-project-template.git
+```
 
-   ```bash
-   cookiecutter https://github.com/danibcorr/python-project-template.git
-   ```
+**Install Dependencies** — Activate your virtual environment and install all dependencies
+using the included `Makefile`. This installs development, testing, and documentation
+tools as defined in `pyproject.toml`:
 
-   Follow the prompts to configure project metadata, package name, and other options.
+```bash
+make setup
+```
 
-2. Install Dependencies
+**Run the Pipeline** — Execute the quality pipeline, which includes linting, type
+checking, complexity checks, and test execution:
 
-   Activate your virtual environment and install all dependencies using the included
-   `Makefile`:
+```bash
+make pipeline
+```
 
-   ```bash
-   make setup
-   ```
+**Run the Full Workflow (Optional)** — To perform a complete setup including dependency
+installation, full quality checks, and local documentation preview, ensuring that the
+project environment is fully prepared for development and validation:
 
-   This installs development, testing, and documentation tools as defined in
-   `pyproject.toml`.
-
-3. Run the Pipeline
-
-   Execute the quality pipeline, which includes linting, type checking, complexity
-   checks, and test execution:
-
-   ```bash
-   make pipeline
-   ```
-
-4. Run the Full Workflow (Optional)
-
-   To perform a complete setup including dependency installation, full quality checks,
-   and local documentation preview:
-
-   ```bash
-   make all
-   ```
-
-   This ensures that the project environment is fully prepared for development and
-   validation.
+```bash
+make all
+```

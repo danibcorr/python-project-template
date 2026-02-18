@@ -1,3 +1,6 @@
+# Standard libraries
+import sys
+
 # 3pps
 import pytest
 
@@ -12,5 +15,6 @@ def reset_modules():
     Returns:
         None
     """
-    
+
     yield
+    sys.modules.pop("hooks.post_gen_project", None)
