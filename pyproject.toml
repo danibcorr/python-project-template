@@ -37,7 +37,7 @@ pipeline = [
     "complexipy==5.2.0",
     "mypy==1.19.1",
     "ruff==0.15.1",
-    "isort==7.0.0",
+    "isort==8.0.1",
     "pytest==9.0.2"
 ]
 documentation = [
