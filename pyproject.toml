@@ -19,7 +19,7 @@ classifiers = [
 ]
 keywords = ["python", "template"]
 dependencies = [
-    "cookiecutter==2.6.0",
+    "cookiecutter==2.7.1",
 ]
 
 [tool.uv]
