@@ -102,7 +102,6 @@ plugins:
       toc_depth: 0
       exclude:
         - index.md
-  - mkdocs-jupyter
   - awesome-nav
 
 extra:
