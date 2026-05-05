@@ -1,0 +1,13 @@
+# Dependencias y entornos
+node_modules/
+.venv/
+
+# Build
+site/
+
+# Ficheros de bloqueo
+uv.lock
+package-lock.json
+
+# Assets
+docs/assets/

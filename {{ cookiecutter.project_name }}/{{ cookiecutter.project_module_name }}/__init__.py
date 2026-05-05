@@ -1,5 +1,5 @@
-# 3pps
-from {{cookiecutter.project_module_name}}.version import __version__
+# Standard libraries
+from importlib.metadata import version
 
-# Define all names to be imported
+__version__: str = version("{{ cookiecutter.project_name }}")
 __all__: list[str] = ["__version__"]

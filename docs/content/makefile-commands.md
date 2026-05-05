@@ -19,7 +19,7 @@ validate code before each commit, preventing common errors and maintaining quali
 command should be executed the first time the project is cloned or whenever dependencies
 are updated.
 
-```bash
+```bash linenums="1"
 make setup
 ```
 
@@ -31,7 +31,7 @@ pytest caches (`.pytest_cache/`), mypy caches (`.mypy_cache/`), and other compil
 such as `*.pyc` and `*.pyo`. Regular use of this command ensures a clean environment,
 particularly before running the complete pipeline or debugging unusual behavior.
 
-```bash
+```bash linenums="1"
 make clean-cache-temp-files
 ```
 
@@ -47,7 +47,7 @@ Typical automatic fixes include removing unused imports, correcting spacing and
 formatting, and reorganizing imports according to PEP 8 conventions. This command is
 recommended before committing code or when performing routine code cleanup.
 
-```bash
+```bash linenums="1"
 make lint
 ```
 
@@ -56,8 +56,8 @@ make lint
 The `code-check` command performs an in-depth analysis to identify potential issues in
 the codebase. It combines multiple tools:
 
-1. **Mypy**: A static type checker that validates type annotations and detects mismatched
-   types before runtime.
+1. **Mypy**: A static type checker that validates type annotations and detects
+   mismatched types before runtime.
 2. **Complexipy**: Measures cyclomatic complexity to identify functions that may be
    difficult to maintain or require refactoring.
 3. **Bandit**: Conducts static application security testing (SAST) to identify common
@@ -67,7 +67,7 @@ the codebase. It combines multiple tools:
 This command is essential before merging changes into the main branch or during code
 reviews to ensure robust, maintainable, and secure code.
 
-```bash
+```bash linenums="1"
 make code-check
 ```
 
@@ -78,18 +78,18 @@ removed. It detects functions that are never called, uninstantiated classes, and
 variables that are defined but not utilized. Running this command is particularly useful
 during refactoring or when optimizing the codebase for maintainability.
 
-```bash
+```bash linenums="1"
 make check-dead-code
 ```
 
 ## Running Unit Tests: `make test`
 
-This command executes all unit tests using Pytest. It supports structured test execution
-via `pytest-order` and can generate coverage reports if configured. The `tests/`
-directory is scanned recursively, ensuring that all modules are tested thoroughly. This
-command should be run frequently after code modifications to verify correctness.
+This command executes all unit tests using Pytest. It can generate coverage reports if
+configured. The `tests/` directory is scanned recursively, ensuring that all modules are
+tested thoroughly. This command should be run frequently after code modifications to
+verify correctness.
 
-```bash
+```bash linenums="1"
 make test
 ```
 
@@ -101,7 +101,7 @@ automatically reloads pages when Markdown files are updated. This allows develop
 preview documentation as it will appear on GitHub Pages and ensures consistency between
 local edits and published content.
 
-```bash
+```bash linenums="1"
 make doc
 ```
 
@@ -117,14 +117,14 @@ pre-commit hooks. It sequentially:
 This command is automatically executed by Git pre-commit hooks to validate code before
 committing.
 
-```bash
+```bash linenums="1"
 make pre-commit
 ```
 
 ## Complete Code Quality Pipeline: `make pipeline`
 
-The `pipeline` command orchestrates the full sequence of code quality checks and testing.
-It sequentially:
+The `pipeline` command orchestrates the full sequence of code quality checks and
+testing. It sequentially:
 
 1. Cleans caches and temporary files.
 2. Runs linting and formatting.
@@ -134,7 +134,7 @@ It sequentially:
 This command is particularly useful before pushing changes to the repository or as part
 of a continuous integration (CI) workflow.
 
-```bash
+```bash linenums="1"
 make pipeline
 ```
 
@@ -145,6 +145,6 @@ installs dependencies, runs the full code quality pipeline, and serves the docum
 locally. This command provides a comprehensive initialization process, ensuring the
 development environment is fully configured and all systems are validated.
 
-```bash
+```bash linenums="1"
 make all
 ```

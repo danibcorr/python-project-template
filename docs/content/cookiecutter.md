@@ -3,10 +3,10 @@
 ## Introduction to Cookiecutter
 
 Cookiecutter is a command-line utility designed to generate project structures from
-predefined templates. It enables developers to rapidly scaffold new projects by prompting
-for configuration inputs and customizing the generated files according to the provided
-responses. This approach ensures consistency across projects, reduces setup time, and
-enforces best practices and organizational standards in project structure.
+predefined templates. It enables developers to rapidly scaffold new projects by
+prompting for configuration inputs and customizing the generated files according to the
+provided responses. This approach ensures consistency across projects, reduces setup
+time, and enforces best practices and organizational standards in project structure.
 
 ## Configuration Variables
 
@@ -43,8 +43,8 @@ customized according to the provided inputs.
 
 For example, executing:
 
-```bash
-cookiecutter https://github.com/danibcorr/python-project-template.git
+```bash linenums="1"
+uvx cookiecutter https://github.com/danibcorr/python-project-template.git
 ```
 
 initiates the generation process. The user answers the interactive prompts, specifying

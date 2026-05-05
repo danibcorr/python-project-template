@@ -1,6 +1,7 @@
 .PHONY: setup \
 		clean-cache-temp-files \
-		lint code-check test \
+		code-check test \
+		format \
 		doc  \
 		pipeline all
 
@@ -22,13 +23,6 @@ clean-cache-temp-files:
 	@find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
 	@echo "✅ Clean complete."
 
-lint:
-	@echo "Running lint checks..."
-	@uv run isort $(PATH_PROJECT_ROOT)
-	@uv run ruff check --fix $(PATH_PROJECT_ROOT)
-	@uv run ruff format $(PATH_PROJECT_ROOT)
-	@echo "✅ Linting complete."
-
 code-check:
 	@echo "Running static code checks..."
 	@uv run mypy $(PATH_PROJECT_ROOT)
@@ -40,11 +34,16 @@ test:
 	@uv run pytest $(TEST_PATH) -v
 	@echo "✅ Tests complete."
 
+format:
+	@echo "Formatting documents..."
+	@npx prettier --write .
+	@echo "✅ Formatting complete."
+
 doc:
 	@echo "Serving documentation..."
 	@uv run mkdocs serve
 
-pipeline: clean-cache-temp-files lint code-check test
+pipeline: clean-cache-temp-files format code-check test
 	@echo "✅ Pipeline complete."
 
 all: setup pipeline doc

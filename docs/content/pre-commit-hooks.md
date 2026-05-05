@@ -11,10 +11,10 @@ changes meet established coding standards and pass essential checks automaticall
 
 ## Functionality
 
-When a developer attempts to commit changes, the pre-commit system automatically triggers
-the pre-commit validation pipeline by executing:
+When a developer attempts to commit changes, the pre-commit system automatically
+triggers the pre-commit validation pipeline by executing:
 
-```bash
+```bash linenums="1"
 make pre-commit
 ```
 
@@ -26,12 +26,13 @@ This command performs a comprehensive sequence of actions, including:
 - Complexity analysis with Complexipy to identify overly complex code.
 
 If any of these checks fail, the commit is blocked, thereby preventing problematic code
-from being added to the repository. Note that tests are not executed during pre-commit to
-keep the validation fast, but they are run in the full `make pipeline` command.
+from being added to the repository. Note that tests are not executed during pre-commit
+to keep the validation fast, but they are run in the full `make pipeline` command.
 
 ## Advantages
 
-Integrating pre-commit hooks into the development workflow provides several key benefits:
+Integrating pre-commit hooks into the development workflow provides several key
+benefits:
 
 - **Quality Enforcement**: Only code that passes all validations can be committed,
   maintaining a high standard across the codebase.
@@ -44,7 +45,7 @@ Integrating pre-commit hooks into the development workflow provides several key 
 
 While it is possible to bypass pre-commit validations using the `--no-verify` flag:
 
-```bash
+```bash linenums="1"
 git commit --no-verify -m "commit message"
 ```
 

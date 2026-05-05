@@ -108,9 +108,6 @@ extra:
   status:
     new: Recently added
     deprecated: Deprecated
-  social:
-    - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/in/danibcorr/
   version:
     provider: mike
     default: latest

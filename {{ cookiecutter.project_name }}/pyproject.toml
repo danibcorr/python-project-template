@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.10.9,<0.11.0"]
+requires = ["uv_build>=0.11.0,<0.12.0"]
 build-backend = "uv_build"
 
 [project]
@@ -31,23 +31,23 @@ module-root = ""
 [dependency-groups]
 pipeline = [
     "bandit==1.9.4",
-    "complexipy==5.2.0",
-    "mypy==1.19.1",
-    "pytest==9.0.2",
-    "ruff==0.15.5",
+    "complexipy==5.4.1",
+    "mypy==1.20.2",
+    "pytest==9.0.3",
+    "ruff==0.15.12",
     "isort==8.0.1",
     "deadcode==2.4.1",
-    "pre-commit==4.5.1",
+    "pre-commit==4.6.0",
 ]
 documentation = [
     "mkdocs==1.6.1",
-    "mkdocstrings[python]==1.0.0",
-    "mkdocs-material==9.7.5",
+    "mkdocstrings[python]==1.0.4",
+    "mkdocs-material==9.7.6",
     "mkdocs-git-revision-date-localized-plugin==1.5.1",
     "mkdocs-git-authors-plugin==0.10.0",
-    "mkdocs-enumerate-headings-plugin==0.6.2",
+    "mkdocs-enumerate-headings-plugin==0.7.0",
     "mkdocs-awesome-nav==3.3.0",
-    "mike==2.1.4"
+    "mike==2.2.0"
 ]
 
 [tool.ruff]

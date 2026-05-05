@@ -27,7 +27,7 @@ def mock_project_dir(tmp_path: Path) -> Path:
         The path to the temporary project directory.
     """
 
-    folders = [".devcontainer", ".vscode", "notebooks", "prompts"]
+    folders = [".vscode", "notebooks", "prompts"]
     
     for folder in folders:
         (tmp_path / folder).mkdir()
@@ -113,7 +113,6 @@ def test_folder_removal_logic(mock_project_dir: Path, tmp_path: Path) -> None:
 
         importlib.reload(hook)
 
-    assert not (mock_project_dir / ".devcontainer").exists()
     assert not (mock_project_dir / ".vscode").exists()
     assert not (mock_project_dir / "notebooks").exists()
     assert not (mock_project_dir / "prompts").exists()

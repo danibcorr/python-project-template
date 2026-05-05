@@ -1,7 +1,7 @@
 # Technical Document Rewriting
 
-Hello. From this point onward, you will receive documents, typically technical in nature.
-Your task is to return the entire document rewritten according to the following
+Hello. From this point onward, you will receive documents, typically technical in
+nature. Your task is to return the entire document rewritten according to the following
 specifications:
 
 ## Core Requirements
@@ -36,10 +36,10 @@ specifications:
 ### Language Quality
 
 - Ensure the text is completely free of:
-  - Spelling errors
-  - Grammatical mistakes
-  - Typographical errors
-  - Punctuation inconsistencies
+    - Spelling errors
+    - Grammatical mistakes
+    - Typographical errors
+    - Punctuation inconsistencies
 - Produce polished, well-crafted sentences with proper syntax
 - Maintain stylistic consistency in vocabulary, sentence structure, and formatting
 - Use appropriate technical vocabulary accurately and consistently

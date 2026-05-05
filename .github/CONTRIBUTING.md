@@ -27,8 +27,8 @@ You can contribute by:
 Start by opening an issue to describe your proposed change or the problem you
 encountered. This helps maintainers review and guide the work before coding begins.
 
-> For minor changes, such as typo fixes, you may skip this step and submit a pull request
-> directly.
+> For minor changes, such as typo fixes, you may skip this step and submit a pull
+> request directly.
 
 ### Step 2: Make Your Changes
 
@@ -69,7 +69,7 @@ JetBrains IDEs. This provides a preconfigured environment for immediate work.
 
 To set up locally:
 
-1. Ensure `git` and Python (3.10, 3.11, or 3.12) are installed.
+1. Ensure `git` and Python are installed.
 2. Optionally, install [`uv`](https://github.com/astral-sh/uv) to manage dependency
    groups.
 3. Clone the repository and run:

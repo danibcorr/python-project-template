@@ -5,18 +5,18 @@
 The `pyproject.toml` file serves as the central configuration hub for the project,
 consolidating metadata, dependency management, and tool settings in a single,
 standardized location. It follows the [PEP 621](https://peps.python.org/pep-0621/)
-specification, which defines a uniform format for Python project metadata and facilitates
-interoperability between tools. By leveraging `pyproject.toml`, the project achieves
-modular dependency management, consistent tool behavior, and simplified setup for both
-development and production environments.
+specification, which defines a uniform format for Python project metadata and
+facilitates interoperability between tools. By leveraging `pyproject.toml`, the project
+achieves modular dependency management, consistent tool behavior, and simplified setup
+for both development and production environments.
 
 ## Build System: `[build-system]` Section
 
 Defines the build backend used for packaging:
 
-```toml
+```toml linenums="1"
 [build-system]
-requires = ["uv_build>=0.9.18,<0.10.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
 ```
 
@@ -27,7 +27,7 @@ package building.
 
 The `[project]` section defines fundamental information about the project:
 
-```toml
+```toml linenums="1"
 [project]
 name = "my-project"
 version = "0.0.1"
@@ -36,27 +36,18 @@ authors = [{name = "Your Name", email = "your@email.com"}]
 license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">=3.11"
-classifiers = [
-    "Intended Audience :: Developers",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Software Development",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-]
 keywords = ["python"]
 ```
 
 These fields ensure that packaging tools, dependency managers, and documentation
-generators can automatically retrieve key project information. The `classifiers` help
-categorize the project on PyPI, while `keywords` improve discoverability.
+generators can automatically retrieve key project information. The `keywords` field
+improves discoverability on PyPI.
 
 ## UV Configuration: `[tool.uv]` Section
 
 Configures the UV package manager behavior:
 
-```toml
+```toml linenums="1"
 [tool.uv]
 default-groups = "all"
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
@@ -76,7 +67,7 @@ required-environments = [
 
 ### UV Build Backend: `[tool.uv.build-backend]` Section
 
-```toml
+```toml linenums="1"
 [tool.uv.build-backend]
 module-name = "my_module"
 module-root = ""
@@ -99,8 +90,7 @@ automation:
 - `complexipy`: Measures cyclomatic complexity to identify potentially unmaintainable
   code.
 - `mypy`: Static type checker to detect type inconsistencies.
-- `pytest` and `pytest-order`: Frameworks for running unit tests and controlling test
-  execution order.
+- `pytest`: Framework for running unit tests.
 - `ruff`: A high-performance linter and automatic formatter.
 - `isort`: Sorts imports according to standard conventions.
 - `deadcode`: Detects unused or unreachable code.
@@ -116,7 +106,6 @@ documentation:
 - `mkdocs-git-revision-date-localized-plugin`: Displays last update dates for pages.
 - `mkdocs-git-authors-plugin`: Shows contributors for each page.
 - `mkdocs-enumerate-headings-plugin`: Automatically numbers headings.
-- `mkdocs-jupyter`: Integrates Jupyter notebooks into documentation.
 - `mkdocs-awesome-nav`: Enhances navigation capabilities.
 - `mike`: Provides versioned documentation management.
 
@@ -126,22 +115,20 @@ documentation:
 
 The Ruff linter is configured to enforce code style, detect errors, and simplify code:
 
-```toml
+```toml linenums="1"
 [tool.ruff]
 line-length = 88
 indent-width = 4
-exclude = [".venv", "build", "dist", ...]
 extend-exclude = ["*.ipynb"]
 ```
 
 - `line-length = 88`: Maximum line length following Black's convention.
 - `indent-width = 4`: Standard Python indentation.
-- `exclude`: Directories to ignore during linting.
 - `extend-exclude`: Additional patterns to exclude (Jupyter notebooks).
 
 #### Ruff Lint Rules: `[tool.ruff.lint]`
 
-```toml
+```toml linenums="1"
 [tool.ruff.lint]
 select = ["E", "F", "UP", "B", "SIM"]
 ignore = ["E203"]
@@ -156,7 +143,7 @@ ignore = ["E203"]
 
 #### Ruff Docstring Style: `[tool.ruff.lint.pydocstyle]`
 
-```toml
+```toml linenums="1"
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 ```
@@ -165,7 +152,7 @@ Enforces Google-style docstring conventions.
 
 #### Ruff Formatter: `[tool.ruff.format]`
 
-```toml
+```toml linenums="1"
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
@@ -181,7 +168,7 @@ code blocks within docstrings.
 
 Mypy performs static type checking, ensuring type safety and consistency:
 
-```toml
+```toml linenums="1"
 [tool.mypy]
 check_untyped_defs = true
 ignore_missing_imports = true
@@ -200,7 +187,7 @@ cache_dir = "/dev/null"
 isort enforces a standardized import order, improving code readability and
 maintainability:
 
-```toml
+```toml linenums="1"
 [tool.isort]
 profile = "black"
 known_first_party = ["my_module"]
@@ -230,7 +217,7 @@ better organization.
 
 Detects unused code in the project:
 
-```toml
+```toml linenums="1"
 [tool.deadcode]
 exclude = [".venv", ".uv-cache", "tests"]
 ```

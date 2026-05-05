@@ -19,6 +19,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
 
+      - name: Check Formatting
+        run: npx prettier@3 --check .
+
       - name: Setup Python Environment
         uses: ./.github/actions/setup-python-env
         with:

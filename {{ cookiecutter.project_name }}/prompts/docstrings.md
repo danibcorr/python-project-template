@@ -28,16 +28,17 @@ ones following these specifications:
 
 - **Never** include types, parameter types, or default values in the descriptive text.
 - These belong exclusively in the function signature.
-- If type hints are missing from the signature, add them by inferring from usage context.
+- If type hints are missing from the signature, add them by inferring from usage
+  context.
 - If default values are missing but evident from the code, add them to the signature.
 
 ### Performance and Complexity
 
 - Include performance considerations, time/space complexity, or implementation warnings
   **only when**:
-  - The complexity is non-trivial.
-  - There are significant performance implications users should know.
-  - Implementation details affect how the function should be used.
+    - The complexity is non-trivial.
+    - There are significant performance implications users should know.
+    - Implementation details affect how the function should be used.
 - Omit these details for straightforward operations.
 
 ### Edge Cases and Exceptions
@@ -52,9 +53,9 @@ ones following these specifications:
 - **Include examples when**: the usage pattern is non-obvious or would significantly aid
   understanding.
 - When included, examples must be:
-  - Simple and focused on common use cases.
-  - Easy to understand at a glance.
-  - Properly formatted according to Google style.
+    - Simple and focused on common use cases.
+    - Easy to understand at a glance.
+    - Properly formatted according to Google style.
 
 ### Additional Sections
 
@@ -66,8 +67,8 @@ ones following these specifications:
 **Critical**: Maintain strict consistency across all docstrings in the codebase.
 
 - Identical parameters, variables, or concepts **must** use identical descriptions.
-- If a parameter appears in multiple functions, its description must be word-for-word the
-  same.
+- If a parameter appears in multiple functions, its description must be word-for-word
+  the same.
 - Establish and maintain consistent terminology throughout.
 
 ## Output Format

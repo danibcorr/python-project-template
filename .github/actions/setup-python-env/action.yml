@@ -18,27 +18,22 @@ runs:
   using: composite
   steps:
     - name: Install uv and set the Python version
-      uses: astral-sh/setup-uv@v7
+      uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
       with:
-        version: "0.9.23"
         python-version: ${{ inputs.src-python-version }}
         enable-cache: true
 
     - name: Install dependencies with uv
       shell: bash
+      env:
+        UV_GROUP: ${{ inputs.uv-group }}
+        UV_EXTRA: ${{ inputs.uv-extra }}
       run: |
         ARGS=""
-        if [ "${{ inputs.uv-extra }}" = "--all-extras" ] || [ -z "${{ inputs.uv-group }}${{ inputs.uv-extra }}" ]; then
+        if [ "$UV_EXTRA" = "--all-extras" ] || [ -z "$UV_GROUP$UV_EXTRA" ]; then
           ARGS="--all-extras"
         else
-          [ -n "${{ inputs.uv-group }}" ] && ARGS="$ARGS --group ${{ inputs.uv-group }}"
-          [ -n "${{ inputs.uv-extra }}" ] && ARGS="$ARGS --extra ${{ inputs.uv-extra }}"
+          [ -n "$UV_GROUP" ] && ARGS="$ARGS --group $UV_GROUP"
+          [ -n "$UV_EXTRA" ] && ARGS="$ARGS --extra $UV_EXTRA"
         fi
         uv sync $ARGS
-
-    - name: Verify uv and environment
-      shell: bash
-      run: |
-        uv --version
-        uv venv list
-        uv run python --version

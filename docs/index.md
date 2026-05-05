@@ -30,30 +30,30 @@ automating linting, testing, and documentation deployment in CI/CD.
 
 ## Getting Started
 
-Before starting, ensure that you have required Python installed and a virtual environment
-set up. It is recommended to create an isolated environment to manage dependencies
-cleanly. Additionally, ensure that [`uv`](https://github.com/astral-sh/uv) is installed
-in your environment to handle grouped dependency installations.
+Before starting, ensure that you have required Python installed and a virtual
+environment set up. It is recommended to create an isolated environment to manage
+dependencies cleanly. Additionally, ensure that [`uv`](https://github.com/astral-sh/uv)
+is installed in your environment to handle grouped dependency installations.
 
 **Generate Your Project** — Use Cookiecutter to create a new project from the template
 and follow the prompts to configure project metadata, package name, and other options:
 
-```bash
-cookiecutter https://github.com/danibcorr/python-project-template.git
+```bash linenums="1"
+uvx cookiecutter https://github.com/danibcorr/python-project-template.git
 ```
 
-**Install Dependencies** — Activate your virtual environment and install all dependencies
-using the included `Makefile`. This installs development, testing, and documentation
-tools as defined in `pyproject.toml`:
+**Install Dependencies** — Activate your virtual environment and install all
+dependencies using the included `Makefile`. This installs development, testing, and
+documentation tools as defined in `pyproject.toml`:
 
-```bash
+```bash linenums="1"
 make setup
 ```
 
 **Run the Pipeline** — Execute the quality pipeline, which includes linting, type
 checking, complexity checks, and test execution:
 
-```bash
+```bash linenums="1"
 make pipeline
 ```
 
@@ -61,6 +61,6 @@ make pipeline
 installation, full quality checks, and local documentation preview, ensuring that the
 project environment is fully prepared for development and validation:
 
-```bash
+```bash linenums="1"
 make all
 ```

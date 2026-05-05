@@ -2,12 +2,13 @@
 
 ## Overview
 
-The **Python Project Template** is a pre-configured, ready-to-use scaffolding designed to
-accelerate the creation of professional Python projects. It provides a complete directory
-structure, integrated tooling, and automation mechanisms that enforce modern development
-best practices. By using this template, developers can immediately focus on implementing
-functionality rather than spending time on repetitive setup tasks, ensuring that new
-projects maintain high standards for code quality, testing, security, and documentation.
+The **Python Project Template** is a pre-configured, ready-to-use scaffolding designed
+to accelerate the creation of professional Python projects. It provides a complete
+directory structure, integrated tooling, and automation mechanisms that enforce modern
+development best practices. By using this template, developers can immediately focus on
+implementing functionality rather than spending time on repetitive setup tasks, ensuring
+that new projects maintain high standards for code quality, testing, security, and
+documentation.
 
 ## Target Audience
 
@@ -44,5 +45,5 @@ processes and enhance software quality:
   components while preserving the standard workflow.
 
 By combining these features, the template not only accelerates project setup but also
-enforces modern best practices, supporting sustainable, scalable, and maintainable Python
-development.
+enforces modern best practices, supporting sustainable, scalable, and maintainable
+Python development.

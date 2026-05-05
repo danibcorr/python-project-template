@@ -29,7 +29,6 @@ def remove(path: Path) -> None:
 
 
 folders: dict[str, str] = {
-    ".devcontainer": "{{ cookiecutter.add_dev_container_folder }}",
     ".vscode": "{{ cookiecutter.add_vscode_folder }}",
     "notebooks": "{{ cookiecutter.add_notebooks_folder }}",
     "prompts": "{{ cookiecutter.add_prompts_folder }}",

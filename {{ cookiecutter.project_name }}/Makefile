@@ -9,7 +9,6 @@
 
 SOURCE_PATH ?= {{ cookiecutter.project_module_name }}
 TEST_PATH ?= {{ cookiecutter.project_test_folder_name }}
-NOTEBOOKS_PATH ?= notebooks
 
 setup:
 	@echo "Installing dependencies..."

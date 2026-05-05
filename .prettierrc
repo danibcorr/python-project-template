@@ -1,0 +1,14 @@
+{
+    "printWidth": 88,
+    "proseWrap": "always",
+    "tabWidth": 4,
+    "useTabs": false,
+    "overrides": [
+        {
+            "files": ["*.yml", "*.yaml", "*.json"],
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
+}

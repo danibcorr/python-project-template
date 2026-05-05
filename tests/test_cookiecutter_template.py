@@ -179,7 +179,6 @@ def test_generated_project_folders(tmp_path: Path, template_dir: Path) -> None:
 @pytest.mark.parametrize(
     "folder_option,folder_name",
     [
-        ("add_dev_container_folder", ".devcontainer"),
         ("add_vscode_folder", ".vscode"),
         ("add_notebooks_folder", "notebooks"),
         ("add_prompts_folder", "prompts"),
@@ -221,7 +220,6 @@ def test_optional_folders_yes(tmp_path: Path, template_dir: Path, folder_option:
 @pytest.mark.parametrize(
     "folder_option,folder_name",
     [
-        ("add_dev_container_folder", ".devcontainer"),
         ("add_vscode_folder", ".vscode"),
         ("add_notebooks_folder", "notebooks"),
         ("add_prompts_folder", "prompts"),

@@ -70,9 +70,9 @@ To work locally:
 2. Clone the repository.
 3. Run:
 
-   ```bash
-   make setup
-   ```
+    ```bash
+    make setup
+    ```
 
 > The required Python version is defined in `pyproject.toml`. If using `uv`, it will
 > create a compatible virtual environment automatically.

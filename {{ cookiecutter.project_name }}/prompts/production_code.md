@@ -67,9 +67,9 @@ Follow these specifications for all docstrings:
 
 - Include performance considerations, time/space complexity, or implementation warnings
   **only when**:
-  - The complexity is non-trivial
-  - There are significant performance implications users should know
-  - Implementation details affect how the function should be used
+    - The complexity is non-trivial
+    - There are significant performance implications users should know
+    - Implementation details affect how the function should be used
 - Omit these details for straightforward operations
 
 **Edge Cases and Exceptions**
@@ -84,9 +84,9 @@ Follow these specifications for all docstrings:
 - **Include examples when**: the usage pattern is non-obvious or would significantly aid
   understanding
 - When included, examples must be:
-  - Simple and focused on common use cases
-  - Easy to understand at a glance
-  - Properly formatted according to Google style
+    - Simple and focused on common use cases
+    - Easy to understand at a glance
+    - Properly formatted according to Google style
 
 **Additional Sections**
 
@@ -98,8 +98,8 @@ Follow these specifications for all docstrings:
 **Critical**: Maintain strict consistency across all docstrings in the codebase
 
 - Identical parameters, variables, or concepts **must** use identical descriptions
-- If a parameter appears in multiple functions, its description must be word-for-word the
-  same
+- If a parameter appears in multiple functions, its description must be word-for-word
+  the same
 - Establish and maintain consistent terminology throughout
 
 ### Code Optimization

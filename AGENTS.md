@@ -11,7 +11,8 @@ practices for code quality, testing, security, documentation, and CI/CD.
 
 ## Key Files
 
-- **cookiecutter.json**: Template variables (metadata, Python version, optional features)
+- **cookiecutter.json**: Template variables (metadata, Python version, optional
+  features)
 - **hooks/post_gen_project.py**: Removes disabled optional folders post-generation
 - **Makefile**: Workflow commands (`setup`, `lint`, `code-check`, `test`, `pipeline`)
 - **.github/actions/**: Reusable GitHub Actions for CI/CD
