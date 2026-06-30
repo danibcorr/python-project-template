@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://danibcorr.github.io/v3.0.0/</loc>
+      </url>
+      <url>
+        <loc>https://danibcorr.github.io/v3.0.0/content/overview/</loc>
+      </url>
+      <url>
+        <loc>https://danibcorr.github.io/v3.0.0/content/cookiecutter/</loc>
+      </url>
+      <url>
+        <loc>https://danibcorr.github.io/v3.0.0/content/makefile-commands/</loc>
+      </url>
+      <url>
+        <loc>https://danibcorr.github.io/v3.0.0/content/pyproject-configuration/</loc>
+      </url>
+      <url>
+        <loc>https://danibcorr.github.io/v3.0.0/content/pre-commit-hooks/</loc>
+      </url>
+      <url>
+        <loc>https://danibcorr.github.io/v3.0.0/content/ci-cd/</loc>
+      </url>
+</urlset>
