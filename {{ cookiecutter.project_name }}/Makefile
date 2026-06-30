@@ -3,7 +3,7 @@
 		lint code-check check-dead-code \
 		test \
 		doc  \
-		pipeline all
+		pipeline pre-commit all
 
 .DEFAULT_GOAL := all
 
@@ -50,7 +50,7 @@ test:
 
 doc:
 	@echo "Serving documentation..."
-	@uv run mkdocs serve
+	@uv run zensical serve
 
 pipeline: clean-cache-temp-files lint code-check test
 	@echo "✅ Pipeline complete."

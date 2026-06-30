@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Check Formatting
         run: npx prettier@3 --check .
@@ -29,6 +29,12 @@ jobs:
           uv-group: "pipeline"
           uv-extra: "--all-extras"
 
+      - name: Run Lint Checks
+        run: |
+          uv run ruff check hooks tests
+          uv run ruff format --check hooks tests
+          uv run isort --check-only hooks tests
+
       - name: Run Tests
         uses: ./.github/actions/test-code
         with:
@@ -36,7 +42,7 @@ jobs:
 
   build-deploy-docs:
     if: github.ref == 'refs/heads/main'
-    name: Build MkDocs Documentation
+    name: Build Zensical Documentation
     runs-on: ubuntu-latest
     needs: setup-test
 
@@ -47,7 +53,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -62,7 +68,7 @@ jobs:
         uses: ./.github/actions/obtain-version
 
       - name: Build Documentation
-        uses: ./.github/actions/build-mkdocs
+        uses: ./.github/actions/build-docs
         with:
           docs-version: ${{ steps.version.outputs.version }}
 
@@ -77,7 +83,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 

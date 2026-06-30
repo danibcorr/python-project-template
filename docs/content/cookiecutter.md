@@ -17,17 +17,23 @@ features. During project generation, Cookiecutter interactively prompts the user
 provide values for these variables, thereby producing a project tailored to the user’s
 specifications. The main configuration variables include:
 
-| Variable                   | Description                                     | Example                        |
-| -------------------------- | ----------------------------------------------- | ------------------------------ |
-| `project_name`             | Name of the project                             | `my-project`                   |
-| `project_module_name`      | Name of the Python module                       | `src`                          |
-| `project_test_folder_name` | Name of the folder for tests                    | `tests`                        |
-| `project_version_python`   | Minimum required Python version                 | `3.11`                         |
-| `mkdocs_repo_url`          | URL of the repository for documentation         | `https://github.com/user/repo` |
-| `add_notebooks_folder`     | Option to include a notebooks folder            | `yes` / `no`                   |
-| `add_prompts_folder`       | Option to include a prompts folder              | `yes` / `no`                   |
-| `add_dev_container_folder` | Option to include a Dev Container configuration | `yes` / `no`                   |
-| `add_vscode_folder`        | Option to include VS Code configuration         | `yes` / `no`                   |
+| Variable                    | Description                                                     | Example                        |
+| --------------------------- | --------------------------------------------------------------- | ------------------------------ |
+| `project_authors`           | Full name of the project author(s)                              | `Your Name`                    |
+| `project_authors_email`     | Contact email address of the author(s)                          | `your.email@example.com`       |
+| `project_name`              | Name of the project (used as directory and package identifier)  | `my-project`                   |
+| `project_module_name`       | Name of the Python source module                                | `src`                          |
+| `project_test_folder_name`  | Name of the folder for tests                                    | `tests`                        |
+| `project_short_description` | Short, one-line description of the project's purpose            | `What this project does.`      |
+| `project_version`           | Initial semantic version of the project                         | `0.0.1`                        |
+| `project_version_python`    | Minimum required Python version                                 | `3.11`                         |
+| `project_license`           | SPDX license identifier (selection list)                        | `MIT`                          |
+| `site_name`                 | Title of the generated documentation site                       | `Project Title`                |
+| `repo_url`                  | URL of the repository for documentation cross-links             | `https://github.com/user/repo` |
+| `site_url`                  | Base URL where the documentation is published                   | `https://user.github.io/repo/` |
+| `add_vscode_folder`         | Whether to include VS Code workspace configuration (`.vscode/`) | `yes` / `no`                   |
+| `add_notebooks_folder`      | Whether to include a Jupyter notebooks folder                   | `yes` / `no`                   |
+| `add_prompts_folder`        | Whether to include a prompts folder for LLM or agent use cases  | `yes` / `no`                   |
 
 These variables enable fine-grained control over the structure and functionality of the
 generated project, accommodating different workflows and development environments.

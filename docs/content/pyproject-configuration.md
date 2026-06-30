@@ -16,7 +16,7 @@ Defines the build backend used for packaging:
 
 ```toml linenums="1"
 [build-system]
-requires = ["uv_build>=0.10.9,<0.11.0"]
+requires = ["uv_build>=0.11.0,<0.12.0"]
 build-backend = "uv_build"
 ```
 
@@ -101,13 +101,17 @@ automation:
 The `documentation` group contains tools for building and maintaining project
 documentation:
 
-- `mkdocs` and `mkdocs-material`: Static site generator and material design theme.
-- `mkdocstrings[python]`: Generates API documentation directly from Python docstrings.
-- `mkdocs-git-revision-date-localized-plugin`: Displays last update dates for pages.
-- `mkdocs-git-authors-plugin`: Shows contributors for each page.
-- `mkdocs-enumerate-headings-plugin`: Automatically numbers headings.
-- `mkdocs-awesome-nav`: Enhances navigation capabilities.
-- `mike`: Provides versioned documentation management.
+- `zensical`: The documentation site generator used to build and serve the project's
+  documentation site. It replaces the previous MkDocs stack and provides an integrated
+  Material-based theme, navigation, and plugin system. Build the site with
+  `uv run zensical build --clean` and preview it locally with `uv run zensical serve`.
+- `mkdocstrings-python`: Generates API reference documentation directly from Python
+  docstrings. Configured in `zensical.toml` under the
+  `[project.plugins.mkdocstrings.handlers.python]` block.
+- `mike` (git dependency — `git+https://github.com/squidfunk/mike.git`): Provides
+  versioned documentation management. Deploys each release as a named version to the
+  `gh-pages` branch and manages a `latest` alias. The version selector is configured
+  inside `zensical.toml` via `[project.extra.version]` with `provider = "mike"`.
 
 ## Tool-Specific Configuration
 

@@ -31,23 +31,18 @@ module-root = ""
 [dependency-groups]
 pipeline = [
     "bandit==1.9.4",
-    "complexipy==5.4.1",
-    "mypy==1.20.2",
-    "pytest==9.0.3",
-    "ruff==0.15.12",
+    "complexipy==6.0.0",
+    "mypy==2.1.0",
+    "pytest==9.1.1",
+    "ruff==0.15.20",
     "isort==8.0.1",
     "deadcode==2.4.1",
     "pre-commit==4.6.0",
 ]
 documentation = [
-    "mkdocs==1.6.1",
-    "mkdocstrings[python]==1.0.4",
-    "mkdocs-material==9.7.6",
-    "mkdocs-git-revision-date-localized-plugin==1.5.1",
-    "mkdocs-git-authors-plugin==0.10.0",
-    "mkdocs-enumerate-headings-plugin==0.7.0",
-    "mkdocs-awesome-nav==3.3.0",
-    "mike==2.2.0"
+    "zensical==0.0.46",
+    "mkdocstrings-python==2.0.5",
+    "mike @ git+https://github.com/squidfunk/mike.git",
 ]
 
 [tool.ruff]

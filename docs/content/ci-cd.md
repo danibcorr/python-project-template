@@ -33,14 +33,23 @@ downstream jobs from running under incomplete or unreliable conditions.
 ## Documentation Build and Deployment
 
 When changes are integrated into the `main` branch, the workflow triggers a dedicated
-documentation job. In this stage, MkDocs is used to generate a static documentation site
-from the project sources, which is then automatically deployed to GitHub Pages. This
-process ensures that the published documentation accurately reflects the current state
-of the main codebase.
+documentation job. In this stage, [Zensical](https://zensical.org/) is used to generate
+a static documentation site from the project sources. The build and deployment are
+performed through the reusable `.github/actions/build-docs` composite action, which
+executes two steps: first, it runs
+`mike deploy --push --update-aliases <version> latest` to build the Zensical site
+internally, tag it with the release version and the `latest` alias, and push the result
+to the `gh-pages` branch; second, it runs `mike set-default --push latest` to make the
+`latest` version the one displayed when no specific version is requested. This process
+ensures that the published documentation accurately reflects the current state of the
+main codebase.
 
-Documentation versioning is handled through `mike`, which allows multiple versions of
+Documentation versioning is handled through `mike` (installed from the upstream git
+source at `https://github.com/squidfunk/mike.git`), which allows multiple versions of
 the documentation to coexist. Each version corresponds to a specific software release,
 enabling users to consult documentation aligned with the version they are using. The
+version selector is configured directly inside `zensical.toml` under the
+`[project.extra.version]` block, with `provider = "mike"` and `default = "latest"`. The
 entire build and deployment process is automated and requires no manual approval once
 the workflow conditions are satisfied.
 

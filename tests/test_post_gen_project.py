@@ -17,8 +17,8 @@ def mock_project_dir(tmp_path: Path) -> Path:
     Create a temporary project directory with test folders.
 
     Generates a mock project structure containing the standard
-    optional folders (.devcontainer, .vscode, notebooks, prompts)
-    with a test file in each.
+    optional folders (.vscode, notebooks, prompts) with a test file
+    in each.
 
     Args:
         tmp_path: Temporary directory path provided by pytest.
@@ -28,7 +28,7 @@ def mock_project_dir(tmp_path: Path) -> Path:
     """
 
     folders = [".vscode", "notebooks", "prompts"]
-    
+
     for folder in folders:
         (tmp_path / folder).mkdir()
         (tmp_path / folder / "test.txt").write_text("test")

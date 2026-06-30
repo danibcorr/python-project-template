@@ -30,7 +30,7 @@ consistent. [Bandit](https://bandit.readthedocs.io/en/latest/) handles security 
 to detect potential vulnerabilities, while
 [Complexipy](https://rohaquinlop.github.io/complexipy/) identifies complex functions and
 modules. Unit testing is covered by [Pytest](https://docs.pytest.org/en/stable/), and
-documentation is automated with [MkDocs](https://www.mkdocs.org/) deployed via
+documentation is automated with [Zensical](https://zensical.org/) deployed via
 [GitHub Pages](https://docs.github.com/en/pages). Finally,
 [GitHub Actions](https://docs.github.com/en/actions) ties everything together by
 automating linting, testing, and documentation deployment in CI/CD.

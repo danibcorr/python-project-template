@@ -1,5 +1,5 @@
-name: Build MkDocs Artifacts
-description: Build MkDocs and Versioning with Mike
+name: Build Zensical Artifacts
+description: Build Zensical documentation and deploy versioned site with Mike
 
 inputs:
   docs-version:

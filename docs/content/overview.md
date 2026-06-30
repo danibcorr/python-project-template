@@ -34,9 +34,9 @@ processes and enhance software quality:
 - **Ensured Code Quality**: Preconfigured tools for linting, static type checking,
   complexity analysis, and security evaluation help maintain high-quality, maintainable,
   and secure codebases.
-- **Automated Documentation**: Integration with MkDocs enables immediate generation and
-  deployment of project documentation to GitHub Pages, ensuring that documentation
-  remains synchronized with the code.
+- **Automated Documentation**: Integration with [Zensical](https://zensical.org/)
+  enables immediate generation and deployment of project documentation to GitHub Pages,
+  ensuring that documentation remains synchronized with the code.
 - **CI/CD Integration**: Built-in GitHub Actions workflows automatically perform code
   validation, testing, and documentation deployment, reducing manual intervention and
   errors.

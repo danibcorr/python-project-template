@@ -135,7 +135,7 @@ def test_generated_project_structure(tmp_path: Path, template_dir: Path) -> None
         "pyproject.toml",
         "Makefile",
         "README.md",
-        "mkdocs.yml",
+        "zensical.toml",
         ".gitignore",
     ]
 
@@ -184,7 +184,9 @@ def test_generated_project_folders(tmp_path: Path, template_dir: Path) -> None:
         ("add_prompts_folder", "prompts"),
     ],
 )
-def test_optional_folders_yes(tmp_path: Path, template_dir: Path, folder_option: str, folder_name: str) -> None:
+def test_optional_folders_yes(
+    tmp_path: Path, template_dir: Path, folder_option: str, folder_name: str
+) -> None:
     """
     Test that optional folders are created when enabled.
 
@@ -225,7 +227,9 @@ def test_optional_folders_yes(tmp_path: Path, template_dir: Path, folder_option:
         ("add_prompts_folder", "prompts"),
     ],
 )
-def test_optional_folders_no(tmp_path: Path, template_dir: Path, folder_option: str, folder_name: str) -> None:
+def test_optional_folders_no(
+    tmp_path: Path, template_dir: Path, folder_option: str, folder_name: str
+) -> None:
     """
     Test that optional folders are removed when disabled.
 
@@ -307,7 +311,7 @@ def test_makefile_commands_exist(tmp_path: Path, template_dir: Path) -> None:
     Returns:
         None
     """
-    
+
     subprocess.run(
         [
             "uv",

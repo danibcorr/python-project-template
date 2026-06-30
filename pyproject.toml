@@ -1,6 +1,6 @@
 [project]
 name = "python-project-template"
-version = "2.7.0"
+version = "3.0.0"
 description = "Python project template"
 authors = [
     {name = "Daniel Bazo Correa", email = "none@none.com"},
@@ -34,26 +34,21 @@ required-environments = [
 
 [dependency-groups]
 pipeline = [
-    "complexipy==5.4.1",
-    "mypy==1.20.2",
-    "ruff==0.15.12",
+    "complexipy==6.0.0",
+    "mypy==2.1.0",
+    "ruff==0.15.20",
     "isort==8.0.1",
-    "pytest==9.0.3"
+    "pytest==9.1.1"
 ]
 documentation = [
-    "mkdocs==1.6.1",
-    "mkdocs-material==9.7.6",
-    "mkdocs-git-revision-date-localized-plugin==1.5.1",
-    "mkdocs-git-authors-plugin==0.10.0",
-    "mkdocs-enumerate-headings-plugin==0.7.0",
-    "mkdocs-awesome-nav==3.3.0",
-    "mike==2.2.0"
+    "zensical==0.0.46",
+    "mike @ git+https://github.com/squidfunk/mike.git",
 ]
 
 [tool.ruff]
 line-length = 88
 indent-width = 4
-extend-exclude = ["*.ipynb", "{{*}}"]
+extend-exclude = ["*.ipynb", "[{][{] cookiecutter.project_name [}][}]"]
 
 [tool.ruff.lint]
 select = ["E", "F", "UP", "B", "SIM"]
@@ -93,7 +88,4 @@ import_heading_localfolder = "Own modules"
 line_length = 88
 include_trailing_comma = true
 combine_as_imports = true
-skip_glob = [".venv/*", ".uv-cache/*"]
-
-[tool.deadcode]
-exclude = [".venv", ".uv-cache", "tests"]
+skip_glob = [".venv/*", ".uv-cache/*", "{{ cookiecutter.project_name }}/*"]

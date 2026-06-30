@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Python Environment
         uses: ./.github/actions/setup-python-env
@@ -35,7 +35,6 @@ jobs:
       - name: Run Tests
         uses: ./.github/actions/test-code
         with:
-          src-project-folder: ${{'{{'}} env.SRC_PROJECT_FOLDER {{'}}'}}
           src-tests-folder: ${{'{{'}} env.TEST_PATH {{'}}'}}
 
       - name: Security Scan
@@ -46,7 +45,7 @@ jobs:
 
   build-deploy-docs:
     if: github.ref == 'refs/heads/main'
-    name: Build MkDocs Documentation
+    name: Build Zensical Documentation
     runs-on: ubuntu-latest
     needs: setup-lint-test
 
@@ -57,7 +56,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -72,7 +71,7 @@ jobs:
         uses: ./.github/actions/obtain-version
 
       - name: Build Documentation
-        uses: ./.github/actions/build-mkdocs
+        uses: ./.github/actions/build-docs
         with:
           docs-version: ${{'{{'}} steps.version.outputs.version {{'}}'}}
 
@@ -87,7 +86,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 

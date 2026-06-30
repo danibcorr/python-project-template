@@ -14,7 +14,7 @@ The `setup` command installs all necessary dependencies and configures pre-commi
 to enforce code standards automatically. It leverages `uv`, a high-performance Python
 package manager, to install the required packages efficiently. Dependency groups include
 `pipeline`, which contains tools for testing and linting, and `documentation`, which
-includes MkDocs for building project documentation. Pre-commit hooks are configured to
+includes Zensical for building project documentation. Pre-commit hooks are configured to
 validate code before each commit, preventing common errors and maintaining quality. This
 command should be executed the first time the project is cloned or whenever dependencies
 are updated.
@@ -95,7 +95,7 @@ make test
 
 ## Documentation Management: `make doc`
 
-The `doc` command builds and serves project documentation locally using MkDocs. It
+The `doc` command builds and serves project documentation locally using Zensical. It
 launches a development server (by default accessible at `http://127.0.0.1:8000`) and
 automatically reloads pages when Markdown files are updated. This allows developers to
 preview documentation as it will appear on GitHub Pages and ensures consistency between

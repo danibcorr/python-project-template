@@ -1,7 +1,7 @@
 .PHONY: setup \
 		clean-cache-temp-files \
-		code-check test \
 		format \
+		lint code-check test \
 		doc  \
 		pipeline all
 
@@ -23,11 +23,18 @@ clean-cache-temp-files:
 	@find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
 	@echo "✅ Clean complete."
 
+lint:
+	@echo "Running lint checks..."
+	@uv run isort hooks tests
+	@uv run ruff check --fix hooks tests
+	@uv run ruff format hooks tests
+	@echo "✅ Linting complete."
+
 code-check:
 	@echo "Running static code checks..."
 	@uv run mypy $(PATH_PROJECT_ROOT)
 	@uv run complexipy -f $(PATH_PROJECT_ROOT)
-	@echo "✅ Code and security checks complete."
+	@echo "✅ Code checks complete."
 
 test:
 	@echo "Running tests..."
@@ -41,9 +48,9 @@ format:
 
 doc:
 	@echo "Serving documentation..."
-	@uv run mkdocs serve
+	@uv run zensical serve
 
-pipeline: clean-cache-temp-files format code-check test
+pipeline: clean-cache-temp-files format lint code-check test
 	@echo "✅ Pipeline complete."
 
 all: setup pipeline doc
